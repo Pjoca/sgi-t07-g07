@@ -1,6 +1,6 @@
 # SGI 2024/2025
 
-## Group T0xG0y
+## Group T07G07
 | Name             | Number    | E-Mail             |
 | ---------------- | --------- | ------------------ |
 | Pedro Paixão     | 202008467 | up202008467@up.pt  |
