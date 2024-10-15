@@ -17,7 +17,7 @@ class MyContents  {
         // box related attributes
         this.boxMesh = null
         this.boxMeshSize = 1.0
-        this.boxEnabled = true
+        this.boxEnabled = false
         this.lastBoxEnabled = null
         this.boxDisplacement = new THREE.Vector3(0,2,0)
 
