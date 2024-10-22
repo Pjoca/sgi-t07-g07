@@ -1,11 +1,15 @@
 import * as THREE from 'three';
 import { MyAxis } from './MyAxis.js';
+import { MyTable } from './custom/MyTable.js';
+import { MyWalls } from './custom/MyWalls.js';
+import { MyPlate } from './custom/MyPlate.js';
+import { MyCake } from './custom/MyCake.js';
+import { MyCandle } from './custom/MyCandle.js';
 
 /**
  *  This class contains the contents of out application
  */
 class MyContents  {
-
     /**
        constructs the object
        @param {MyApp} app The application object
@@ -13,6 +17,22 @@ class MyContents  {
     constructor(app) {
         this.app = app
         this.axis = null
+
+        // objects
+        this.walls = new MyWalls();
+        this.app.scene.add(this.walls.wall1, this.walls.wall2, this.walls.wall3, this.walls.wall4);
+
+        this.table = new MyTable();
+        this.app.scene.add(this.table.tabletop, this.table.leg1, this.table.leg2, this.table.leg3, this.table.leg4);
+
+        this.plate = new MyPlate();
+        this.app.scene.add(this.plate.plate);
+
+        this.cake = new MyCake(this.plate);
+        this.app.scene.add(this.cake.cake, this.cake.sliceFace, this.cake.sliceFace2);
+
+        this.candle = new MyCandle(this.cake);
+        this.app.scene.add(this.candle.candle, this.candle.flame);
 
         // box related attributes
         this.boxMesh = null
@@ -27,30 +47,6 @@ class MyContents  {
         this.planeShininess = 30
         this.planeMaterial = new THREE.MeshPhongMaterial({ color: this.diffusePlaneColor, 
             specular: this.specularPlaneColor, emissive: "#000000", shininess: this.planeShininess })
-
-        this.wallMaterial = new THREE.MeshPhongMaterial({ 
-            color: "#ffffff", 
-            specular: "#333333", 
-            shininess: 30 
-        });
-        this.wallThickness = 0.3;
-        this.wallHeight = 5.5;  // Adjust the height as needed
-        this.wallLength = 10;   // Adjust the length as needed
-        
-        // Store wall meshes for easier management
-        this.walls = [];    
-
-        this.tableMaterial = new THREE.MeshPhongMaterial({ 
-            color: "#8B4513", // Brown color for wood
-            specular: "#555555", 
-            shininess: 50 
-        });
-        this.tableTopSize = { width: 4, depth: 2, thickness: 0.1 };
-        this.tableLegSize = { thickness: 0.1, height: 1.5 };
-        this.tableHeight = 1.6;
-    
-        // Store table parts for easier management
-        this.tableParts = [];
     }
 
     /**
@@ -69,103 +65,10 @@ class MyContents  {
         this.boxMesh.scale.set(2, 2, 2.5);
     }
 
-    buildWalls() {
-        // Wall 1 (Front wall)
-        const wall1Geometry = new THREE.BoxGeometry(this.wallLength+0.3, this.wallHeight, this.wallThickness);
-        const wall1 = new THREE.Mesh(wall1Geometry, this.wallMaterial);
-        wall1.position.set(0, this.wallHeight / 2, this.wallLength / 2);  // Adjust y for half the wall height
-        this.walls.push(wall1);
-    
-        // Wall 2 (Back wall)
-        const wall2Geometry = new THREE.BoxGeometry(this.wallLength+0.3, this.wallHeight, this.wallThickness);
-        const wall2 = new THREE.Mesh(wall2Geometry, this.wallMaterial);
-        wall2.position.set(0, this.wallHeight / 2, -this.wallLength / 2);
-        this.walls.push(wall2);
-    
-        // Wall 3 (Left wall)
-        const wall3Geometry = new THREE.BoxGeometry(this.wallThickness, this.wallHeight, this.wallLength);
-        const wall3 = new THREE.Mesh(wall3Geometry, this.wallMaterial);
-        wall3.position.set(-this.wallLength / 2, this.wallHeight / 2, 0);
-        this.walls.push(wall3);
-    
-        // Wall 4 (Right wall)
-        const wall4Geometry = new THREE.BoxGeometry(this.wallThickness, this.wallHeight, this.wallLength+0.3);
-        const wall4 = new THREE.Mesh(wall4Geometry, this.wallMaterial);
-        wall4.position.set(this.wallLength / 2, this.wallHeight / 2, 0);
-        this.walls.push(wall4);
-    
-        // Add each wall to the scene
-        this.walls.forEach(wall => this.app.scene.add(wall));
-    }
-    
-
-    buildTable() {
-        // Create the tabletop
-        const topGeometry = new THREE.BoxGeometry(
-            this.tableTopSize.width, 
-            this.tableTopSize.thickness, 
-            this.tableTopSize.depth
-        );
-        const tabletop = new THREE.Mesh(topGeometry, this.tableMaterial);
-        tabletop.position.set(0, this.tableHeight, 0);  // Position it at the height of the table
-        this.tableParts.push(tabletop);
-        this.app.scene.add(tabletop);
-    
-        // Create table legs
-        const legGeometry = new THREE.BoxGeometry(
-            this.tableLegSize.thickness, 
-            this.tableLegSize.height, 
-            this.tableLegSize.thickness
-        );
-    
-        // Front left leg
-        const leg1 = new THREE.Mesh(legGeometry, this.tableMaterial);
-        leg1.position.set(
-            -this.tableTopSize.width / 2 + this.tableLegSize.thickness / 2,
-            this.tableHeight - this.tableLegSize.height / 2,
-            -this.tableTopSize.depth / 2 + this.tableLegSize.thickness / 2
-        );
-        this.tableParts.push(leg1);
-        this.app.scene.add(leg1);
-    
-        // Front right leg
-        const leg2 = new THREE.Mesh(legGeometry, this.tableMaterial);
-        leg2.position.set(
-            this.tableTopSize.width / 2 - this.tableLegSize.thickness / 2,
-            this.tableHeight - this.tableLegSize.height / 2,
-            -this.tableTopSize.depth / 2 + this.tableLegSize.thickness / 2
-        );
-        this.tableParts.push(leg2);
-        this.app.scene.add(leg2);
-    
-        // Back left leg
-        const leg3 = new THREE.Mesh(legGeometry, this.tableMaterial);
-        leg3.position.set(
-            -this.tableTopSize.width / 2 + this.tableLegSize.thickness / 2,
-            this.tableHeight - this.tableLegSize.height / 2,
-            this.tableTopSize.depth / 2 - this.tableLegSize.thickness / 2
-        );
-        this.tableParts.push(leg3);
-        this.app.scene.add(leg3);
-    
-        // Back right leg
-        const leg4 = new THREE.Mesh(legGeometry, this.tableMaterial);
-        leg4.position.set(
-            this.tableTopSize.width / 2 - this.tableLegSize.thickness / 2,
-            this.tableHeight - this.tableLegSize.height / 2,
-            this.tableTopSize.depth / 2 - this.tableLegSize.thickness / 2
-        );
-        this.tableParts.push(leg4);
-        this.app.scene.add(leg4);
-    }
-    
-
-
     /**
      * initializes the contents
      */
     init() {
-       
         // create once 
         if (this.axis === null) {
             // create and attach the axis to the scene
@@ -190,16 +93,17 @@ class MyContents  {
         this.app.scene.add( ambientLight );
 
         this.buildBox()
-        this.buildWalls();
-        this.buildTable();
+        this.walls.build();
+        this.table.build();
+        this.plate.build();
+        this.cake.build();
+        this.candle.build();
         
         // Create a Plane Mesh with basic material
-        
-        let plane = new THREE.PlaneGeometry( 10, 10 );
+        let plane = new THREE.PlaneGeometry( 15, 10 );
         this.planeMesh = new THREE.Mesh( plane, this.planeMaterial );
         this.planeMesh.position.y = -0;
         this.planeMesh.rotation.x = -Math.PI / 2;
-    
 
         this.app.scene.add( this.planeMesh );
     }
@@ -272,9 +176,7 @@ class MyContents  {
         this.boxMesh.position.x = this.boxDisplacement.x
         this.boxMesh.position.y = this.boxDisplacement.y
         this.boxMesh.position.z = this.boxDisplacement.z
-        
     }
-
 }
 
 export { MyContents };
