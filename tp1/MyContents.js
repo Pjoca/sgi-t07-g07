@@ -5,6 +5,7 @@ import { MyWalls } from './custom/MyWalls.js';
 import { MyPlate } from './custom/MyPlate.js';
 import { MyCake } from './custom/MyCake.js';
 import { MyCandle } from './custom/MyCandle.js';
+import { MyFrame } from './custom/MyRug.js';
 
 /**
  *  This class contains the contents of out application
@@ -34,6 +35,9 @@ class MyContents  {
         this.candle = new MyCandle(this.cake);
         this.app.scene.add(this.candle.candle, this.candle.flame);
 
+        this.frame = new MyFrame();
+        this.app.scene.add(this.frame.plane);
+
         // box related attributes
         this.boxMesh = null
         this.boxMeshSize = 1.0
@@ -42,7 +46,7 @@ class MyContents  {
         this.boxDisplacement = new THREE.Vector3(0,2,0)
 
         // plane related attributes
-        this.diffusePlaneColor = "#00ffff"
+        this.diffusePlaneColor = "#c0c0c0"
         this.specularPlaneColor = "#777777"
         this.planeShininess = 30
         this.planeMaterial = new THREE.MeshPhongMaterial({ color: this.diffusePlaneColor, 
@@ -98,12 +102,15 @@ class MyContents  {
         this.plate.build();
         this.cake.build();
         this.candle.build();
+        this.frame.build();
         
         // Create a Plane Mesh with basic material
         let plane = new THREE.PlaneGeometry( 15, 10 );
         this.planeMesh = new THREE.Mesh( plane, this.planeMaterial );
         this.planeMesh.position.y = -0;
         this.planeMesh.rotation.x = -Math.PI / 2;
+
+
 
         this.app.scene.add( this.planeMesh );
     }
