@@ -7,8 +7,11 @@ export class MyTable {
         this.tableLegSize = {thickness: 0.2, height: 2};
         this.tableHeight = 2.2;
 
+        const textureLoader = new THREE.TextureLoader();
+        const textureCobblestone = textureLoader.load('images/cobblestone.jpg');
+
         this.tableMaterial = new THREE.MeshPhongMaterial({
-            color: "#8B4513",
+            map: textureCobblestone,
             specular: "#555555",
             shininess: 50
         });
