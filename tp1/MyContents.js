@@ -55,6 +55,7 @@ class MyContents  {
         this.planeShininess = 30
         this.planeMaterial = new THREE.MeshPhongMaterial({ color: this.diffusePlaneColor, 
             specular: this.specularPlaneColor, emissive: "#000000", shininess: this.planeShininess })
+            
     }
 
     /**
@@ -113,6 +114,7 @@ class MyContents  {
         this.planeMesh = new THREE.Mesh( plane, this.planeMaterial );
         this.planeMesh.position.y = -0;
         this.planeMesh.rotation.x = -Math.PI / 2;
+        this.planeMesh.scale.set(2, 2, 2);
 
 
         this.app.scene.add( this.planeMesh );

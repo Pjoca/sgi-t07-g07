@@ -12,6 +12,6 @@ export class MyFrame {
 
     build() {
         this.plane.rotation.x = 2*Math.PI; 
-        this.plane.position.set(0,2.8,-4.89);
+        this.plane.position.set(0,4.8,-9.895);
     }
 }

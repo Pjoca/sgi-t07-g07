@@ -8,9 +8,9 @@ export class MyWalls {
             shininess: 30
         });
         this.wallThickness = 0.2;
-        this.wallHeight = 5.5;
-        this.wallLength1 = 10;
-        this.wallLength2 = 15;
+        this.wallHeight = 10;
+        this.wallLength1 = 20;
+        this.wallLength2 = 30.0;
 
         // Store wall meshes for easier management
         this.walls = [];

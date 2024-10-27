@@ -13,12 +13,12 @@ class MyNewspaper {
 
         // Access vertex positions via the BufferGeometry attributes
         const positionAttribute = geometry.attributes.position;
-        const curveAmount = 0.2; 
+        //const curveAmount = 0.2; 
 
         for (let i = 0; i < positionAttribute.count; i++) {
             const x = positionAttribute.getX(i);
-            const z = Math.sin(x * Math.PI / width) * curveAmount; 
-            positionAttribute.setZ(i, z);
+            //const z = Math.sin(x * Math.PI / width) * curveAmount; 
+            positionAttribute.setZ(i, 0);
         }
 
         positionAttribute.needsUpdate = true;
@@ -29,7 +29,7 @@ class MyNewspaper {
 
         // Position and rotation 
         this.newspaperMesh.rotation.x = -Math.PI / 2; 
-        this.newspaperMesh.position.set(-1.4, 2.35, 0);     
+        this.newspaperMesh.position.set(-2, 2.35, 0);     
         this.newspaperMesh.scale.set(0.35, 0.35, 0.35);
     }
 

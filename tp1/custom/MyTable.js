@@ -3,8 +3,8 @@ import * as THREE from 'three';
 export class MyTable {
     constructor() {
         // Updated to make the table top square
-        this.tableTopSize = {width: 3, depth: 3, thickness: 0.2};  // Now both width and depth are equal (square)
-        this.tableLegSize = {thickness: 0.2, height: 2};
+        this.tableTopSize = {width: 6, depth: 6, thickness: 0.2};  // Now both width and depth are equal (square)
+        this.tableLegSize = {thickness: 0.2, height: 4};
         this.tableHeight = 2.2;
 
         const textureLoader = new THREE.TextureLoader();

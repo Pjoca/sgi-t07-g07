@@ -45,8 +45,9 @@ export class MyCake {
     }
 
     build() {
-        this.cake.position.set(0, this.tableTopHeight + this.plateHeight + this.cakeHeight / 2, 0);
+        const cakePositionY = this.tableTopHeight + this.plateHeight + this.cakeHeight / 2;
 
+        this.cake.position.set(0, cakePositionY, 0);
         this.sliceFace.position.set(
             -this.cakeRadius/2.825,
             this.tableTopHeight + this.plateHeight + this.cakeHeight / 2,
