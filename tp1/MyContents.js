@@ -6,6 +6,7 @@ import { MyPlate } from './custom/MyPlate.js';
 import { MyCake } from './custom/MyCake.js';
 import { MyCandle } from './custom/MyCandle.js';
 import { MyFrame } from './custom/MyRug.js';
+import { MyNewspaper } from './custom/MyNewspaper.js';
 
 /**
  *  This class contains the contents of out application
@@ -37,6 +38,9 @@ class MyContents  {
 
         this.frame = new MyFrame();
         this.app.scene.add(this.frame.plane);
+
+        this.newspaper = new MyNewspaper();
+        this.app.scene.add(this.newspaper.getMesh());
 
         // box related attributes
         this.boxMesh = null
@@ -109,7 +113,6 @@ class MyContents  {
         this.planeMesh = new THREE.Mesh( plane, this.planeMaterial );
         this.planeMesh.position.y = -0;
         this.planeMesh.rotation.x = -Math.PI / 2;
-
 
 
         this.app.scene.add( this.planeMesh );

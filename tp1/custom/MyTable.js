@@ -55,6 +55,14 @@ export class MyTable {
         // Back right leg
         this.leg4 = new THREE.Mesh(legGeometry, this.tableMaterial);
         this.tableParts.push(this.leg4);
+
+        this.scaleTableParts(1, 1, 1);
+    }
+
+    scaleTableParts(scaleX, scaleY, scaleZ) {
+        this.tableParts.forEach(part => {
+            part.scale.set(scaleX, scaleY, scaleZ); // Scale each part individually
+        });
     }
 
     build() {

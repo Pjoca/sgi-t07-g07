@@ -34,6 +34,15 @@ export class MyWalls {
         const wall4Geometry = new THREE.BoxGeometry(this.wallThickness, this.wallHeight, this.wallLength1 + this.wallThickness);
         this.wall4 = new THREE.Mesh(wall4Geometry, this.wallMaterial);
         this.walls.push(this.wall4);
+
+        this.scaleWallsParts(1, 1, 1);
+        
+    }
+
+    scaleWallsParts(scaleX, scaleY, scaleZ) {
+        this.walls.forEach(part => {
+            part.scale.set(scaleX, scaleY, scaleZ); // Scale each part individually
+        });
     }
 
     build() {
