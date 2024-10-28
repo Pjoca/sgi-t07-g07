@@ -13,23 +13,28 @@ class MyNewspaper {
 
         // Access vertex positions via the BufferGeometry attributes
         const positionAttribute = geometry.attributes.position;
-        //const curveAmount = 0.2; 
+        const curveAmount = 1.0; 
 
         for (let i = 0; i < positionAttribute.count; i++) {
             const x = positionAttribute.getX(i);
-            //const z = Math.sin(x * Math.PI / width) * curveAmount; 
-            positionAttribute.setZ(i, 0);
+            const z = Math.sin(x * Math.PI / width) * curveAmount; 
+            positionAttribute.setZ(i, z);
         }
 
         positionAttribute.needsUpdate = true;
 
-        const material = new THREE.MeshPhongMaterial({ map: newspaperTexture });
+        const material = new THREE.MeshPhongMaterial({ 
+            map: newspaperTexture, 
+            side: THREE.DoubleSide  // Enable double-sided rendering
+        });
 
         this.newspaperMesh = new THREE.Mesh(geometry, material);
 
         // Position and rotation 
-        this.newspaperMesh.rotation.x = -Math.PI / 2; 
-        this.newspaperMesh.position.set(-2, 2.35, 0);     
+        //this.newspaperMesh.rotation.x = -Math.PI / 4; 
+        //this.newspaperMesh.rotation.y = -Math.PI / 2;
+        this.newspaperMesh.position.z = Math.PI / 4;  
+        this.newspaperMesh.position.set(-2, 2.85, 0);     
         this.newspaperMesh.scale.set(0.35, 0.35, 0.35);
     }
 
