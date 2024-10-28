@@ -2,44 +2,77 @@ import * as THREE from 'three';
 
 class MyNewspaper {
     constructor() {
-        // Load the newspaper texture
         const textureLoader = new THREE.TextureLoader();
-        const newspaperTexture = textureLoader.load('images/newspaper.jpg');
 
-        // Define the geometry, size, and subdivisions
+        // Load the newspaper textures for front and back
+        const frontTexture = textureLoader.load('images/newspaper_front.jpg');
+        const backTexture = textureLoader.load('images/newspaper_back.jpg');
+
+        // Define the geometry, size, and subdivisions for both planes
         const width = 5;   // Width of the newspaper
         const height = 3;  // Height of the newspaper
-        const geometry = new THREE.PlaneGeometry(width, height, 20, 20); // Plane with subdivisions for bending
+        const subdivisions = 20;  // Subdivisions for smoother bending
 
-        // Access vertex positions via the BufferGeometry attributes
-        const positionAttribute = geometry.attributes.position;
-        const curveAmount = 1.0; 
+        // Create geometry for both the front and back sides
+        const frontGeometry = new THREE.PlaneGeometry(width, height, subdivisions, subdivisions);
+        const backGeometry = new THREE.PlaneGeometry(width, height, subdivisions, subdivisions);
 
-        for (let i = 0; i < positionAttribute.count; i++) {
-            const x = positionAttribute.getX(i);
-            const z = Math.sin(x * Math.PI / width) * curveAmount; 
-            positionAttribute.setZ(i, z);
+        // Apply curvature to both planes (they should curve the same way)
+        const curveAmount = 1.0;  // Adjust this to control the amount of curvature
+
+        // Front plane curvature
+        const positionAttributeFront = frontGeometry.attributes.position;
+        for (let i = 0; i < positionAttributeFront.count; i++) {
+            const x = positionAttributeFront.getX(i);
+            const z = Math.sin((x / width) * Math.PI) * curveAmount;
+            positionAttributeFront.setZ(i, z);
         }
+        positionAttributeFront.needsUpdate = true;
 
-        positionAttribute.needsUpdate = true;
+        // Back plane curvature (same as front)
+        const positionAttributeBack = backGeometry.attributes.position;
+        for (let i = 0; i < positionAttributeBack.count; i++) {
+            const x = positionAttributeBack.getX(i);
+            const z = Math.sin((x / width) * Math.PI) * curveAmount;
+            positionAttributeBack.setZ(i, z);  // Same curvature as front
+        }
+        positionAttributeBack.needsUpdate = true;
 
-        const material = new THREE.MeshPhongMaterial({ 
-            map: newspaperTexture, 
-            side: THREE.DoubleSide  // Enable double-sided rendering
+        // Create the front material
+        const frontMaterial = new THREE.MeshPhongMaterial({ 
+            map: frontTexture, 
+            side: THREE.DoubleSide 
         });
 
-        this.newspaperMesh = new THREE.Mesh(geometry, material);
+        // Create the back material
+        const backMaterial = new THREE.MeshPhongMaterial({ 
+            map: backTexture, 
+            side: THREE.DoubleSide 
+        });
 
-        // Position and rotation 
-        //this.newspaperMesh.rotation.x = -Math.PI / 4; 
-        //this.newspaperMesh.rotation.y = -Math.PI / 2;
-        this.newspaperMesh.position.z = Math.PI / 4;  
-        this.newspaperMesh.position.set(-2, 2.85, 0);     
-        this.newspaperMesh.scale.set(0.35, 0.35, 0.35);
+        // Create meshes for front and back planes
+        const frontMesh = new THREE.Mesh(frontGeometry, frontMaterial);
+        const backMesh = new THREE.Mesh(backGeometry, backMaterial);
+
+        // Rotate the back plane by 180 degrees on the Y axis to face the opposite direction
+        backMesh.rotation.y = Math.PI;  // 180-degree rotation
+
+        // Position the front and back meshes
+        frontMesh.position.set(-6.01, 7.951, -2);  // Adjust position to fit the scene
+        backMesh.position.set(-6, 7.95, -2);   // Same position for both planes
+
+        // Create a group to hold both meshes (front and back)
+        this.newspaper = new THREE.Group();
+        this.newspaper.add(frontMesh);
+        this.newspaper.add(backMesh);
+        //this.newspaper.rotation.z = Math.PI / 4;
+
+        // Apply scale to the entire group
+        this.newspaper.scale.set(0.35, 0.35, 0.35);
     }
 
     getMesh() {
-        return this.newspaperMesh;
+        return this.newspaper;
     }
 }
 
