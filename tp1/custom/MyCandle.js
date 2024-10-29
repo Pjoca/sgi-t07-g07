@@ -6,7 +6,7 @@ export class MyCandle {
         this.candleHeight = 0.2;    // Candle height
         this.flameHeight = 0.1;     // Flame height (small)
         this.cakeHeight = cake.cakeHeight; // To position the candle on top of the cake
-        this.tableTopHeight = 2.2; // To ensure proper positioning on the table
+        this.tableTopHeight = 1.85; // To ensure proper positioning on the table
 
         // Candle Material
         this.candleMaterial = new THREE.MeshPhongMaterial({

@@ -2,13 +2,12 @@ import * as THREE from 'three';
 
 export class MyTable {
     constructor() {
-        // Updated to make the table top square
-        this.tableTopSize = {width: 6, depth: 6, thickness: 0.2};  // Now both width and depth are equal (square)
-        this.tableLegSize = {thickness: 0.2, height: 4};
-        this.tableHeight = 2.2;
+        this.tableTopSize = {width: 4, depth: 3, thickness: 0.2};
+        this.tableLegSize = {thickness: 0.2, height: 2};
+        this.tableHeight = 1.8;
 
         const textureLoader = new THREE.TextureLoader();
-        const textureCobblestone = textureLoader.load('images/cobblestone.jpg');
+        const textureCobblestone = textureLoader.load('images/table.jpg');
 
         this.tableMaterial = new THREE.MeshPhongMaterial({
             map: textureCobblestone,
@@ -18,7 +17,6 @@ export class MyTable {
 
         this.tableParts = [];
 
-        // Create the tabletop
         const topGeometry = new THREE.BoxGeometry(
             this.tableTopSize.width,
             this.tableTopSize.thickness,
