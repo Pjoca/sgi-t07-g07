@@ -7,51 +7,54 @@ export class MyTable {
         this.tableHeight = 1.8;
 
         const textureLoader = new THREE.TextureLoader();
-        const textureCobblestone = textureLoader.load('images/table.jpg');
+        this.tableTopTexture = textureLoader.load('images/table.jpg');
 
         this.tableMaterial = new THREE.MeshPhongMaterial({
-            map: textureCobblestone,
-            specular: "#555555",
-            shininess: 50
+            map: this.tableTopTexture,
+            shininess: 20
+        });
+
+        this.legMaterial = new THREE.MeshPhongMaterial({
+            color: 0xaaaaaa,
+            specular: "#ffffff",
+            shininess: 20
         });
 
         this.tableParts = [];
 
+        // Tabletop geometry and mesh
         const topGeometry = new THREE.BoxGeometry(
             this.tableTopSize.width,
             this.tableTopSize.thickness,
             this.tableTopSize.depth
         );
-
         this.tabletop = new THREE.Mesh(topGeometry, this.tableMaterial);
         this.tableParts.push(this.tabletop);
 
+        // Table leg geometry
         const radiusTop = this.tableLegSize.thickness / 2;
         const radiusBottom = this.tableLegSize.thickness / 2;
         const height = this.tableLegSize.height;
         const radialSegments = 32;
 
-        const legGeometry = new THREE.CylinderGeometry(
+        this.legGeometry = new THREE.CylinderGeometry(
             radiusTop,
             radiusBottom,
             height,
             radialSegments
         );
 
-        // Front left leg
-        this.leg1 = new THREE.Mesh(legGeometry, this.tableMaterial);
+        // Creating legs with the new leg material
+        this.leg1 = new THREE.Mesh(this.legGeometry, this.legMaterial);  // Front left leg
         this.tableParts.push(this.leg1);
 
-        // Front right leg
-        this.leg2 = new THREE.Mesh(legGeometry, this.tableMaterial);
+        this.leg2 = new THREE.Mesh(this.legGeometry, this.legMaterial);  // Front right leg
         this.tableParts.push(this.leg2);
 
-        // Back left leg
-        this.leg3 = new THREE.Mesh(legGeometry, this.tableMaterial);
+        this.leg3 = new THREE.Mesh(this.legGeometry, this.legMaterial);  // Back left leg
         this.tableParts.push(this.leg3);
 
-        // Back right leg
-        this.leg4 = new THREE.Mesh(legGeometry, this.tableMaterial);
+        this.leg4 = new THREE.Mesh(this.legGeometry, this.legMaterial);  // Back right leg
         this.tableParts.push(this.leg4);
 
         this.scaleTableParts(1, 1, 1);
@@ -59,7 +62,7 @@ export class MyTable {
 
     scaleTableParts(scaleX, scaleY, scaleZ) {
         this.tableParts.forEach(part => {
-            part.scale.set(scaleX, scaleY, scaleZ); // Scale each part individually
+            part.scale.set(scaleX, scaleY, scaleZ);
         });
     }
 
