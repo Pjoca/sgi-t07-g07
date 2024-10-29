@@ -45,8 +45,8 @@ class MyContents {
         this.frame = new MyRug();
         this.app.scene.add(this.frame.plane);
 
-        /*this.newspaper = new MyNewspaper();
-        this.app.scene.add(this.newspaper.getMesh());*/
+        this.newspaper = new MyNewspaper();
+        this.app.scene.add(this.newspaper.getMesh());
 
         this.landscape = new MyLandscape();
         this.app.scene.add(this.landscape.landscape, this.landscape.windowTopFrame, this.landscape.windowBottomFrame, this.landscape.windowLeftFrame, this.landscape.windowRightFrame, this.landscape.windowMidVerticalFrame, this.landscape.windowMidHorizontalFrame);
