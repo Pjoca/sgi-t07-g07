@@ -9,8 +9,8 @@ class MyNewspaper {
         const backTexture = textureLoader.load('images/newspaper_back.jpg');
 
         // Define the geometry, size, and subdivisions for both planes
-        const width = 5;   // Width of the newspaper
-        const height = 3;  // Height of the newspaper
+        const width = 3;   // Width of the newspaper
+        const height = 2;  // Height of the newspaper
         const subdivisions = 20;  // Subdivisions for smoother bending
 
         // Create geometry for both the front and back sides
@@ -40,26 +40,25 @@ class MyNewspaper {
 
         // Create the front material
         const frontMaterial = new THREE.MeshPhongMaterial({ 
-            map: frontTexture, 
-            side: THREE.DoubleSide 
+            map: frontTexture,
+            side: THREE.DoubleSide
         });
 
         // Create the back material
         const backMaterial = new THREE.MeshPhongMaterial({ 
-            map: backTexture, 
-            side: THREE.DoubleSide 
+            map: backTexture,
+            side: THREE.DoubleSide
         });
 
         // Create meshes for front and back planes
         const frontMesh = new THREE.Mesh(frontGeometry, frontMaterial);
         const backMesh = new THREE.Mesh(backGeometry, backMaterial);
 
-        // Rotate the back plane by 180 degrees on the Y axis to face the opposite direction
         backMesh.rotation.y = Math.PI;  // 180-degree rotation
 
         // Position the front and back meshes
-        frontMesh.position.set(-6.01, 7.951, -2);  // Adjust position to fit the scene
-        backMesh.position.set(-6, 7.95, -2);   // Same position for both planes
+        frontMesh.position.set(-3.01, 6.4, -2);  // Adjust position to fit the scene
+        backMesh.position.set(-3, 6.4, -2);   // Same position for both planes
 
         // Create a group to hold both meshes (front and back)
         this.newspaper = new THREE.Group();

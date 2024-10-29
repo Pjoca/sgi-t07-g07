@@ -1,11 +1,12 @@
 import * as THREE from 'three';
 import { MyAxis } from './MyAxis.js';
-import { MyTable } from './custom/MyTable.js';
+import { MyFloor } from './custom/MyFloor.js';
 import { MyWalls } from './custom/MyWalls.js';
+import { MyTable } from './custom/MyTable.js';
 import { MyPlate } from './custom/MyPlate.js';
 import { MyCake } from './custom/MyCake.js';
 import { MyCandle } from './custom/MyCandle.js';
-import { MyFrame } from './custom/MyRug.js';
+import { MyRug } from './custom/MyRug.js';
 import { MyNewspaper } from './custom/MyNewspaper.js';
 
 /**
@@ -21,6 +22,9 @@ class MyContents  {
         this.axis = null
 
         // objects
+        this.floor = new MyFloor();
+        this.app.scene.add(this.floor.plane);
+
         this.walls = new MyWalls();
         this.app.scene.add(this.walls.wall1, this.walls.wall2, this.walls.wall3, this.walls.wall4);
 
@@ -36,7 +40,7 @@ class MyContents  {
         this.candle = new MyCandle(this.cake);
         this.app.scene.add(this.candle.candle, this.candle.flame);
 
-        this.frame = new MyFrame();
+        this.frame = new MyRug();
         this.app.scene.add(this.frame.plane);
 
         this.newspaper = new MyNewspaper();
@@ -49,13 +53,12 @@ class MyContents  {
         this.lastBoxEnabled = null
         this.boxDisplacement = new THREE.Vector3(0,2,0)
 
-        // plane related attributes
         this.diffusePlaneColor = "#c0c0c0"
         this.specularPlaneColor = "#777777"
         this.planeShininess = 30
-        this.planeMaterial = new THREE.MeshPhongMaterial({ color: this.diffusePlaneColor, 
-            specular: this.specularPlaneColor, emissive: "#000000", shininess: this.planeShininess })
-            
+
+        this.textureLoader = new THREE.TextureLoader();
+        this.planeMaterial = new THREE.MeshBasicMaterial({ map: this.textureLoader.load('images/floor.jpg') });
     }
 
     /**
@@ -102,20 +105,13 @@ class MyContents  {
         this.app.scene.add( ambientLight );
 
         this.buildBox()
+        this.floor.build();
         this.walls.build();
         this.table.build();
         this.plate.build();
         this.cake.build();
         this.candle.build();
         this.frame.build();
-        
-        // Create a Plane Mesh with basic material
-        let plane = new THREE.PlaneGeometry( 15, 10 );
-        this.planeMesh = new THREE.Mesh( plane, this.planeMaterial );
-        this.planeMesh.position.y = -0;
-        this.planeMesh.rotation.x = -Math.PI / 2;
-        this.planeMesh.scale.set(2, 2, 2);
-
 
         this.app.scene.add( this.planeMesh );
     }
