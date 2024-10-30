@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 export class MyTable {
     constructor() {
-        this.tableTopSize = {width: 4, depth: 3, thickness: 0.2};
+        this.tableTopSize = {width: 4.25, depth: 3, thickness: 0.2};
         this.tableLegSize = {thickness: 0.2, height: 2};
         this.tableHeight = 1.8;
 
