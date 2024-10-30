@@ -44,28 +44,28 @@ export class MyLandscape {
     }
 
     build() {
-        this.landscape.position.set(7.49, 3, 0);
+        this.landscape.position.set(7.495, 3, 0);
         this.landscape.rotation.y = -Math.PI / 2;
 
-        this.windowTopFrame.position.set(7.49, 4.5, 0);
+        this.windowTopFrame.position.set(7.495, 4.5, 0);
         this.windowTopFrame.rotation.y = -Math.PI / 2;
 
-        this.windowBottomFrame.position.set(7.49, 1.5, 0);
+        this.windowBottomFrame.position.set(7.495, 1.5, 0);
         this.windowBottomFrame.rotation.y = -Math.PI / 2;
 
-        this.windowLeftFrame.position.set(7.49, 3, -2.35);
+        this.windowLeftFrame.position.set(7.495, 3, -2.35);
         this.windowLeftFrame.rotation.y = -Math.PI / 2;
         this.windowLeftFrame.rotation.z = Math.PI / 2;
 
-        this.windowRightFrame.position.set(7.49, 3, 2.35);
+        this.windowRightFrame.position.set(7.495, 3, 2.35);
         this.windowRightFrame.rotation.y = -Math.PI / 2;
         this.windowRightFrame.rotation.z = Math.PI / 2;
 
-        this.windowMidVerticalFrame.position.set(7.49, 3, 0);
+        this.windowMidVerticalFrame.position.set(7.495, 3, 0);
         this.windowMidVerticalFrame.rotation.y = -Math.PI / 2;
         this.windowMidVerticalFrame.rotation.z = Math.PI / 2;
 
-        this.windowMidHorizontalFrame.position.set(7.49, 3, 0);
+        this.windowMidHorizontalFrame.position.set(7.495, 3, 0);
         this.windowMidHorizontalFrame.rotation.y = -Math.PI / 2;
     }
 }
