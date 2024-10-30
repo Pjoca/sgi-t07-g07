@@ -10,6 +10,7 @@ import {MyRug} from './custom/MyRug.js';
 import {MyNewspaper} from './custom/MyNewspaper.js';
 import {MyLandscape} from "./custom/MyLandscape.js";
 import {MyPaintings} from "./custom/MyPaintings.js";
+import {MyBeetle} from "./custom/MyBeetle.js";
 
 /**
  *  This class contains the contents of out application
@@ -45,14 +46,17 @@ class MyContents {
         this.frame = new MyRug();
         this.app.scene.add(this.frame.plane);
 
-        /*this.newspaper = new MyNewspaper();
-        this.app.scene.add(this.newspaper.getMesh());*/
+        this.newspaper = new MyNewspaper();
+        this.app.scene.add(this.newspaper.getMesh());
 
         this.landscape = new MyLandscape();
         this.app.scene.add(this.landscape.landscape, this.landscape.windowTopFrame, this.landscape.windowBottomFrame, this.landscape.windowLeftFrame, this.landscape.windowRightFrame, this.landscape.windowMidVerticalFrame, this.landscape.windowMidHorizontalFrame);
 
         this.paintings = new MyPaintings();
-        this.app.scene.add(this.paintings.firstPainting, this.paintings.secondPainting, this.paintings.windowTopFrame, this.paintings.windowBottomFrame, this.paintings.windowLeftFrame, this.paintings.windowRightFrame, this.paintings.windowTopFrame2, this.paintings.windowBottomFrame2, this.paintings.windowLeftFrame2, this.paintings.windowRightFrame2);
+        this.app.scene.add(this.paintings.firstPainting, this.paintings.secondPainting, this.paintings.topFrame, this.paintings.bottomFrame, this.paintings.leftFrame, this.paintings.rightFrame, this.paintings.topFrame2, this.paintings.bottomFrame2, this.paintings.leftFrame2, this.paintings.rightFrame2);
+
+        this.beetle = new MyBeetle();
+        this.app.scene.add(this.beetle.lineA, this.beetle.lineB, this.beetle.lineC, this.beetle.lineD, this.beetle.lineE, this.beetle.painting, this.beetle.topFrame, this.beetle.bottomFrame, this.beetle.leftFrame, this.beetle.rightFrame);
 
         // box related attributes
         this.boxMesh = null
@@ -123,6 +127,7 @@ class MyContents {
         this.frame.build();
         this.landscape.build();
         this.paintings.build();
+        this.beetle.build();
 
         this.app.scene.add(this.planeMesh);
     }
