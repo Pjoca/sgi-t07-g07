@@ -11,6 +11,8 @@ import {MyNewspaper} from './custom/MyNewspaper.js';
 import {MyLandscape} from "./custom/MyLandscape.js";
 import {MyPaintings} from "./custom/MyPaintings.js";
 import {MyBeetle} from "./custom/MyBeetle.js";
+import {MySpring} from "./custom/MySpring.js";
+import {MySpotlight} from "./custom/MySpotlight.js";
 
 /**
  *  This class contains the contents of out application
@@ -57,6 +59,12 @@ class MyContents {
 
         this.beetle = new MyBeetle();
         this.app.scene.add(this.beetle.lineA, this.beetle.lineB, this.beetle.lineC, this.beetle.lineD, this.beetle.lineE, this.beetle.painting, this.beetle.topFrame, this.beetle.bottomFrame, this.beetle.leftFrame, this.beetle.rightFrame);
+
+        this.spring = new MySpring();
+        this.app.scene.add(this.spring.springMesh);
+
+        this.spotlight = new MySpotlight();
+        this.app.scene.add(this.spotlight.base, this.spotlight.pole, this.spotlight.cover, this.spotlight.bulb, this.spotlight.light, this.spotlight.lightTarget);
 
         // box related attributes
         this.boxMesh = null
@@ -128,8 +136,8 @@ class MyContents {
         this.landscape.build();
         this.paintings.build();
         this.beetle.build();
-
-        this.app.scene.add(this.planeMesh);
+        this.spring.build();
+        this.spotlight.build();
     }
 
     /**

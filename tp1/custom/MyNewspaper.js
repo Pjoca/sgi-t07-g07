@@ -86,9 +86,10 @@ class MyNewspaper {
         this.newspaper.add(rightPageGroup);
 
         // Position and rotation for the newspaper in the scene
-        this.newspaper.position.set(-1.5, 2, 1.6);  // Adjust based on your scene
-        this.newspaper.rotation.x = Math.PI + 2 * Math.PI / 3;  // Adjust rotation if needed
-        this.newspaper.scale.set(0.35, 0.35, 0.35); // Adjust scale to fit your scene
+        this.newspaper.position.set(-1.5, 2.01, -0.5);  // Adjust based on your scene
+        this.newspaper.rotation.x = -Math.PI/2;
+        this.newspaper.rotation.z = -Math.PI/2;
+        this.newspaper.scale.set(0.3, 0.3, 0.3); // Adjust scale to fit your scene
     }
 
     // Helper function to apply curvature to a page
