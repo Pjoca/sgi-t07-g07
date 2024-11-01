@@ -76,17 +76,31 @@ class MyContents {
      * Creates flowers at random positions within the room.
      */
     createFlowers() {
-        const flowerCount = 6; // Define how many flowers you want to create
+        const corners = [
+            new THREE.Vector3(-6.5, 0, -4.3), // Bottom-left corner
+            new THREE.Vector3(-6.5, 0, 4.3),  // Top-left corner
+            new THREE.Vector3(6.5, 0, -4.3),   // Bottom-right corner
+            new THREE.Vector3(6.5, 0, 4.3)     // Top-right corner
+        ];
+    
+        // Randomly select a corner index
+        const randomCornerIndex = Math.floor(Math.random() * corners.length);
+        const chosenCorner = corners[randomCornerIndex];
+
+        const flowerCount = 2; // Number of flowers to create
+
+        // Create two flowers at the chosen corner
         for (let i = 0; i < flowerCount; i++) {
             const flower = new MyFlower(); // Create a new flower instance
             flower.build(
-                new THREE.Vector3(Math.random() * 10 - 5, 0, Math.random() * 10 - 5), // Random position within range
+                chosenCorner.clone().add(new THREE.Vector3(0, 0, i * 0.5)), // Adjust Y position slightly to separate flowers
                 new THREE.Vector3(0.25, 0.25, 0.25) // Scale
             );
-
+    
             this.app.scene.add(flower.getMesh()); // Add the flower mesh to the scene
         }
     }
+    
 
     /**
      * builds the box mesh with material assigned

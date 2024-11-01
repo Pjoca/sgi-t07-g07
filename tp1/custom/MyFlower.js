@@ -22,20 +22,41 @@ class MyFlower {
         // Define the curve points for the stem
         const curve = new THREE.CatmullRomCurve3([
             new THREE.Vector3(0, 0, 0),
-            new THREE.Vector3(0.5, 1, 0),
-            new THREE.Vector3(-0.5, 2, 0),
+            new THREE.Vector3(0.25, 0.5, 0),
+            new THREE.Vector3(-0.25, 1.5, 0),
             new THREE.Vector3(0, 3, 0)
         ]);
-
-        // Geometry and material for the stem
+    
+        // Generate points along the curve
         const points = curve.getPoints(50);
-        const stemGeometry = new THREE.BufferGeometry().setFromPoints(points);
-        const stemMaterial = new THREE.LineBasicMaterial({ color: 0x228B22 });
-
-        // Create the stem mesh and add it to the flower group
-        const stem = new THREE.Line(stemGeometry, stemMaterial);
-        this.flowerGroup.add(stem);
+    
+        // Create a geometry for the stem using cylinder geometry
+        const stemRadius = 0.05; // Adjust the radius for thickness
+        const stemHeight = 1; // This will be used to scale the height of the stem
+        const stemMaterial = new THREE.MeshPhongMaterial({ color: 0x228B22 });
+    
+        for (let i = 0; i < points.length - 1; i++) {
+            // Create a cylindrical geometry between each pair of points
+            const p1 = points[i];
+            const p2 = points[i + 1];
+    
+            const direction = new THREE.Vector3().subVectors(p2, p1).normalize(); // Direction from p1 to p2
+            const distance = p1.distanceTo(p2); // Distance between the two points
+    
+            // Create a cylinder
+            const cylinderGeometry = new THREE.CylinderGeometry(stemRadius, stemRadius, distance, 8); // 8 segments around the cylinder
+            const cylinder = new THREE.Mesh(cylinderGeometry, stemMaterial);
+    
+            // Position the cylinder
+            cylinder.position.copy(p1); // Position at p1
+            cylinder.lookAt(p2); // Rotate the cylinder to face p2
+            cylinder.rotateX(Math.PI / 2); // Adjust rotation to match the upright orientation
+    
+            // Add the cylinder to the flower group
+            this.flowerGroup.add(cylinder);
+        }
     }
+    
 
     /**
      * Creates the spherical center of the flower
@@ -58,8 +79,8 @@ class MyFlower {
     createPetals() {
         const petalGeometry = new THREE.Shape();
         petalGeometry.moveTo(0, 0);
-        petalGeometry.quadraticCurveTo(0.2, 1, 0, 2); // Increase the size of the petals by changing control points
-        petalGeometry.quadraticCurveTo(-0.2, 1, 0, 0); // Adjusted for larger size
+        petalGeometry.quadraticCurveTo(0.3, 1, 0, 2); // Increase the size of the petals by changing control points
+        petalGeometry.quadraticCurveTo(-0.3, 1, 0, 0); // Adjusted for larger size
     
         const petalExtrudeSettings = {
             depth: 0.1, // Increase the thickness slightly if needed
