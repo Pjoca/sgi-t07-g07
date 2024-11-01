@@ -10,6 +10,7 @@ import {MyRug} from './custom/MyRug.js';
 import {MyNewspaper} from './custom/MyNewspaper.js';
 import {MyLandscape} from "./custom/MyLandscape.js";
 import {MyPaintings} from "./custom/MyPaintings.js";
+import { MyFlower } from './custom/MyFlower.js';
 
 /**
  *  This class contains the contents of out application
@@ -53,6 +54,10 @@ class MyContents {
 
         this.paintings = new MyPaintings();
         this.app.scene.add(this.paintings.firstPainting, this.paintings.secondPainting, this.paintings.windowTopFrame, this.paintings.windowBottomFrame, this.paintings.windowLeftFrame, this.paintings.windowRightFrame, this.paintings.windowTopFrame2, this.paintings.windowBottomFrame2, this.paintings.windowLeftFrame2, this.paintings.windowRightFrame2);
+
+        this.flower = new MyFlower();
+        this.flower.getMesh().position.set(4, 0, 0); // Position the flower at the top of the table
+        this.app.scene.add(this.flower.getMesh());
 
         // box related attributes
         this.boxMesh = null
