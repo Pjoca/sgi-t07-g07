@@ -55,9 +55,7 @@ class MyContents {
         this.paintings = new MyPaintings();
         this.app.scene.add(this.paintings.firstPainting, this.paintings.secondPainting, this.paintings.windowTopFrame, this.paintings.windowBottomFrame, this.paintings.windowLeftFrame, this.paintings.windowRightFrame, this.paintings.windowTopFrame2, this.paintings.windowBottomFrame2, this.paintings.windowLeftFrame2, this.paintings.windowRightFrame2);
 
-        this.flower = new MyFlower();
-        this.flower.getMesh().position.set(4, 0, 0); // Position the flower at the top of the table
-        this.app.scene.add(this.flower.getMesh());
+        this.createFlowers();
 
         // box related attributes
         this.boxMesh = null
@@ -72,6 +70,22 @@ class MyContents {
 
         this.textureLoader = new THREE.TextureLoader();
         this.planeMaterial = new THREE.MeshBasicMaterial({map: this.textureLoader.load('images/floor.jpg')});
+    }
+
+    /**
+     * Creates flowers at random positions within the room.
+     */
+    createFlowers() {
+        const flowerCount = 6; // Define how many flowers you want to create
+        for (let i = 0; i < flowerCount; i++) {
+            const flower = new MyFlower(); // Create a new flower instance
+            flower.build(
+                new THREE.Vector3(Math.random() * 10 - 5, 0, Math.random() * 10 - 5), // Random position within range
+                new THREE.Vector3(0.25, 0.25, 0.25) // Scale
+            );
+
+            this.app.scene.add(flower.getMesh()); // Add the flower mesh to the scene
+        }
     }
 
     /**
