@@ -50,6 +50,7 @@ export class MyCake {
 
         // Multi-material mesh
         this.cake = new THREE.Mesh(cakeGeometry, [sideMaterial, topMaterial, bottomMaterial]);
+        this.cake.castShadow = true;
 
         // Load texture for the slice interior
         this.sliceTexture = textureLoader.load('images/cake-interior.jpg');
@@ -66,12 +67,9 @@ export class MyCake {
 
         // Create the geometry for the missing slice interior using PlaneGeometry
         const sliceGeometry = new THREE.PlaneGeometry(this.cakeRadius, this.cakeHeight);
-
         this.sliceFace = new THREE.Mesh(sliceGeometry, this.sliceMaterial);
-        this.sliceFace.rotation.y = -Math.PI * 1.75;
-
         this.sliceFace2 = new THREE.Mesh(sliceGeometry, this.sliceMaterial);
-        this.sliceFace2.rotation.y = Math.PI * 0.5;
+
     }
 
     build() {
@@ -84,11 +82,13 @@ export class MyCake {
             cakePositionY,
             this.cakeRadius / 2.825
         );
+        this.sliceFace.rotation.y = -Math.PI * 1.75;
 
         this.sliceFace2.position.set(
             0,
             cakePositionY,
             this.cakeRadius / 2
         );
+        this.sliceFace2.rotation.y = Math.PI * 0.5;
     }
 }

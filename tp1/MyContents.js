@@ -109,11 +109,14 @@ class MyContents {
             this.app.scene.add(this.axis)
         }
 
-        // this.boxDisplacement.set(2, 3, 2);
-
         // add a point light on top of the model
         const pointLight = new THREE.PointLight(0xffffff, 500, 0);
-        pointLight.position.set(0, 20, 0);
+        pointLight.position.set(0, 15, 0);
+        pointLight.castShadow = true;
+        pointLight.shadow.mapSize.width = 2048;
+        pointLight.shadow.mapSize.height = 2048;
+        pointLight.shadow.camera.near = 9;
+        pointLight.shadow.camera.far = 18;
         this.app.scene.add(pointLight);
 
         // add a point light helper for the previous point light

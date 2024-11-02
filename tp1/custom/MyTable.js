@@ -29,6 +29,9 @@ export class MyTable {
             this.tableTopSize.depth
         );
         this.tabletop = new THREE.Mesh(topGeometry, this.tableMaterial);
+        this.tabletop.receiveShadow = true;
+        this.tabletop.castShadow = true;
+
         this.tableParts.push(this.tabletop);
 
         // Table leg geometry
@@ -46,15 +49,19 @@ export class MyTable {
 
         // Creating legs with the new leg material
         this.leg1 = new THREE.Mesh(this.legGeometry, this.legMaterial);  // Front left leg
+        this.leg1.castShadow = true;
         this.tableParts.push(this.leg1);
 
         this.leg2 = new THREE.Mesh(this.legGeometry, this.legMaterial);  // Front right leg
+        this.leg2.castShadow = true;
         this.tableParts.push(this.leg2);
 
         this.leg3 = new THREE.Mesh(this.legGeometry, this.legMaterial);  // Back left leg
+        this.leg3.castShadow = true;
         this.tableParts.push(this.leg3);
 
         this.leg4 = new THREE.Mesh(this.legGeometry, this.legMaterial);  // Back right leg
+        this.leg4.castShadow = true;
         this.tableParts.push(this.leg4);
 
         this.scaleTableParts(1, 1, 1);
