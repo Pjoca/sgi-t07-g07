@@ -11,6 +11,8 @@ import {MyRug} from './custom/MyRug.js';
 import {MyNewspaper} from './custom/MyNewspaper.js';
 import {MyLandscape} from "./custom/MyLandscape.js";
 import {MyPaintings} from "./custom/MyPaintings.js";
+import { MyFlower } from './custom/MyFlower.js';
+import { MyJar } from './custom/Myjar.js';
 import {MyBeetle} from "./custom/MyBeetle.js";
 import {MySpring} from "./custom/MySpring.js";
 import {MySpotlight} from "./custom/MySpotlight.js";
@@ -90,6 +92,46 @@ class MyContents {
     }
 
     /**
+     * Creates flowers at random positions within the room.
+     */
+    createFlowers() {
+        const corners = [
+            { position: new THREE.Vector3(-6.5, 0, -4), rotationY: Math.PI / 2 - Math.PI / 3 + Math.PI / 4 },       
+            { position: new THREE.Vector3(-6.5, 0, 3), rotationY: Math.PI / 2 + Math.PI / 4 },  
+            { position: new THREE.Vector3(6.5, 0, -4), rotationY: -Math.PI / 2 + Math.PI / 3 - Math.PI / 4 },  
+            { position: new THREE.Vector3(6.5, 0, 3), rotationY: -Math.PI / 2 - Math.PI / 4 }      
+        ];
+    
+        // Randomly select a corner
+        const randomCornerIndex = Math.floor(Math.random() * corners.length);
+        const chosenCorner = corners[randomCornerIndex];
+        const flowerCount = 2; // Number of flowers to create
+    
+        // Create two flowers at the chosen corner
+        for (let i = 0; i < flowerCount; i++) {
+    
+            const jar = new MyJar();
+            jar.build(
+                chosenCorner.position.clone().add(new THREE.Vector3(0, 0.75, i * 1)), // Adjust Z position to separate jars
+                new THREE.Vector3(0.25, 0.25, 0.25) // Scale for the jar
+            );
+            jar.getMesh().rotation.x = Math.PI; // Initial rotation along x-axis
+            jar.getMesh().rotation.y = chosenCorner.rotationY; // Rotation based on corner position
+    
+            const flower = new MyFlower(); // Create a new flower instance
+            flower.build(
+                chosenCorner.position.clone().add(new THREE.Vector3(0, 0.65, i * 1)), // Adjust Y position slightly to separate flowers
+                new THREE.Vector3(0.2, 0.2, 0.2) // Scale
+            );
+            flower.getMesh().rotation.y = chosenCorner.rotationY; // Match rotation with the jar
+    
+            this.app.scene.add(jar.getMesh()); // Add the jar mesh to the scene
+            this.app.scene.add(flower.getMesh()); // Add the flower mesh to the scene
+        }
+    }    
+    
+
+    /**
      * builds the box mesh with material assigned
      */
     buildBox() {
@@ -151,6 +193,7 @@ class MyContents {
         this.spring.build();
         this.spotlight.build();
         this.badge.build();
+        this.createFlowers();
     }
 
     /**
