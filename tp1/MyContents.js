@@ -41,10 +41,10 @@ class MyContents {
         this.app.scene.add(this.chair.leg1, this.chair.leg2, this.chair.leg3, this.chair.leg4, this.chair.auxiliarLeg1, this.chair.auxiliarLeg2, this.chair.auxiliarLeg3, this.chair.auxiliarLeg4,  this.chair.auxiliarLeg5, this.chair.auxiliarLeg6, this.chair.sit, this.chair.auxiliarBackrest1, this.chair.auxiliarBackrest2, this.chair.auxiliarBackrest3, this.chair.auxiliarBackrest4, this.chair.auxiliarBackrest5);
 
         this.plate = new MyPlate();
-        this.app.scene.add(this.plate.plate);
+        this.app.scene.add(this.plate.plate, this.plate.smallerPlate);
 
         this.cake = new MyCake(this.plate);
-        this.app.scene.add(this.cake.cake, this.cake.sliceFace, this.cake.sliceFace2);
+        this.app.scene.add(this.cake.cake, this.cake.sliceFace, this.cake.sliceFace2, this.cake.sliceFace3, this.cake.sliceFace4, this.cake.slicePiece);
 
         this.candle = new MyCandle(this.cake);
         this.app.scene.add(this.candle.candle, this.candle.flame);

@@ -13,13 +13,13 @@ export class MyCake {
         this.cakeTexture = textureLoader.load('images/cake.jpg');
         this.cakeTexture.wrapS = THREE.RepeatWrapping;
         this.cakeTexture.wrapT = THREE.RepeatWrapping;
-        this.cakeTexture.repeat.set(12, 1);  // Only repeat on the sides
+        this.cakeTexture.repeat.set(12, 1);
 
         // Load texture for the top of the cake
         this.topTexture = textureLoader.load('images/cake.jpg');
         this.topTexture.wrapS = THREE.RepeatWrapping;
         this.topTexture.wrapT = THREE.RepeatWrapping;
-        this.topTexture.repeat.set(12, 12);  // Repeat more on the top
+        this.topTexture.repeat.set(12, 12);
 
         // Side material with texture
         const sideMaterial = new THREE.MeshPhongMaterial({
@@ -48,7 +48,6 @@ export class MyCake {
             Math.PI * 1.75 // thetaLength for slice
         );
 
-        // Multi-material mesh
         this.cake = new THREE.Mesh(cakeGeometry, [sideMaterial, topMaterial, bottomMaterial]);
         this.cake.castShadow = true;
 
@@ -69,12 +68,28 @@ export class MyCake {
         const sliceGeometry = new THREE.PlaneGeometry(this.cakeRadius, this.cakeHeight);
         this.sliceFace = new THREE.Mesh(sliceGeometry, this.sliceMaterial);
         this.sliceFace2 = new THREE.Mesh(sliceGeometry, this.sliceMaterial);
+        this.sliceFace3 = new THREE.Mesh(sliceGeometry, this.sliceMaterial);
+        this.sliceFace4 = new THREE.Mesh(sliceGeometry, this.sliceMaterial);
 
+        const slicePieceGeometry = new THREE.CylinderGeometry(
+            this.cakeRadius,
+            this.cakeRadius,
+            this.cakeHeight,
+            32,
+            1,
+            false,
+            0,
+            Math.PI * 0.25
+        );
+
+        // Multi-material mesh for slice piece
+        this.slicePiece = new THREE.Mesh(slicePieceGeometry, [sideMaterial, topMaterial, bottomMaterial]);
+        this.slicePiece.castShadow = true;
+        this.slicePiece.receiveShadow = true;
     }
 
     build() {
         const cakePositionY = this.tableTopHeight + this.plateHeight + this.cakeHeight / 2;
-
         this.cake.position.set(0, cakePositionY, 0);
 
         this.sliceFace.position.set(
@@ -90,5 +105,21 @@ export class MyCake {
             this.cakeRadius / 2
         );
         this.sliceFace2.rotation.y = Math.PI * 0.5;
+
+        this.slicePiece.position.set(-0.1, cakePositionY-0.02, 0.9);
+
+        this.sliceFace3.position.set(
+            this.cakeRadius / 2.825-0.1,
+            cakePositionY-0.02,
+            this.cakeRadius / 2.825 + 0.9
+        );
+        this.sliceFace3.rotation.y = -Math.PI * 0.25;
+
+        this.sliceFace4.position.set(
+            -0.1,
+            cakePositionY-0.02,
+            this.cakeRadius / 2 + 0.9
+        );
+        this.sliceFace4.rotation.y = Math.PI * 0.5;
     }
 }
