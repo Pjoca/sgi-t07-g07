@@ -11,6 +11,7 @@ import {MyNewspaper} from './custom/MyNewspaper.js';
 import {MyLandscape} from "./custom/MyLandscape.js";
 import {MyPaintings} from "./custom/MyPaintings.js";
 import { MyFlower } from './custom/MyFlower.js';
+import { MyJar } from './custom/Myjar.js';
 
 /**
  *  This class contains the contents of out application
@@ -77,10 +78,10 @@ class MyContents {
      */
     createFlowers() {
         const corners = [
-            new THREE.Vector3(-6.5, 0, -4.3), // Bottom-left corner
-            new THREE.Vector3(-6.5, 0, 4.3),  // Top-left corner
-            new THREE.Vector3(6.5, 0, -4.3),   // Bottom-right corner
-            new THREE.Vector3(6.5, 0, 4.3)     // Top-right corner
+            new THREE.Vector3(-6, 0, -3.5), // Bottom-left corner
+            new THREE.Vector3(-6, 0, 3.5),  // Top-left corner
+            new THREE.Vector3(6, 0, -3.5),   // Bottom-right corner
+            new THREE.Vector3(6, 0, 3.5)     // Top-right corner
         ];
     
         // Randomly select a corner index
@@ -91,12 +92,21 @@ class MyContents {
 
         // Create two flowers at the chosen corner
         for (let i = 0; i < flowerCount; i++) {
+
+            const jar = new MyJar();
+            jar.build(
+                chosenCorner.clone().add(new THREE.Vector3(0, 1.15, i * 1)), // Adjust Z position to separate jars
+                new THREE.Vector3(0.25, 0.25, 0.25) // Scale for the jar
+            );
+            jar.getMesh().rotation.x = Math.PI;
+
             const flower = new MyFlower(); // Create a new flower instance
             flower.build(
-                chosenCorner.clone().add(new THREE.Vector3(0, 0, i * 0.5)), // Adjust Y position slightly to separate flowers
-                new THREE.Vector3(0.25, 0.25, 0.25) // Scale
+                chosenCorner.clone().add(new THREE.Vector3(0, 0.75, i * 1)), // Adjust Y position slightly to separate flowers
+                new THREE.Vector3(0.2, 0.2, 0.2) // Scale
             );
     
+            this.app.scene.add(jar.getMesh()); // Add the jar mesh to the scene
             this.app.scene.add(flower.getMesh()); // Add the flower mesh to the scene
         }
     }
