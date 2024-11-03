@@ -48,7 +48,7 @@ export class MyBeetle {
         this.lineE = new THREE.Line(this.quadraticCurveGeometryE, this.curveMaterial);
 
         this.textureLoader = new THREE.TextureLoader();
-        this.texture = this.textureLoader.load('images/beetle.jpg');
+        this.texture = this.textureLoader.load('textures/beetle.jpg');
         this.paintingMaterial = new THREE.MeshPhongMaterial({
             map: this.texture,
             shininess: 20
@@ -58,7 +58,7 @@ export class MyBeetle {
         this.paintingGeometry = new THREE.PlaneGeometry(this.width, this.height);
         this.painting = new THREE.Mesh(this.paintingGeometry, this.paintingMaterial);
 
-        this.frameTexture = this.textureLoader.load('images/frame.jpg');
+        this.frameTexture = this.textureLoader.load('textures/frame.jpg');
 
         this.frameMaterial = new THREE.MeshPhongMaterial({
             map: this.frameTexture,

@@ -10,13 +10,13 @@ export class MyCake {
         const textureLoader = new THREE.TextureLoader();
 
         // Load texture for the sides of the cake
-        this.cakeTexture = textureLoader.load('images/cake.jpg');
+        this.cakeTexture = textureLoader.load('textures/cake.jpg');
         this.cakeTexture.wrapS = THREE.RepeatWrapping;
         this.cakeTexture.wrapT = THREE.RepeatWrapping;
         this.cakeTexture.repeat.set(12, 1);
 
         // Load texture for the top of the cake
-        this.topTexture = textureLoader.load('images/cake.jpg');
+        this.topTexture = textureLoader.load('textures/cake.jpg');
         this.topTexture.wrapS = THREE.RepeatWrapping;
         this.topTexture.wrapT = THREE.RepeatWrapping;
         this.topTexture.repeat.set(12, 12);
@@ -52,7 +52,7 @@ export class MyCake {
         this.cake.castShadow = true;
 
         // Load texture for the slice interior
-        this.sliceTexture = textureLoader.load('images/cake-interior.jpg');
+        this.sliceTexture = textureLoader.load('textures/cake-interior.jpg');
         this.sliceTexture.wrapS = THREE.RepeatWrapping;
         this.sliceTexture.wrapT = THREE.RepeatWrapping;
         this.sliceTexture.repeat.set(2, 1);

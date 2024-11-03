@@ -4,7 +4,7 @@ export class MyFloor {
     constructor() {
         this.textureLoader = new THREE.TextureLoader();
 
-        this.floorTexture = this.textureLoader.load('images/floor.jpg');
+        this.floorTexture = this.textureLoader.load('textures/floor.jpg');
         this.floorTexture.wrapS = THREE.RepeatWrapping;
         this.floorTexture.wrapT = THREE.RepeatWrapping;
         this.floorTexture.repeat.set(3, 3);

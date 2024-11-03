@@ -26,6 +26,8 @@ export class MySpring {
         this.springCurve = new THREE.CatmullRomCurve3(this.points);
         this.springGeometry = new THREE.TubeGeometry(this.springCurve, 100, this.coilRadius, 8, false);
         this.springMesh = new THREE.Mesh(this.springGeometry, this.material);
+        this.springMesh.receiveShadow = true;
+        this.springMesh.castShadow = true;
 
         // Start and end caps for the spring
         this.capGeometry = new THREE.SphereGeometry(this.coilRadius-0.001, 20, 20);

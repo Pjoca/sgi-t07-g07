@@ -6,7 +6,7 @@ export class MyLandscape {
         this.height = 3;
 
         const landscapeTextureLoader = new THREE.TextureLoader();
-        this.landscapeTexture = landscapeTextureLoader.load('images/landscape.png');
+        this.landscapeTexture = landscapeTextureLoader.load('textures/landscape.png');
 
         this.landscapeMaterial = new THREE.MeshPhongMaterial({
             map: this.landscapeTexture,
@@ -16,7 +16,7 @@ export class MyLandscape {
         this.landscape = new THREE.Mesh(this.landscapeGeometry, this.landscapeMaterial);
 
         const windowFrameTextureLoader = new THREE.TextureLoader();
-        this.windowFrameTexture = windowFrameTextureLoader.load('images/frame.jpg');
+        this.windowFrameTexture = windowFrameTextureLoader.load('textures/frame.jpg');
 
         this.windowFrameMaterial = new THREE.MeshPhongMaterial({
            map: this.windowFrameTexture,
