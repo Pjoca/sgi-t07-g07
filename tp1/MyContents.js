@@ -64,6 +64,8 @@ class MyContents {
         this.paintings = new MyPaintings();
         this.app.scene.add(this.paintings.firstPainting, this.paintings.secondPainting, this.paintings.topFrame, this.paintings.bottomFrame, this.paintings.leftFrame, this.paintings.rightFrame, this.paintings.topFrame2, this.paintings.bottomFrame2, this.paintings.leftFrame2, this.paintings.rightFrame2);
 
+        this.createFlowers();
+
         this.beetle = new MyBeetle();
         this.app.scene.add(this.beetle.lineA, this.beetle.lineB, this.beetle.lineC, this.beetle.lineD, this.beetle.lineE, this.beetle.painting, this.beetle.topFrame, this.beetle.bottomFrame, this.beetle.leftFrame, this.beetle.rightFrame);
 
@@ -193,7 +195,6 @@ class MyContents {
         this.spring.build();
         this.spotlight.build();
         this.badge.build();
-        this.createFlowers();
     }
 
     /**
