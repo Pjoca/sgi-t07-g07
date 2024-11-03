@@ -3,6 +3,7 @@ import {MyAxis} from './MyAxis.js';
 import {MyFloor} from './custom/MyFloor.js';
 import {MyWalls} from './custom/MyWalls.js';
 import {MyTable} from './custom/MyTable.js';
+import {MyChair} from "./custom/MyChair.js";
 import {MyPlate} from './custom/MyPlate.js';
 import {MyCake} from './custom/MyCake.js';
 import {MyCandle} from './custom/MyCandle.js';
@@ -12,6 +13,9 @@ import {MyLandscape} from "./custom/MyLandscape.js";
 import {MyPaintings} from "./custom/MyPaintings.js";
 import { MyFlower } from './custom/MyFlower.js';
 import { MyJar } from './custom/Myjar.js';
+import {MyBeetle} from "./custom/MyBeetle.js";
+import {MySpring} from "./custom/MySpring.js";
+import {MySpotlight} from "./custom/MySpotlight.js";
 
 /**
  *  This class contains the contents of out application
@@ -35,11 +39,14 @@ class MyContents {
         this.table = new MyTable();
         this.app.scene.add(this.table.tabletop, this.table.leg1, this.table.leg2, this.table.leg3, this.table.leg4);
 
+        this.chair = new MyChair();
+        this.app.scene.add(this.chair.leg1, this.chair.leg2, this.chair.leg3, this.chair.leg4, this.chair.auxiliarLeg1, this.chair.auxiliarLeg2, this.chair.auxiliarLeg3, this.chair.auxiliarLeg4,  this.chair.auxiliarLeg5, this.chair.auxiliarLeg6, this.chair.sit, this.chair.auxiliarBackrest1, this.chair.auxiliarBackrest2, this.chair.auxiliarBackrest3, this.chair.auxiliarBackrest4, this.chair.auxiliarBackrest5);
+
         this.plate = new MyPlate();
-        this.app.scene.add(this.plate.plate);
+        this.app.scene.add(this.plate.plate, this.plate.smallerPlate);
 
         this.cake = new MyCake(this.plate);
-        this.app.scene.add(this.cake.cake, this.cake.sliceFace, this.cake.sliceFace2);
+        this.app.scene.add(this.cake.cake, this.cake.sliceFace, this.cake.sliceFace2, this.cake.sliceFace3, this.cake.sliceFace4, this.cake.slicePiece);
 
         this.candle = new MyCandle(this.cake);
         this.app.scene.add(this.candle.candle, this.candle.flame);
@@ -54,7 +61,16 @@ class MyContents {
         this.app.scene.add(this.landscape.landscape, this.landscape.windowTopFrame, this.landscape.windowBottomFrame, this.landscape.windowLeftFrame, this.landscape.windowRightFrame, this.landscape.windowMidVerticalFrame, this.landscape.windowMidHorizontalFrame);
 
         this.paintings = new MyPaintings();
-        this.app.scene.add(this.paintings.firstPainting, this.paintings.secondPainting, this.paintings.windowTopFrame, this.paintings.windowBottomFrame, this.paintings.windowLeftFrame, this.paintings.windowRightFrame, this.paintings.windowTopFrame2, this.paintings.windowBottomFrame2, this.paintings.windowLeftFrame2, this.paintings.windowRightFrame2);
+        this.app.scene.add(this.paintings.firstPainting, this.paintings.secondPainting, this.paintings.topFrame, this.paintings.bottomFrame, this.paintings.leftFrame, this.paintings.rightFrame, this.paintings.topFrame2, this.paintings.bottomFrame2, this.paintings.leftFrame2, this.paintings.rightFrame2);
+
+        this.beetle = new MyBeetle();
+        this.app.scene.add(this.beetle.lineA, this.beetle.lineB, this.beetle.lineC, this.beetle.lineD, this.beetle.lineE, this.beetle.painting, this.beetle.topFrame, this.beetle.bottomFrame, this.beetle.leftFrame, this.beetle.rightFrame);
+
+        this.spring = new MySpring();
+        this.app.scene.add(this.spring.springMesh);
+
+        this.spotlight = new MySpotlight();
+        this.app.scene.add(this.spotlight.base, this.spotlight.pole, this.spotlight.cover, this.spotlight.bulb, this.spotlight.light, this.spotlight.lightTarget);
 
         this.createFlowers();
 
@@ -141,11 +157,14 @@ class MyContents {
             this.app.scene.add(this.axis)
         }
 
-        // this.boxDisplacement.set(2, 3, 2);
-
         // add a point light on top of the model
         const pointLight = new THREE.PointLight(0xffffff, 500, 0);
-        pointLight.position.set(0, 20, 0);
+        pointLight.position.set(0, 15, 0);
+        pointLight.castShadow = true;
+        pointLight.shadow.mapSize.width = 2048;
+        pointLight.shadow.mapSize.height = 2048;
+        pointLight.shadow.camera.near = 9;
+        pointLight.shadow.camera.far = 18;
         this.app.scene.add(pointLight);
 
         // add a point light helper for the previous point light
@@ -161,14 +180,16 @@ class MyContents {
         this.floor.build();
         this.walls.build();
         this.table.build();
+        this.chair.build();
         this.plate.build();
         this.cake.build();
         this.candle.build();
         this.frame.build();
         this.landscape.build();
         this.paintings.build();
-
-        this.app.scene.add(this.planeMesh);
+        this.beetle.build();
+        this.spring.build();
+        this.spotlight.build();
     }
 
     /**

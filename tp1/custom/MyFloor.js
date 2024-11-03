@@ -15,6 +15,7 @@ export class MyFloor {
 
         this.floorGeometry = new THREE.PlaneGeometry(15, 10);
         this.plane = new THREE.Mesh(this.floorGeometry, this.floorMaterial);
+        this.plane.receiveShadow = true;
     }
 
     build() {

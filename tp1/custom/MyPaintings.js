@@ -38,32 +38,34 @@ export class MyPaintings {
         this.leftFrameGeometry = new THREE.BoxGeometry(this.height + 0.31, 0.16, 0.1);
         this.rightFrameGeometry = new THREE.BoxGeometry(this.height + 0.31, 0.16, 0.1);
 
-        this.windowTopFrame = new THREE.Mesh(this.topFrameGeometry, this.frameMaterial);
-        this.windowBottomFrame = new THREE.Mesh(this.bottomFrameGeometry, this.frameMaterial);
-        this.windowLeftFrame = new THREE.Mesh(this.leftFrameGeometry, this.frameMaterial);
-        this.windowRightFrame = new THREE.Mesh(this.rightFrameGeometry, this.frameMaterial);
-        this.windowTopFrame2 = new THREE.Mesh(this.topFrameGeometry, this.frameMaterial);
-        this.windowBottomFrame2 = new THREE.Mesh(this.bottomFrameGeometry, this.frameMaterial);
-        this.windowLeftFrame2 = new THREE.Mesh(this.leftFrameGeometry, this.frameMaterial);
-        this.windowRightFrame2 = new THREE.Mesh(this.rightFrameGeometry, this.frameMaterial);
+        this.topFrame = new THREE.Mesh(this.topFrameGeometry, this.frameMaterial);
+        this.bottomFrame = new THREE.Mesh(this.bottomFrameGeometry, this.frameMaterial);
+        this.leftFrame = new THREE.Mesh(this.leftFrameGeometry, this.frameMaterial);
+        this.rightFrame = new THREE.Mesh(this.rightFrameGeometry, this.frameMaterial);
+        this.topFrame2 = new THREE.Mesh(this.topFrameGeometry, this.frameMaterial);
+        this.bottomFrame2 = new THREE.Mesh(this.bottomFrameGeometry, this.frameMaterial);
+        this.leftFrame2 = new THREE.Mesh(this.leftFrameGeometry, this.frameMaterial);
+        this.rightFrame2 = new THREE.Mesh(this.rightFrameGeometry, this.frameMaterial);
     }
 
     build() {
-        this.firstPainting.position.set(2, 3, -4.99);
-        this.secondPainting.position.set(-2, 3, -4.99);
+        this.firstPainting.position.set(2, 3, 4.995);
+        this.firstPainting.rotation.y = -Math.PI;
+        this.secondPainting.position.set(-2, 3, 4.995);
+        this.secondPainting.rotation.y = -Math.PI;
 
-        this.windowTopFrame.position.set(-2, 4.20, -4.99);
-        this.windowBottomFrame.position.set(-2, 1.80, -4.99);
-        this.windowLeftFrame.position.set(-2.825, 3, -4.99);
-        this.windowLeftFrame.rotation.z = -Math.PI / 2;
-        this.windowRightFrame.position.set(-1.175, 3, -4.99);
-        this.windowRightFrame.rotation.z = -Math.PI / 2;
+        this.topFrame.position.set(-2, 4.20, 4.995);
+        this.bottomFrame.position.set(-2, 1.80, 4.995);
+        this.leftFrame.position.set(-2.825, 3, 4.995);
+        this.leftFrame.rotation.z = -Math.PI / 2;
+        this.rightFrame.position.set(-1.175, 3, 4.995);
+        this.rightFrame.rotation.z = -Math.PI / 2;
 
-        this.windowTopFrame2.position.set(2, 4.20, -4.99);
-        this.windowBottomFrame2.position.set(2, 1.80, -4.99);
-        this.windowLeftFrame2.position.set(2.825, 3, -4.99);
-        this.windowLeftFrame2.rotation.z = -Math.PI / 2;
-        this.windowRightFrame2.position.set(1.175, 3, -4.99);
-        this.windowRightFrame2.rotation.z = -Math.PI / 2;
+        this.topFrame2.position.set(2, 4.20, 4.995);
+        this.bottomFrame2.position.set(2, 1.80, 4.995);
+        this.leftFrame2.position.set(2.825, 3, 4.995);
+        this.leftFrame2.rotation.z = -Math.PI / 2;
+        this.rightFrame2.position.set(1.175, 3, 4.995);
+        this.rightFrame2.rotation.z = -Math.PI / 2;
     }
 }
