@@ -29,6 +29,8 @@ class MyApp  {
         this.gui = null
         this.axis = null
         this.contents = null
+
+        this.enableShadows = true;
     }
     /**
      * initializes the application
@@ -50,8 +52,10 @@ class MyApp  {
         this.renderer = new THREE.WebGLRenderer({antialias:true});
         this.renderer.setPixelRatio( window.devicePixelRatio );
         this.renderer.setClearColor("#000000");
-        this.renderer.shadowMap.enabled = true;
+
+        // Set initial shadow settings
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        this.renderer.shadowMap.enabled = this.enableShadows;
 
         // Configure renderer size
         this.renderer.setSize( window.innerWidth, window.innerHeight );
@@ -61,6 +65,10 @@ class MyApp  {
 
         // manage window resizes
         window.addEventListener('resize', this.onResize.bind(this), false );
+    }
+
+    toggleShadows() {
+        this.enableShadows = false;
     }
 
     /**

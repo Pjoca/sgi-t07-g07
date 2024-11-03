@@ -31,7 +31,10 @@ export class MySpotlight {
         this.bulb = new THREE.Mesh(this.bulbGeometry, this.bulbMaterial);
 
         // SpotLight directed at the cake
-        this.light = new THREE.SpotLight("#FFFFFF", 8, 5, Math.PI / 9, 0.2, 2);
+        this.intensity = 8;
+        this.angle = Math.PI / 9;
+
+        this.light = new THREE.SpotLight("#FFFFFF", this.intensity, 5, this.angle, 0.2, 2);
         this.light.castShadow = true;
         this.light.shadow.mapSize.width = 2048;
         this.light.shadow.mapSize.height = 2048;
