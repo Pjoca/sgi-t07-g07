@@ -3,6 +3,7 @@ import {MyAxis} from './MyAxis.js';
 import {MyFloor} from './custom/MyFloor.js';
 import {MyWalls} from './custom/MyWalls.js';
 import {MyTable} from './custom/MyTable.js';
+import {MyChair} from "./custom/MyChair.js";
 import {MyPlate} from './custom/MyPlate.js';
 import {MyCake} from './custom/MyCake.js';
 import {MyCandle} from './custom/MyCandle.js';
@@ -35,6 +36,9 @@ class MyContents {
 
         this.table = new MyTable();
         this.app.scene.add(this.table.tabletop, this.table.leg1, this.table.leg2, this.table.leg3, this.table.leg4);
+
+        this.chair = new MyChair();
+        this.app.scene.add(this.chair.leg1, this.chair.leg2, this.chair.leg3, this.chair.leg4, this.chair.auxiliarLeg1, this.chair.auxiliarLeg2, this.chair.auxiliarLeg3, this.chair.auxiliarLeg4,  this.chair.auxiliarLeg5, this.chair.auxiliarLeg6, this.chair.sit, this.chair.auxiliarBackrest1, this.chair.auxiliarBackrest2, this.chair.auxiliarBackrest3, this.chair.auxiliarBackrest4, this.chair.auxiliarBackrest5);
 
         this.plate = new MyPlate();
         this.app.scene.add(this.plate.plate);
@@ -132,6 +136,7 @@ class MyContents {
         this.floor.build();
         this.walls.build();
         this.table.build();
+        this.chair.build();
         this.plate.build();
         this.cake.build();
         this.candle.build();

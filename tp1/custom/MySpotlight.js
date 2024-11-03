@@ -31,7 +31,7 @@ export class MySpotlight {
         this.bulb = new THREE.Mesh(this.bulbGeometry, this.bulbMaterial);
 
         // SpotLight directed at the cake
-        this.light = new THREE.SpotLight("#FFFFFF", 7.5, 5, Math.PI / 9, 0.2, 2);
+        this.light = new THREE.SpotLight("#FFFFFF", 8, 5, Math.PI / 9, 0.2, 2);
         this.light.castShadow = true;
         this.light.shadow.mapSize.width = 2048;
         this.light.shadow.mapSize.height = 2048;
@@ -41,14 +41,14 @@ export class MySpotlight {
     }
 
     build() {
-        this.base.position.set(1, 1.945, -0.75); // Position the base
+        this.base.position.set(1, 1.945, -0.75);
 
-        this.cover.position.set(1, 3.05, -0.75);  // Position at the end of the pole
+        this.cover.position.set(1, 3.05, -0.75);
         this.cover.rotation.x = Math.PI / 2;
         this.cover.rotation.z = Math.PI / 2.9;
         this.cover.rotation.y = Math.PI / 4;
 
-        this.bulb.position.set(0.97, 3.02, -0.72);   // Position inside the cover
+        this.bulb.position.set(0.97, 3.02, -0.72);
 
         this.light.position.set(0.97, 3.02, -0.72);
         this.lightTarget.position.set(0, 1.9, 0);
