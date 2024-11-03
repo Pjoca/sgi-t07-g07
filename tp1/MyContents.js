@@ -78,38 +78,39 @@ class MyContents {
      */
     createFlowers() {
         const corners = [
-            new THREE.Vector3(-6, 0, -3.5), // Bottom-left corner
-            new THREE.Vector3(-6, 0, 3.5),  // Top-left corner
-            new THREE.Vector3(6, 0, -3.5),   // Bottom-right corner
-            new THREE.Vector3(6, 0, 3.5)     // Top-right corner
+            { position: new THREE.Vector3(-6.5, 0, -4), rotationY: Math.PI / 2 - Math.PI / 3 + Math.PI / 4 },       
+            { position: new THREE.Vector3(-6.5, 0, 3), rotationY: Math.PI / 2 + Math.PI / 4 },  
+            { position: new THREE.Vector3(6.5, 0, -4), rotationY: -Math.PI / 2 + Math.PI / 3 - Math.PI / 4 },  
+            { position: new THREE.Vector3(6.5, 0, 3), rotationY: -Math.PI / 2 - Math.PI / 4 }      
         ];
     
-        // Randomly select a corner index
+        // Randomly select a corner
         const randomCornerIndex = Math.floor(Math.random() * corners.length);
         const chosenCorner = corners[randomCornerIndex];
-
         const flowerCount = 2; // Number of flowers to create
-
+    
         // Create two flowers at the chosen corner
         for (let i = 0; i < flowerCount; i++) {
-
+    
             const jar = new MyJar();
             jar.build(
-                chosenCorner.clone().add(new THREE.Vector3(0, 0.75, i * 1)), // Adjust Z position to separate jars
+                chosenCorner.position.clone().add(new THREE.Vector3(0, 0.75, i * 1)), // Adjust Z position to separate jars
                 new THREE.Vector3(0.25, 0.25, 0.25) // Scale for the jar
             );
-            jar.getMesh().rotation.x = Math.PI;
-
+            jar.getMesh().rotation.x = Math.PI; // Initial rotation along x-axis
+            jar.getMesh().rotation.y = chosenCorner.rotationY; // Rotation based on corner position
+    
             const flower = new MyFlower(); // Create a new flower instance
             flower.build(
-                chosenCorner.clone().add(new THREE.Vector3(0, 0.65, i * 1)), // Adjust Y position slightly to separate flowers
+                chosenCorner.position.clone().add(new THREE.Vector3(0, 0.65, i * 1)), // Adjust Y position slightly to separate flowers
                 new THREE.Vector3(0.2, 0.2, 0.2) // Scale
             );
+            flower.getMesh().rotation.y = chosenCorner.rotationY; // Match rotation with the jar
     
             this.app.scene.add(jar.getMesh()); // Add the jar mesh to the scene
             this.app.scene.add(flower.getMesh()); // Add the flower mesh to the scene
         }
-    }
+    }    
     
 
     /**
