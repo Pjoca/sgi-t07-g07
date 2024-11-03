@@ -2,83 +2,125 @@ import * as THREE from 'three';
 
 class MyJar {
     constructor() {
-        this.jarGroup = new THREE.Group(); // Group to hold the jar components
+        this.jarGroup = new THREE.Group();
         this.createJar();
+        this.addDirtLayer(); // Add the dirt layer after creating the jar
     }
 
     createJar() {
-        const jarHeight = 3; // Total height of the jar
-        const jarThickness = 0.1; // Thickness of the jar walls
+        const jarHeight = 3;
+        const jarThickness = 0.1;
+        const radialSegments = 32;
+        const heightSegments = 32;
 
-        // Define the jar profile (outline) to create a more complex shape
-        const jarProfile = [
-            new THREE.Vector2(0.8, 0), // Bottom outer radius and base
-            new THREE.Vector2(1.2, 0.5), // Curve outwards near the bottom
-            new THREE.Vector2(1.4, 1.5), // Gradual widening
-            new THREE.Vector2(1.3, 2.5), // Taper inwards at the neck
-            new THREE.Vector2(1.1, 3), // Top of the jar
-        ];
+        const outerVertices = [];
+        const innerVertices = [];
+        const indices = [];
 
-        // Outer curved surface of the jar using LatheGeometry
-        const jarOuterGeometry = new THREE.LatheGeometry(jarProfile, 32);
-        const jarOuterMaterial = new THREE.MeshPhongMaterial({
-            color: 0x4B2E2E, // Dark brown color
-            side: THREE.DoubleSide,
+        // Generate vertices for both outer and inner surfaces
+        for (let j = 0; j <= heightSegments; j++) {
+            const v = j / heightSegments;
+            const outerRadius = this.getJarRadius(v) + jarThickness;
+            const innerRadius = this.getJarRadius(v);
+            const y = v * jarHeight;
+
+            for (let i = 0; i <= radialSegments; i++) {
+                const u = i / radialSegments;
+                const angle = 2 * Math.PI * u;
+
+                // Outer vertices
+                const outerX = outerRadius * Math.cos(angle);
+                const outerZ = outerRadius * Math.sin(angle);
+                outerVertices.push(outerX, y, outerZ);
+
+                // Inner vertices
+                const innerX = innerRadius * Math.cos(angle);
+                const innerZ = innerRadius * Math.sin(angle);
+                innerVertices.push(innerX, y, innerZ);
+            }
+        }
+
+        // Create BufferGeometry for the outer surface
+        const jarGeometry = new THREE.BufferGeometry();
+        const combinedVertices = new Float32Array(outerVertices.concat(innerVertices));
+        jarGeometry.setAttribute('position', new THREE.BufferAttribute(combinedVertices, 3));
+
+        // Define indices for two-sided faces
+        for (let j = 0; j < heightSegments; j++) {
+            for (let i = 0; i < radialSegments; i++) {
+                const a = j * (radialSegments + 1) + i;
+                const b = j * (radialSegments + 1) + i + 1;
+                const c = (j + 1) * (radialSegments + 1) + i + 1;
+                const d = (j + 1) * (radialSegments + 1) + i;
+
+                // Two triangles for each quad (outer)
+                indices.push(a, b, c);
+                indices.push(a, c, d);
+
+                // Two triangles for each quad (inner)
+                indices.push(a + (radialSegments + 1) * (heightSegments + 1), 
+                             d + (radialSegments + 1) * (heightSegments + 1), 
+                             c + (radialSegments + 1) * (heightSegments + 1));
+                indices.push(a + (radialSegments + 1) * (heightSegments + 1), 
+                             c + (radialSegments + 1) * (heightSegments + 1), 
+                             b + (radialSegments + 1) * (heightSegments + 1));
+            }
+        }
+
+        jarGeometry.setIndex(indices);
+        jarGeometry.computeVertexNormals();
+
+        const jarMaterial = new THREE.MeshPhongMaterial({
+            color: 0x4B2E2E,
+            side: THREE.DoubleSide
         });
-        const jarOuterMesh = new THREE.Mesh(jarOuterGeometry, jarOuterMaterial);
-        jarOuterMesh.position.y = jarHeight / 2; // Adjust position to center the jar
 
-        // Inner curved surface of the jar
-        const jarInnerProfile = jarProfile.map(point => {
-            return new THREE.Vector2(point.x - jarThickness, point.y);
-        });
-        const jarInnerGeometry = new THREE.LatheGeometry(jarInnerProfile, 32);
-        const jarInnerMaterial = new THREE.MeshPhongMaterial({
-            color: 0x4B2E2E, // Same dark brown color or a different color if desired
-            side: THREE.DoubleSide,
-        });
-        const jarInnerMesh = new THREE.Mesh(jarInnerGeometry, jarInnerMaterial);
-        jarInnerMesh.position.y = jarHeight / 2; // Center the inner surface vertically
-
-        // Solid dirt filling the inside of the jar
-        const smallestInnerRadius = Math.min(...jarInnerProfile.map(point => point.x)); // Find the smallest inner radius
-        const jarDirtRadius = smallestInnerRadius ; // Slightly smaller to fit inside
-        const jarDirtHeight = jarHeight * 0.9; // Reduce the dirt height further to 60% of the jar height
-
-        const jarDirtGeometry = new THREE.CylinderGeometry(
-            jarDirtRadius, // Bottom radius of the dirt
-            jarDirtRadius, // Top radius of the dirt
-            jarDirtHeight, // Reduced height of the dirt
-            32 // Number of segments for smoothness
-        );
-
-        const jarDirtMaterial = new THREE.MeshPhongMaterial({
-            color: 0x8B5A2B, // Lighter brown color for soil
-        });
-        const jarDirtMesh = new THREE.Mesh(jarDirtGeometry, jarDirtMaterial);
-
-        // Adjust the vertical position of the dirt to be inside the jar, sitting at the bottom
-        jarDirtMesh.position.y = (jarHeight - jarDirtHeight) / 2 - (0.1*jarHeight-3.2); // Lower the dirt so it sits well inside the jar
-
-        // Add all components to the jar group
-        this.jarGroup.add(jarDirtMesh); // Add dirt first, so it appears inside the jar
-        this.jarGroup.add(jarOuterMesh); // Add outer surface on top
-        this.jarGroup.add(jarInnerMesh); // Add inner surface to create the double wall effect
+        const jarMesh = new THREE.Mesh(jarGeometry, jarMaterial);
+        this.jarGroup.add(jarMesh);
     }
 
-    /**
-     * Returns the jar group containing all the components
-     * @returns {THREE.Group} The jar group
-     */
+    addDirtLayer() {
+        const jarHeight = 3;
+        const smallestInnerRadius = this.getJarRadius(0); // Radius at the base of the jar
+        const dirtRadius = smallestInnerRadius+0.2; // Slightly smaller to fit inside
+        const dirtHeight = jarHeight * 0.8; // Adjust height as desired for the dirt layer
+
+        // Create a cylinder geometry for the dirt layer
+        const dirtGeometry = new THREE.CylinderGeometry(
+            dirtRadius, // Bottom radius
+            dirtRadius, // Top radius
+            dirtHeight, // Height of the dirt
+            32 // Number of segments
+        );
+
+        // Dirt material with a brown color
+        const dirtMaterial = new THREE.MeshPhongMaterial({
+            color: 0x8B4513, // Dark brown color for soil
+            flatShading: true
+        });
+
+        // Create the dirt mesh
+        const dirtMesh = new THREE.Mesh(dirtGeometry, dirtMaterial);
+
+        // Position the dirt layer to sit at the bottom of the jar
+        dirtMesh.position.y = (dirtHeight - jarHeight+4.1) / 2;
+
+        // Add the dirt layer to the jar group
+        this.jarGroup.add(dirtMesh);
+    }
+
+    getJarRadius(v) {
+        // Jar profile function
+        if (v < 0.2) return 0.8 + 2 * v;
+        if (v < 0.5) return 1.2;
+        if (v < 0.8) return 1.4 - 0.4 * (v - 0.5);
+        return 1.1;
+    }
+
     getMesh() {
         return this.jarGroup;
     }
 
-    /**
-     * Method to build and position the jar
-     * @param {THREE.Vector3} position - The position to place the jar
-     * @param {THREE.Vector3} scale - The scale to apply to the jar
-     */
     build(position, scale) {
         this.jarGroup.position.copy(position);
         this.jarGroup.scale.copy(scale);

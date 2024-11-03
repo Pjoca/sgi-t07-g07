@@ -95,14 +95,14 @@ class MyContents {
 
             const jar = new MyJar();
             jar.build(
-                chosenCorner.clone().add(new THREE.Vector3(0, 1.15, i * 1)), // Adjust Z position to separate jars
+                chosenCorner.clone().add(new THREE.Vector3(0, 0.75, i * 1)), // Adjust Z position to separate jars
                 new THREE.Vector3(0.25, 0.25, 0.25) // Scale for the jar
             );
             jar.getMesh().rotation.x = Math.PI;
 
             const flower = new MyFlower(); // Create a new flower instance
             flower.build(
-                chosenCorner.clone().add(new THREE.Vector3(0, 0.75, i * 1)), // Adjust Y position slightly to separate flowers
+                chosenCorner.clone().add(new THREE.Vector3(0, 0.65, i * 1)), // Adjust Y position slightly to separate flowers
                 new THREE.Vector3(0.2, 0.2, 0.2) // Scale
             );
     
