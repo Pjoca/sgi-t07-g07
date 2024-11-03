@@ -6,6 +6,8 @@ export class MySpotlight {
         this.baseGeometry = new THREE.CylinderGeometry(0.175, 0.175, 0.08, 20);
         this.baseMaterial = new THREE.MeshStandardMaterial({color: "#CCCCCC"});
         this.base = new THREE.Mesh(this.baseGeometry, this.baseMaterial);
+        this.base.receiveShadow = true;
+        this.base.castShadow = true;
 
         // Curved pole
         this.curve = new THREE.CubicBezierCurve3(
@@ -18,12 +20,15 @@ export class MySpotlight {
         const tubeGeometry = new THREE.TubeGeometry(this.curve, 20, 0.03, 8, false);
         this.poleMaterial = new THREE.MeshStandardMaterial({color: 0xcccccc});
         this.pole = new THREE.Mesh(tubeGeometry, this.poleMaterial);
+        this.pole.receiveShadow = true;
+        this.pole.castShadow = true;
 
         // Spotlight cover (metallic part)
         this.coverGeometry = new THREE.CylinderGeometry(0.125, 0.075, 0.25, 20, 1, false);
         this.coverMaterial = new THREE.MeshStandardMaterial({color: 0x888888, metalness: 0.8, roughness: 0.3});
         this.cover = new THREE.Mesh(this.coverGeometry, this.coverMaterial);
-
+        this.cover.receiveShadow = true;
+        this.cover.castShadow = true;
 
         // Spotlight bulb (inside the cover)
         this.bulbGeometry = new THREE.SphereGeometry(0.1, 16, 16);
@@ -31,7 +36,10 @@ export class MySpotlight {
         this.bulb = new THREE.Mesh(this.bulbGeometry, this.bulbMaterial);
 
         // SpotLight directed at the cake
-        this.light = new THREE.SpotLight("#FFFFFF", 8, 5, Math.PI / 9, 0.2, 2);
+        this.intensity = 8;
+        this.angle = Math.PI / 9;
+
+        this.light = new THREE.SpotLight("#FFFFFF", this.intensity, 5, this.angle, 0.2, 2);
         this.light.castShadow = true;
         this.light.shadow.mapSize.width = 2048;
         this.light.shadow.mapSize.height = 2048;

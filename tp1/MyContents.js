@@ -16,6 +16,7 @@ import { MyJar } from './custom/Myjar.js';
 import {MyBeetle} from "./custom/MyBeetle.js";
 import {MySpring} from "./custom/MySpring.js";
 import {MySpotlight} from "./custom/MySpotlight.js";
+import {MyBadge} from "./custom/MyBadge.js";
 
 /**
  *  This class contains the contents of out application
@@ -72,7 +73,8 @@ class MyContents {
         this.spotlight = new MySpotlight();
         this.app.scene.add(this.spotlight.base, this.spotlight.pole, this.spotlight.cover, this.spotlight.bulb, this.spotlight.light, this.spotlight.lightTarget);
 
-        this.createFlowers();
+        this.badge = new MyBadge();
+        this.app.scene.add(this.badge.badge, this.badge.topFrame, this.badge.leftFrame, this.badge.bottomFrame, this.badge.rightFrame, this.badge.glass);
 
         // box related attributes
         this.boxMesh = null
@@ -86,7 +88,7 @@ class MyContents {
         this.planeShininess = 30
 
         this.textureLoader = new THREE.TextureLoader();
-        this.planeMaterial = new THREE.MeshBasicMaterial({map: this.textureLoader.load('images/floor.jpg')});
+        this.planeMaterial = new THREE.MeshBasicMaterial({map: this.textureLoader.load('textures/floor.jpg')});
     }
 
     /**
@@ -190,6 +192,8 @@ class MyContents {
         this.beetle.build();
         this.spring.build();
         this.spotlight.build();
+        this.badge.build();
+        this.createFlowers();
     }
 
     /**

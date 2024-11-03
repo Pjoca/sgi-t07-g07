@@ -7,7 +7,7 @@ export class MyTable {
         this.tableHeight = 1.8;
 
         const textureLoader = new THREE.TextureLoader();
-        this.tableTopTexture = textureLoader.load('images/table.jpg');
+        this.tableTopTexture = textureLoader.load('textures/table.jpg');
 
         this.tableMaterial = new THREE.MeshPhongMaterial({
             map: this.tableTopTexture,

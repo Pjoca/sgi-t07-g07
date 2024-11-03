@@ -4,7 +4,7 @@ export class MyRug {
     constructor() {
         this.textureLoader = new THREE.TextureLoader();
 
-        const texture = this.textureLoader.load('images/carpet.jpg');
+        const texture = this.textureLoader.load('textures/carpet.jpg');
         const material = new THREE.MeshStandardMaterial({ map: texture });
         const geometry = new THREE.PlaneGeometry(7, 5);
         this.plane = new THREE.Mesh(geometry, material);

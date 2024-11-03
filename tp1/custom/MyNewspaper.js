@@ -5,15 +5,15 @@ class MyNewspaper {
         const textureLoader = new THREE.TextureLoader();
 
         // Load the textures for each side of both pages (4 textures total)
-        const leftFrontTexture = textureLoader.load('images/newspaper_front.jpg');
-        const leftBackTexture = textureLoader.load('images/newspaper_back.jpg');
-        const rightFrontTexture = textureLoader.load('images/Ronaldo_wc.jpg');
-        const rightBackTexture = textureLoader.load('images/Ronaldo.jpg');
+        const leftFrontTexture = textureLoader.load('textures/newspaper_front.jpg');
+        const leftBackTexture = textureLoader.load('textures/newspaper_back.jpg');
+        const rightFrontTexture = textureLoader.load('textures/Ronaldo_wc.jpg');
+        const rightBackTexture = textureLoader.load('textures/Ronaldo.jpg');
 
         // Define the geometry, size, and subdivisions for the pages
-        const width = 2.5;   // Width of each page
-        const height = 3;    // Height of the newspaper
-        const subdivisions = 20;  // Subdivisions for smoother bending
+        const width = 2.5;
+        const height = 3;
+        const subdivisions = 20;
 
         // Create geometry for the left and right pages (front and back)
         const leftFrontGeometry = new THREE.PlaneGeometry(width, height, subdivisions, subdivisions);
@@ -48,10 +48,14 @@ class MyNewspaper {
 
         // Create the left page meshes (front and back)
         const leftFrontMesh = new THREE.Mesh(leftFrontGeometry, leftFrontMaterial);
+        leftFrontMesh.receiveShadow = true;
+        leftFrontMesh.castShadow = true;
         const leftBackMesh = new THREE.Mesh(leftBackGeometry, leftBackMaterial);
 
         // Create the right page meshes (front and back)
         const rightFrontMesh = new THREE.Mesh(rightFrontGeometry, rightFrontMaterial);
+        rightFrontMesh.receiveShadow = true;
+        rightFrontMesh.castShadow = true;
         const rightBackMesh = new THREE.Mesh(rightBackGeometry, rightBackMaterial);
 
         // ** Adjust rotation for the "V" shape (\/ look) **

@@ -6,7 +6,7 @@ export class MyPaintings {
         this.height = 2.25;
 
         const textureLoader = new THREE.TextureLoader();
-        this.firstTexture = textureLoader.load('images/pessoa.jpg');
+        this.firstTexture = textureLoader.load('textures/pessoa.jpg');
 
         this.firstMaterial = new THREE.MeshPhongMaterial({
             map: this.firstTexture,
@@ -16,7 +16,7 @@ export class MyPaintings {
 
         this.firstPainting = new THREE.Mesh(this.paintingGeometry, this.firstMaterial);
 
-        this.secondTexture = textureLoader.load('images/mendes.jpg');
+        this.secondTexture = textureLoader.load('textures/mendes.jpg');
 
         this.secondMaterial = new THREE.MeshPhongMaterial({
             map: this.secondTexture,
@@ -25,7 +25,7 @@ export class MyPaintings {
 
         this.secondPainting = new THREE.Mesh(this.paintingGeometry, this.secondMaterial);
 
-        this.frameTexture = textureLoader.load('images/frame.jpg');
+        this.frameTexture = textureLoader.load('textures/frame.jpg');
 
         this.frameMaterial = new THREE.MeshPhongMaterial({
             map: this.frameTexture,

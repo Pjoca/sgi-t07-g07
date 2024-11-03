@@ -4,7 +4,7 @@ export class MyWalls {
     constructor() {
         this.textureLoader = new THREE.TextureLoader();
 
-        this.wallTexture = this.textureLoader.load('images/wall.jpg');
+        this.wallTexture = this.textureLoader.load('textures/wall.jpg');
         this.wallTexture.wrapS = THREE.RepeatWrapping;
         this.wallTexture.wrapT = THREE.RepeatWrapping;
         this.wallTexture.repeat.set(4, 2);

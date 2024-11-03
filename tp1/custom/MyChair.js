@@ -3,7 +3,7 @@ import * as THREE from 'three';
 export class MyChair {
     constructor() {
         this.textureLoader = new THREE.TextureLoader();
-        this.chairTexture = this.textureLoader.load('images/table.jpg');
+        this.chairTexture = this.textureLoader.load('textures/table.jpg');
 
         this.material = new THREE.MeshPhongMaterial({
             map: this.chairTexture,
