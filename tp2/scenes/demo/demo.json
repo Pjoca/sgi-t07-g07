@@ -1,56 +1,53 @@
 {
-    "yaf": {
+    "yasf": {
         "globals": {
             "background": {
-                "r": 0,
-                "g": 0,
-                "b": 0,
-                "a": 1
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0
             },
             "ambient": {
-                "r": 0,
-                "g": 0,
-                "b": 0,
-                "a": 1
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0
             }
         },
         "fog": {
             "color": {
-                "r": 1,
-                "g": 1,
-                "b": 1,
-                "a": 1
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0
             },
-            "near": 1,
-            "far": 100
+            "near": 1.0,
+            "far": 100.0
         },
         "textures": {
             "leftWallTex": {
-                "filepath": "scenes/t01g01/textures/scratchedWall.jpg"
+                "filepath": "scenes/textures/scratchedWall.jpg"
             },
             "rightWallTex": {
-                "filepath": "scenes/t01g01/textures/bloodyWall.jpg"
+                "filepath": "scenes/textures/bloodyWall.jpg"
             },
             "floorTex": {
-                "filepath": "scenes/t01g01/textures/test1.jpg"
+                "filepath": "scenes/textures/test1.jpg"
             },
             "tableTex": {
-                "filepath": "scenes/t01g01/textures/table.png"
+                "filepath": "scenes/textures/table.png"
             },
             "crimeWeaponTex": {
-                "filepath": "scenes/t01g01/textures/bloodyPrints.jpg"
+                "filepath": "scenes/textures/bloodyPrints.jpg"
             },
             "tapeTex": {
-                "filepath": "scenes/t01g01/textures/pTape.jpg"
+                "filepath": "scenes/textures/pTape.jpg"
             },
             "tapeSupportTex": {
-                "filepath": "scenes/t01g01/textures/lamp.png"
+                "filepath": "scenes/textures/lamp.png"
             },
             "pineTex": {
-                "filepath": "scenes/t01g01/textures/pine.png"
+                "filepath": "scenes/textures/pine.png"
             },
             "vaseTex": {
-                "filepath": "scenes/t01g01/textures/vase.png"
+                "filepath": "scenes/textures/vase.png"
             }
         },
         "materials": {
@@ -58,22 +55,21 @@
                 "color": {
                     "r": 0.8,
                     "g": 0.8,
-                    "b": 0.8,
-                    "a": 1.0
+                    "b": 0.8
                 },
                 "emissive": {
                     "r": 0.0,
                     "g": 0.0,
-                    "b": 0.0,
-                    "a": 0.0
+                    "b": 0.0
                 },
                 "specular": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
-                    "a": 0
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
                 },
                 "shininess": 10,
+                "transparent": false,
+                "opacity": 1.0,
                 "textureref": "tableTex",
                 "texlength_s": 1,
                 "texlength_t": 1
@@ -82,22 +78,21 @@
                 "emissive": {
                     "r": 0.0,
                     "g": 0.0,
-                    "b": 0.0,
-                    "a": 1
+                    "b": 0.0
                 },
                 "color": {
                     "r": 0.8,
                     "g": 0.8,
-                    "b": 0.8,
-                    "a": 1.0
+                    "b": 0.8
                 },
                 "specular": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
-                    "a": 0
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
                 },
-                "shininess": 0,
+                "shininess": 0.0,
+                "transparent": false,
+                "opacity": 1.0,
                 "textureref": "leftWallTex",
                 "texlength_s": 15,
                 "texlength_t": 8,
@@ -107,22 +102,21 @@
                 "emissive": {
                     "r": 0.0,
                     "g": 0.0,
-                    "b": 0.0,
-                    "a": 1
+                    "b": 0.0
                 },
                 "color": {
                     "r": 0.8,
                     "g": 0.8,
-                    "b": 0.8,
-                    "a": 1.0
+                    "b": 0.8
                 },
                 "specular": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
-                    "a": 0
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
                 },
-                "shininess": 0,
+                "shininess": 0.0,
+                "transparent": false,
+                "opacity": 1.0,
                 "textureref": "rightWallTex",
                 "texlength_s": 15,
                 "texlength_t": 8,
@@ -132,22 +126,21 @@
                 "emissive": {
                     "r": 0.0,
                     "g": 0.0,
-                    "b": 0.0,
-                    "a": 1
+                    "b": 0.0
                 },
                 "color": {
                     "r": 0.8,
                     "g": 0.8,
-                    "b": 0.8,
-                    "a": 1.0
+                    "b": 0.8
                 },
                 "specular": {
                     "r": 0,
                     "g": 0,
-                    "b": 0,
-                    "a": 0
+                    "b": 0
                 },
-                "shininess": 0,
+                "shininess": 0.0,
+                "transparent": false,
+                "opacity": 1.0,
                 "textureref": "floorTex",
                 "texlength_s": 15,
                 "texlength_t": 15,
@@ -157,22 +150,21 @@
                 "emissive": {
                     "r": 0.0,
                     "g": 0.0,
-                    "b": 0.0,
-                    "a": 1
+                    "b": 0.0
                 },
                 "color": {
                     "r": 0.8,
                     "g": 0.8,
-                    "b": 0.8,
-                    "a": 1.0
+                    "b": 0.8
                 },
                 "specular": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
-                    "a": 0
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
                 },
-                "shininess": 0,
+                "shininess": 0.0,
+                "transparent": false,
+                "opacity": 1.0,
                 "textureref": "crimeWeaponTex",
                 "texlength_s": 1,
                 "texlength_t": 1
@@ -181,22 +173,21 @@
                 "emissive": {
                     "r": 0.0,
                     "g": 0.0,
-                    "b": 0.0,
-                    "a": 1
+                    "b": 0.0
                 },
                 "color": {
                     "r": 0.8,
                     "g": 0.8,
-                    "b": 0.8,
-                    "a": 1.0
+                    "b": 0.8
                 },
                 "specular": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
-                    "a": 0
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
                 },
-                "shininess": 0,
+                "shininess": 0.0,
+                "transparent": false,
+                "opacity": 1.0,
                 "textureref": "tapeTex",
                 "texlength_s": 1,
                 "texlength_t": 0.4,
@@ -206,22 +197,21 @@
                 "emissive": {
                     "r": 0.0,
                     "g": 0.0,
-                    "b": 0.0,
-                    "a": 1
+                    "b": 0.0
                 },
                 "color": {
                     "r": 0.8,
                     "g": 0.8,
-                    "b": 0.8,
-                    "a": 1.0
+                    "b": 0.8
                 },
                 "specular": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
-                    "a": 0
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
                 },
-                "shininess": 0,
+                "shininess": 0.0,
+                "transparent": false,
+                "opacity": 1.0,
                 "textureref": "tapeSupportTex",
                 "texlength_s": 1,
                 "texlength_t": 1
@@ -230,22 +220,21 @@
                 "emissive": {
                     "r": 0.0,
                     "g": 0.0,
-                    "b": 0.0,
-                    "a": 1
+                    "b": 0.0
                 },
                 "color": {
                     "r": 0.8,
                     "g": 0.8,
-                    "b": 0.8,
-                    "a": 1.0
+                    "b": 0.8
                 },
                 "specular": {
                     "r": 0,
                     "g": 0,
-                    "b": 0,
-                    "a": 0
+                    "b": 0
                 },
-                "shininess": 0,
+                "shininess": 0.0,
+                "transparent": false,
+                "opacity": 1.0,
                 "textureref": "pineTex",
                 "texlength_s": 1,
                 "texlength_t": 1,
@@ -255,22 +244,21 @@
                 "emissive": {
                     "r": 0.0,
                     "g": 0.0,
-                    "b": 0.0,
-                    "a": 1
+                    "b": 0.0
                 },
                 "color": {
                     "r": 0.8,
                     "g": 0.8,
-                    "b": 0.8,
-                    "a": 1.0
+                    "b": 0.8
                 },
                 "specular": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
-                    "a": 0
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
                 },
-                "shininess": 0,
+                "shininess": 0.0,
+                "transparent": false,
+                "opacity": 1.0,
                 "textureref": "vaseTex",
                 "texlength_s": 1,
                 "texlength_t": 1,
@@ -330,8 +318,7 @@
                         "color": {
                             "r": 0.5,
                             "g": 0.6,
-                            "b": 0.8,
-                            "a": 1
+                            "b": 0.8
                         },
                         "intensity": 1.0,
                         "distance": 1000,
@@ -352,14 +339,14 @@
                         "type": "translate",
                         "amount": {
                             "x": 7.5,
-                            "y": 0,
+                            "y": 0.0,
                             "z": 10
                         }
                     },
                     {
                         "type": "translate",
                         "amount": {
-                            "x": 0,
+                            "x": 0.0,
                             "y": 1.5,
                             "z": 10
                         }
@@ -368,8 +355,8 @@
                         "type": "rotate",
                         "amount": {
                             "x": 89.5,
-                            "y": 0,
-                            "z": 0
+                            "y": 0.0,
+                            "z": 0.0
                         }
                     },
                     {
@@ -377,15 +364,15 @@
                         "amount": {
                             "x": 4.5,
                             "y": 2.5,
-                            "z": 3
+                            "z": 3.0
                         }
                     },
                     {
                         "type": "translate",
                         "amount": {
-                            "x": 0,
+                            "x": 0.0,
                             "y": 0.5,
-                            "z": 0
+                            "z": 0.0
                         }
                     }
                 ],
@@ -421,7 +408,7 @@
                     {
                         "type": "translate",
                         "amount": {
-                            "x": 0,
+                            "x": 0.0,
                             "y": 0.48,
                             "z": 0
                         }
@@ -429,9 +416,9 @@
                     {
                         "type": "scale",
                         "amount": {
-                            "x": 1,
+                            "x": 1.0,
                             "y": 0.08,
-                            "z": 1
+                            "z": 1.0
                         }
                     }
                 ],
@@ -449,7 +436,7 @@
                         "type": "translate",
                         "amount": {
                             "x": 0.45,
-                            "y": 0,
+                            "y": 0.0,
                             "z": 0.42
                         }
                     }
@@ -468,7 +455,7 @@
                         "type": "translate",
                         "amount": {
                             "x": 0.45,
-                            "y": 0,
+                            "y": 0.0,
                             "z": -0.42
                         }
                     }
@@ -487,7 +474,7 @@
                         "type": "translate",
                         "amount": {
                             "x": -0.45,
-                            "y": 0,
+                            "y": 0.0,
                             "z": 0.42
                         }
                     }
@@ -506,7 +493,7 @@
                         "type": "translate",
                         "amount": {
                             "x": -0.45,
-                            "y": 0,
+                            "y": 0.0,
                             "z": -0.42
                         }
                     }
@@ -519,151 +506,230 @@
                 }
             },
             "unitCube": {
-              "type": "node",
-              "children": {
-                "rectangle1": {
-                  "type": "noderef",
-                  "nodeId": "rectangle1"
-                },
-                "rectangle2": {
-                  "type": "noderef",
-                  "nodeId": "rectangle2"
-                },
-                "rectangle3": {
-                  "type": "noderef",
-                  "nodeId": "rectangle3"
-                },
-                "rectangle4": {
-                  "type": "noderef",
-                  "nodeId": "rectangle4"
-                },
-                "rectangle5": {
-                  "type": "noderef",
-                  "nodeId": "rectangle5"
-                },
-                "rectangle6": {
-                  "type": "noderef",
-                  "nodeId": "rectangle6"
+                "type": "node",
+                "children": {
+                    "rectangle1": {
+                        "type": "noderef",
+                        "nodeId": "rectangle1"
+                    },
+                    "rectangle2": {
+                        "type": "noderef",
+                        "nodeId": "rectangle2"
+                    },
+                    "rectangle3": {
+                        "type": "noderef",
+                        "nodeId": "rectangle3"
+                    },
+                    "rectangle4": {
+                        "type": "noderef",
+                        "nodeId": "rectangle4"
+                    },
+                    "rectangle5": {
+                        "type": "noderef",
+                        "nodeId": "rectangle5"
+                    },
+                    "rectangle6": {
+                        "type": "noderef",
+                        "nodeId": "rectangle6"
+                    }
                 }
-              }
             },
             "rectangle1": {
-              "type": "node",
-              "transforms": [
+                "type": "node",
+                "transforms": [
                     {
                         "type": "translate",
-                        "amount": { "x": 0, "y": 0, "z": -0.5 }
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -0.5
+                        }
                     },
                     {
                         "type": "rotate",
-                        "amount": { "x": 0, "y": 180, "z": 0 }
+                        "amount": {
+                            "x": 0,
+                            "y": 180,
+                            "z": 0
+                        }
                     }
-              ],
-              "children": {
-                "rectanglePrim": {
-                  "type": "rectangle",
-                  "xy1": { "x": -0.5, "y": -0.5 },
-                  "xy2": { "x": 0.5, "y": 0.5 }
+                ],
+                "children": {
+                    "rectanglePrim": {
+                        "type": "rectangle",
+                        "xy1": {
+                            "x": -0.5,
+                            "y": -0.5
+                        },
+                        "xy2": {
+                            "x": 0.5,
+                            "y": 0.5
+                        }
+                    }
                 }
-              }
             },
             "rectangle2": {
-              "type": "node",
-              "transforms": [
+                "type": "node",
+                "transforms": [
                     {
                         "type": "translate",
-                        "amount": { "x": 0, "y": 0, "z": 0.5 }
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0.5
+                        }
                     }
-              ],
-              "children": {
-                "rectanglePrim": {
-                  "type": "rectangle",
-                  "xy1": { "x": -0.5, "y": -0.5 },
-                  "xy2": { "x": 0.5, "y": 0.5 }
+                ],
+                "children": {
+                    "rectanglePrim": {
+                        "type": "rectangle",
+                        "xy1": {
+                            "x": -0.5,
+                            "y": -0.5
+                        },
+                        "xy2": {
+                            "x": 0.5,
+                            "y": 0.5
+                        }
+                    }
                 }
-              }
             },
             "rectangle3": {
-              "type": "node",
-              "transforms": [
+                "type": "node",
+                "transforms": [
                     {
                         "type": "translate",
-                        "amount": { "x": 0, "y": -0.5, "z": 0 }
+                        "amount": {
+                            "x": 0,
+                            "y": -0.5,
+                            "z": 0
+                        }
                     },
                     {
                         "type": "rotate",
-                        "amount": { "x": 90, "y": 0, "z": 0 }
+                        "amount": {
+                            "x": 90,
+                            "y": 0,
+                            "z": 0
+                        }
                     }
-              ],
-              "children": {
-                "rectanglePrim": {
-                  "type": "rectangle",
-                  "xy1": { "x": -0.5, "y": -0.5 },
-                  "xy2": { "x": 0.5, "y": 0.5 }
+                ],
+                "children": {
+                    "rectanglePrim": {
+                        "type": "rectangle",
+                        "xy1": {
+                            "x": -0.5,
+                            "y": -0.5
+                        },
+                        "xy2": {
+                            "x": 0.5,
+                            "y": 0.5
+                        }
+                    }
                 }
-              }
             },
             "rectangle4": {
-              "type": "node",
-              "transforms": [
+                "type": "node",
+                "transforms": [
                     {
                         "type": "translate",
-                        "amount": { "x": 0, "y": 0.5, "z": 0 }
+                        "amount": {
+                            "x": 0,
+                            "y": 0.5,
+                            "z": 0
+                        }
                     },
                     {
                         "type": "rotate",
-                        "amount": { "x": -90, "y": 0, "z": 0 }
+                        "amount": {
+                            "x": -90,
+                            "y": 0,
+                            "z": 0
+                        }
                     }
-              ],
-              "children": {
-                "rectanglePrim": {
-                  "type": "rectangle",
-                  "xy1": { "x": -0.5, "y": -0.5 },
-                  "xy2": { "x": 0.5, "y": 0.5 }
+                ],
+                "children": {
+                    "rectanglePrim": {
+                        "type": "rectangle",
+                        "xy1": {
+                            "x": -0.5,
+                            "y": -0.5
+                        },
+                        "xy2": {
+                            "x": 0.5,
+                            "y": 0.5
+                        }
+                    }
                 }
-              }
             },
             "rectangle5": {
-              "type": "node",
-              "transforms": [
+                "type": "node",
+                "transforms": [
                     {
                         "type": "translate",
-                        "amount": { "x": -0.5, "y": 0, "z": 0 }
+                        "amount": {
+                            "x": -0.5,
+                            "y": 0,
+                            "z": 0
+                        }
                     },
                     {
                         "type": "rotate",
-                        "amount": { "x": 0, "y": -90, "z": 0 }
+                        "amount": {
+                            "x": 0,
+                            "y": -90,
+                            "z": 0
+                        }
                     }
-              ],
-              "children": {
-                "rectanglePrim": {
-                  "type": "rectangle",
-                  "xy1": { "x": -0.5, "y": -0.5 },
-                  "xy2": { "x": 0.5, "y": 0.5 }
+                ],
+                "children": {
+                    "rectanglePrim": {
+                        "type": "rectangle",
+                        "xy1": {
+                            "x": -0.5,
+                            "y": -0.5
+                        },
+                        "xy2": {
+                            "x": 0.5,
+                            "y": 0.5
+                        }
+                    }
                 }
-              }
             },
             "rectangle6": {
-              "type": "node",
-              "transforms": [
+                "type": "node",
+                "transforms": [
                     {
                         "type": "translate",
-                        "amount": { "x": 0.5, "y": 0, "z": 0 }
+                        "amount": {
+                            "x": 0.5,
+                            "y": 0,
+                            "z": 0
+                        }
                     },
                     {
                         "type": "rotate",
-                        "amount": { "x": 0, "y": 90, "z": 0 }
+                        "amount": {
+                            "x": 0,
+                            "y": 90,
+                            "z": 0
+                        }
                     }
-              ],
-              "children": {
-                "rectanglePrim": {
-                  "type": "rectangle",
-                  "xy1": { "x": -0.5, "y": -0.5 },
-                  "xy2": { "x": 0.5, "y": 0.5 }
+                ],
+                "children": {
+                    "rectanglePrim": {
+                        "type": "rectangle",
+                        "xy1": {
+                            "x": -0.5,
+                            "y": -0.5
+                        },
+                        "xy2": {
+                            "x": 0.5,
+                            "y": 0.5
+                        }
+                    }
                 }
-              }
             }
-
         }
     }
 }
