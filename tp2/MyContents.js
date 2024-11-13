@@ -7,6 +7,7 @@ import { TexturesLoader } from "./utils/TexturesLoader.js";
 import { MaterialsLoader } from "./utils/MaterialsLoader.js";
 import { GraphLoader } from "./utils/GraphLoader.js";
 import {MyGuiInterface} from "./MyGuiInterface.js";
+import {ObjectCreator} from "./utils/ObjectCreator.js";
 
 /**
  *  This class contains the contents of out application
@@ -22,13 +23,15 @@ class MyContents {
         this.axis = null
 
         this.reader = new MyFileReader(this.onSceneLoaded.bind(this));
-        this.reader.open("scenes/demo/demo.json");
+        this.reader.open("scenes/SGI_TP2_T07_G07_v01.json");
 
         this.globalsLoader = new GlobalsLoader(this.app);
         this.camerasLoader = new CamerasLoader(this.app);
         this.texturesLoader = new TexturesLoader(this.app);
         this.materialsLoader = new MaterialsLoader(this.app);
         this.graphLoader = new GraphLoader(this.app);
+
+        this.objectCreator = new ObjectCreator(this.app, this.graphLoader, this.materialsLoader);
     }
 
     /**
@@ -80,6 +83,11 @@ class MyContents {
 
             // Graph
             this.graphLoader.read(data.yasf.graph);
+
+            // Create Objects
+            this.objectCreator.createObjects();
+
+            //console.log(this.app.scene)
         }
 
         this.createGui();

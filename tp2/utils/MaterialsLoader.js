@@ -10,7 +10,7 @@ class MaterialsLoader {
         for (let key in materials) {
             let materialData = materials[key];
 
-            let emissive = new THREE.Color(materialData.emissive.r, materialData.emissive.g, materialData.emissive.b);
+            let emissive = materialData.emissive ? new THREE.Color(materialData.emissive.r, materialData.emissive.g, materialData.emissive.b) : new THREE.Color(0, 0, 0);
             let color = new THREE.Color(materialData.color.r, materialData.color.g, materialData.color.b);
             let specular = new THREE.Color(materialData.specular.r, materialData.specular.g, materialData.specular.b);
 
