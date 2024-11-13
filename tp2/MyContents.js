@@ -1,6 +1,14 @@
 import * as THREE from 'three';
 import { MyAxis } from './MyAxis.js';
 import { MyFileReader } from './parser/MyFileReader.js';
+import { GlobalsLoader } from "./utils/GlobalsLoader.js";
+import { CamerasLoader } from "./utils/CamerasLoader.js";
+import { TexturesLoader } from "./utils/TexturesLoader.js";
+import { MaterialsLoader } from "./utils/MaterialsLoader.js";
+import { GraphLoader } from "./utils/GraphLoader.js";
+import {MyGuiInterface} from "./MyGuiInterface.js";
+import {ObjectCreator} from "./utils/ObjectCreator.js";
+
 /**
  *  This class contains the contents of out application
  */
@@ -15,7 +23,15 @@ class MyContents {
         this.axis = null
 
         this.reader = new MyFileReader(this.onSceneLoaded.bind(this));
-        this.reader.open("scenes/demo/demo.json");
+        this.reader.open("scenes/SGI_TP2_T07_G07_v01.json");
+
+        this.globalsLoader = new GlobalsLoader(this.app);
+        this.camerasLoader = new CamerasLoader(this.app);
+        this.texturesLoader = new TexturesLoader(this.app);
+        this.materialsLoader = new MaterialsLoader(this.app);
+        this.graphLoader = new GraphLoader(this.app);
+
+        this.objectCreator = new ObjectCreator(this.app, this.graphLoader, this.materialsLoader);
     }
 
     /**
@@ -35,7 +51,8 @@ class MyContents {
      * @param {Object} data with the entire scene object
      */
     onSceneLoaded(data) {
-        console.info("YASF loaded.")
+        //console.info("YASF loaded.")
+        //console.log(data)
         this.onAfterSceneLoadedAndBeforeRender(data);
     }
 
@@ -51,10 +68,39 @@ class MyContents {
     }
 
     onAfterSceneLoadedAndBeforeRender(data) {
-        this.printYASF(data)
+        if (data.yasf !== undefined) {
+            // Globals
+            this.globalsLoader.readAndApply(data.yasf);
+
+            // Cameras
+            this.camerasLoader.readAndApply(data.yasf.cameras);
+
+            // Textures
+            this.texturesLoader.read(data.yasf.textures);
+
+            // Materials
+            this.materialsLoader.read(data.yasf.materials, this.texturesLoader.textures);
+
+            // Graph
+            this.graphLoader.read(data.yasf.graph);
+
+            // Create Objects
+            this.objectCreator.createObjects();
+
+            //console.log(this.app.scene)
+        }
+
+        this.createGui();
     }
 
     update() {
+    }
+
+    createGui() {
+        let gui = new MyGuiInterface(this.app);
+        gui.setContents(this);
+        this.app.setGui(gui);
+        gui.init();
     }
 }
 

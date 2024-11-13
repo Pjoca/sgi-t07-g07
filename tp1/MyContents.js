@@ -178,7 +178,7 @@ class MyContents {
         // Create axis if it doesn't already exist
         if (this.axis === null) {
             this.axis = new MyAxis(this); // Create a new axis
-            this.app.scene.add(this.axis); // Add axis to the scene
+            //this.app.scene.add(this.axis); // Add axis to the scene
         }
 
         // Create and add point light above the model

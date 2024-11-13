@@ -1,0 +1,145 @@
+{
+  "yasf": {
+    "globals": {
+      "background": {
+        "r": 0,
+        "g": 0,
+        "b": 0
+      },
+      "ambient": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "intensity": 1
+      }
+    },
+    "textures": {
+      "tex1": {
+        "filepath": "scenes/textures/pTape.jpg"
+      }
+    },
+    "materials": {
+      "material1": {
+        "emissive": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0
+        },
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 0.0
+        },
+        "specular": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0
+        },
+        "shininess": 100,
+        "transparent": false,
+        "opacity": 1.0,
+        "textureref": "tex1",
+        "texlength_s": 1,
+        "texlength_t": 1,
+        "twosided": true
+      }
+    },
+    "cameras": {
+      "initial": "cam1",
+      "cam1": {
+        "type": "perspective",
+        "angle": 60,
+        "near": 0.1,
+        "far": 1000,
+        "location": {
+          "x": 15,
+          "y": 15,
+          "z": 15
+        },
+        "target": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "cam2": {
+        "type": "orthogonal",
+        "near": 0.1,
+        "far": 1000,
+        "location": {
+          "x": 0,
+          "y": 15,
+          "z": 15
+        },
+        "target": {
+          "x": 0,
+          "y": 15,
+          "z": 0
+        },
+        "left": -5,
+        "right": 5,
+        "bottom": -5,
+        "top": 5
+      }
+    },
+    "graph": {
+      "rootid": "scene",
+      "scene": {
+        "type": "node",
+        "children": {
+          "pointLight": {
+            "type": "pointlight",
+            "enabled": true,
+            "color": {
+              "r": 1,
+              "g": 1,
+              "b": 1
+            },
+            "intensity": 1,
+            "distance": 100,
+            "decay": 1,
+            "castshadow": false,
+            "position": {
+              "x": 0,
+              "y": 10,
+              "z": 0
+            }
+          },
+          "square1": {
+            "type": "noderef",
+            "nodeId": "square1"
+          }
+        }
+      },
+      "square1": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material1"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": -90,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -5,
+              "y": -5
+            },
+            "xy2": {
+              "x": 5,
+              "y": 5
+            }
+          }
+        }
+      }
+    }
+  }
+}
