@@ -17,6 +17,11 @@
       "tex1": {
         "filepath": "scenes/textures/openingCrawl.jpg"
       },
+
+      "sphere": {
+        "filepath": "scenes/textures/deathStar.png"
+      },
+
       "background": {
         "filepath": "scenes/textures/space.jpg"
       }
@@ -24,9 +29,9 @@
     "materials": {
       "material1": {
         "emissive": {
-          "r": 0.0001,
-          "g": 0.0001,
-          "b": 0.0001
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0
         },
         "color": {
           "r": 1.0,
@@ -34,9 +39,9 @@
           "b": 1.0
         },
         "specular": {
-          "r": 0.8,
-          "g": 0.8,
-          "b": 0.8
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0
         },
         "shininess": 0,
         "transparent": true,
@@ -46,6 +51,33 @@
         "texlength_t": 1,
         "twosided": true
       },
+
+      "material2": {
+        "emissive": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        },
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0
+        },
+        "specular": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0
+        },
+        "shininess": 100,
+        "transparent": false,
+        "opacity": 1.0,
+        "textureref": "sphere",
+        "texlength_s": 1,
+        "texlength_t": 1,
+        "twosided": true
+
+      },
+
       "backgroundMaterial": {
         "emissive": {
           "r": 0.0,
@@ -161,6 +193,11 @@
             "nodeId": "square1"
           },
 
+          "sphere1": {
+            "type": "noderef",
+            "nodeId": "sphere1"
+          },
+
           "cubeTop": {
             "type": "noderef",
             "nodeId": "cubeTop"
@@ -211,7 +248,7 @@
           {
             "type": "translate",
             "amount": {
-              "x": -50,
+              "x": -99,
               "y": 1,
               "z": 0
             }
@@ -231,7 +268,43 @@
             }
           }
         }
-      },   
+      },  
+      
+      "sphere1": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material2"  
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          },
+
+          {
+            "type": "scale",
+            "amount": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+
+        ],
+        "children": {
+          "spherePrim": {
+            "type": "sphere",
+            "radius": 15,  
+            "segments": 32, 
+            "rings": 16
+          }    
+        }
+
+      }, 
 
       "cubeTop": {
         "type": "node",

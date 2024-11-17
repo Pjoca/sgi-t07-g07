@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-//import { MyAxis } from './MyAxis.js';
 import { MyFileReader } from './parser/MyFileReader.js';
 import { GlobalsLoader } from "./utils/GlobalsLoader.js";
 import { CamerasLoader } from "./utils/CamerasLoader.js";
@@ -8,6 +7,7 @@ import { MaterialsLoader } from "./utils/MaterialsLoader.js";
 import { GraphLoader } from "./utils/GraphLoader.js";
 import {MyGuiInterface} from "./MyGuiInterface.js";
 import {ObjectCreator} from "./utils/ObjectCreator.js";
+//import { MyAxis } from './MyAxis.js';
 
 /**
  *  This class contains the contents of out application

@@ -56,8 +56,14 @@ class ObjectCreator {
         if (node.lightProperties) {
             const light = this.pointLightPrimitive(node);
             group.add(light);
-        } else if (node.geometry && node.geometry.type === 'rectangle') {
+        } 
+        else if (node.geometry && node.geometry.type === 'rectangle') {
             const mesh = this.rectanglePrimitive(node.geometry, currentMaterial);
+            group.add(mesh);
+        }
+
+        else if (node.geometry && node.geometry.type ==='sphere') {
+            const mesh = this.spherePrimitive(node.geometry, currentMaterial);
             group.add(mesh);
         }
 
@@ -83,7 +89,21 @@ class ObjectCreator {
         return new THREE.Mesh(geometry, meshMaterial);
     }
 
+    spherePrimitive(primitive, material = null) {
 
+        const radius = primitive.radius || 1;
+        const widthSegments = primitive.segments || 16;
+        const heightSegments = primitive.rings || 16;
+    
+        const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
+    
+        const meshMaterial = material || new THREE.MeshBasicMaterial({
+            color: 0xffffff
+        });
+    
+        return new THREE.Mesh(geometry, meshMaterial);
+    }
+    
     pointLightPrimitive(node) {
         const color = new THREE.Color(
             node.lightProperties.color.r,
