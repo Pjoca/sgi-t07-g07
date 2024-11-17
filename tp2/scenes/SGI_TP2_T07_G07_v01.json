@@ -16,6 +16,9 @@
     "textures": {
       "tex1": {
         "filepath": "scenes/textures/pTape.jpg"
+      },
+      "background": {
+        "filepath": "scenes/textures/space.jpg"
       }
     },
     "materials": {
@@ -39,6 +42,30 @@
         "transparent": false,
         "opacity": 1.0,
         "textureref": "tex1",
+        "texlength_s": 1,
+        "texlength_t": 1,
+        "twosided": true
+      },
+      "backgroundMaterial": {
+        "emissive": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0
+        },
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0
+        },
+        "specular": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0
+        },
+        "shininess": 0,
+        "transparent": false,
+        "opacity": 1.0,
+        "textureref": "background",
         "texlength_s": 1,
         "texlength_t": 1,
         "twosided": true
@@ -87,6 +114,7 @@
       "scene": {
         "type": "node",
         "children": {
+
           "pointLight": {
             "type": "pointlight",
             "enabled": true,
@@ -105,12 +133,44 @@
               "z": 0
             }
           },
+
           "square1": {
             "type": "noderef",
             "nodeId": "square1"
+          },
+
+          "cubeTop": {
+            "type": "noderef",
+            "nodeId": "cubeTop"
+          },
+
+          "cubeRight":{
+            "type": "noderef",
+            "nodeId": "cubeRight"
+          },
+
+          "cubeLeft": {
+            "type": "noderef",
+            "nodeId": "cubeLeft"
+          },
+
+          "cubeFront": {
+            "type": "noderef",
+            "nodeId": "cubeFront"
+          },
+
+          "cubeBack": {
+            "type": "noderef",
+            "nodeId": "cubeBack"
+          },
+
+          "cubeBottom": {
+            "type": "noderef",
+            "nodeId": "cubeBottom"
           }
         }
       },
+
       "square1": {
         "type": "node",
         "materialref": {
@@ -124,22 +184,247 @@
               "y": 0,
               "z": 0
             }
+          },
+
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          }
+
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -10,
+              "y": -10
+            },
+            "xy2": {
+              "x": 10,
+              "y": 10
+            }
+          }
+        }
+      },   
+
+      "cubeTop": {
+        "type": "node",
+        "materialref": {
+          "materialId": "backgroundMaterial"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 0
+            }
+          },
+
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 50,
+              "z": 0
+            }
+          }
+
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -100,
+              "y": -100
+            },
+            "xy2": {
+              "x": 100,
+              "y": 100
+            }
+          }
+        }  
+      },
+      
+      "cubeRight": {
+        "type": "node",
+        "materialref": {
+          "materialId": "backgroundMaterial"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
+              "z": 0
+            }
+          },
+
+          {
+            "type": "translate",
+            "amount": {
+              "x": 50,
+              "y": 0,
+              "z": 0
+            }
+          }
+
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -100,
+              "y": -100
+            },
+            "xy2": {
+              "x": 100,
+              "y": 100
+            }
+          }
+        }  
+      },
+
+      "cubeLeft": {
+        "type": "node",
+        "materialref": {
+          "materialId": "backgroundMaterial"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": -90,
+              "z": 0
+            }
+          },
+
+          {
+            "type": "translate",
+            "amount": {
+              "x": -50,
+              "y": 0,
+              "z": 0
+            }
+          }
+
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -100,
+              "y": -100
+            },
+            "xy2": {
+              "x": 100,
+              "y": 100
+            }
+          }
+        }  
+      },
+
+      "cubeFront": {
+        "type": "node",
+        "materialref": {
+          "materialId": "backgroundMaterial"
+        },
+        "transforms": [
+
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": -50
+            }
+          }
+
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -100,
+              "y": -100
+            },
+            "xy2": {
+              "x": 100,
+              "y": 100
+            }
+          }
+        }  
+      },
+
+      "cubeBack": {
+        "type": "node",
+        "materialref": {
+          "materialId": "backgroundMaterial"
+        },
+        "transforms": [
+
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": 50
+            }
+          }
+
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -100,
+              "y": -100
+            },
+            "xy2": {
+              "x": 100,
+              "y": 100
+            }
+          }
+        }  
+      },
+
+      "cubeBottom": {
+        "type": "node",
+        "materialref": {
+          "materialId": "backgroundMaterial"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 0
+            }
           }
         ],
         "children": {
           "rectanglePrim": {
             "type": "rectangle",
             "xy1": {
-              "x": -5,
-              "y": -5
+              "x": -100,
+              "y": -100
             },
             "xy2": {
-              "x": 5,
-              "y": 5
+              "x": 100,
+              "y": 100
             }
           }
-        }
+        }  
       }
+      
     }
   }
 }
