@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { MyAxis } from './MyAxis.js';
+//import { MyAxis } from './MyAxis.js';
 import { MyFileReader } from './parser/MyFileReader.js';
 import { GlobalsLoader } from "./utils/GlobalsLoader.js";
 import { CamerasLoader } from "./utils/CamerasLoader.js";
@@ -20,7 +20,7 @@ class MyContents {
     */
     constructor(app) {
         this.app = app
-        this.axis = null
+        //this.axis = null
 
         this.reader = new MyFileReader(this.onSceneLoaded.bind(this));
         this.reader.open("scenes/SGI_TP2_T07_G07_v01.json");
@@ -39,11 +39,11 @@ class MyContents {
      */
     init() {
         // create once 
-        if (this.axis === null) {
+        /*if (this.axis === null) {
             // create and attach the axis to the scene
             this.axis = new MyAxis(this)
             this.app.scene.add(this.axis)
-        }
+        }*/
     }
 
     /**

@@ -7,15 +7,15 @@
         "b": 0
       },
       "ambient": {
-        "r": 0.0,
-        "g": 0.0,
-        "b": 0.0,
+        "r": 0.1,
+        "g": 0.1,
+        "b": 0.1,
         "intensity": 1
       }
     },
     "textures": {
       "tex1": {
-        "filepath": "scenes/textures/pTape.jpg"
+        "filepath": "scenes/textures/openingCrawl.jpg"
       },
       "background": {
         "filepath": "scenes/textures/space.jpg"
@@ -24,23 +24,23 @@
     "materials": {
       "material1": {
         "emissive": {
-          "r": 0.0,
-          "g": 0.0,
-          "b": 0.0
+          "r": 0.0001,
+          "g": 0.0001,
+          "b": 0.0001
         },
         "color": {
           "r": 1.0,
           "g": 1.0,
-          "b": 0.0
-        },
-        "specular": {
-          "r": 1.0,
-          "g": 1.0,
           "b": 1.0
         },
+        "specular": {
+          "r": 0.8,
+          "g": 0.8,
+          "b": 0.8
+        },
         "shininess": 100,
-        "transparent": false,
-        "opacity": 1.0,
+        "transparent": true,
+        "opacity": 0.65,
         "textureref": "tex1",
         "texlength_s": 1,
         "texlength_t": 1,
@@ -123,13 +123,35 @@
               "g": 1,
               "b": 1
             },
-            "intensity": 1,
-            "distance": 100,
+            "intensity": 2,
+            "distance": 500,
             "decay": 1,
             "castshadow": false,
             "position": {
               "x": 0,
               "y": 10,
+              "z": 0
+            }
+          },
+
+          "directionalLight": {
+            "type": "directionalight",
+            "enabled": true,
+            "color": {
+              "r": 1,
+              "g": 1,
+              "b": 1
+            },
+            "intensity": 0.7,
+        
+            "position": {
+              "x": 1,
+              "y": 1,
+              "z": -1
+            },
+            "target": {
+              "x": 0,
+              "y": 0,
               "z": 0
             }
           },
@@ -180,8 +202,8 @@
           {
             "type": "rotate",
             "amount": {
-              "x": -90,
-              "y": 0,
+              "x": 0,
+              "y": 90,
               "z": 0
             }
           },
@@ -200,12 +222,12 @@
           "rectanglePrim": {
             "type": "rectangle",
             "xy1": {
-              "x": -10,
-              "y": -10
+              "x": -40,
+              "y": -20
             },
             "xy2": {
-              "x": 10,
-              "y": 10
+              "x": 40,
+              "y": 20
             }
           }
         }
@@ -230,7 +252,7 @@
             "type": "translate",
             "amount": {
               "x": 0,
-              "y": 50,
+              "y": 100,
               "z": 0
             }
           }
@@ -269,7 +291,7 @@
           {
             "type": "translate",
             "amount": {
-              "x": 50,
+              "x": 100,
               "y": 0,
               "z": 0
             }
@@ -309,7 +331,7 @@
           {
             "type": "translate",
             "amount": {
-              "x": -50,
+              "x": -100,
               "y": 0,
               "z": 0
             }
@@ -343,7 +365,7 @@
             "amount": {
               "x": 0,
               "y": 0,
-              "z": -50
+              "z": -100
             }
           }
 
@@ -375,7 +397,7 @@
             "amount": {
               "x": 0,
               "y": 0,
-              "z": 50
+              "z": 100
             }
           }
 
@@ -408,7 +430,17 @@
               "y": 0,
               "z": 0
             }
+          },
+
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -100,
+              "z": 0
+            }
           }
+
         ],
         "children": {
           "rectanglePrim": {
