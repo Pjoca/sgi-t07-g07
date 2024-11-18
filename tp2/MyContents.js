@@ -25,6 +25,16 @@ class MyContents {
         this.reader = new MyFileReader(this.onSceneLoaded.bind(this));
         this.reader.open("scenes/SGI_TP2_T07_G07_v01.json");
 
+        /*const textureLoader = new THREE.TextureLoader();
+        const texture = textureLoader.load('scenes/textures/deathStar.png');
+        const material = new THREE.MeshPhongMaterial({ map: texture });
+
+        const geometry = new THREE.SphereGeometry( 12, 32, 16 );
+        const sphere = new THREE.Mesh( geometry, material );
+
+        sphere.position.set(0,0,0);
+        this.app.scene.add( sphere );*/
+
         this.globalsLoader = new GlobalsLoader(this.app);
         this.camerasLoader = new CamerasLoader(this.app);
         this.texturesLoader = new TexturesLoader(this.app);

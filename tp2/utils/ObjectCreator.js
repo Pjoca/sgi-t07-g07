@@ -80,6 +80,7 @@ class ObjectCreator {
         const width = Math.abs(primitive.xy1.x - primitive.xy2.x);
         const height = Math.abs(primitive.xy1.y - primitive.xy2.y);
 
+        //console.log("Width:", width, "Height:", height);
         const geometry = new THREE.PlaneGeometry(width, height);
 
         const meshMaterial = material || new THREE.MeshBasicMaterial({
@@ -90,17 +91,16 @@ class ObjectCreator {
     }
 
     spherePrimitive(primitive, material = null) {
-
-        const radius = primitive.radius || 1;
-        const widthSegments = primitive.segments || 16;
-        const heightSegments = primitive.rings || 16;
+        const radius = primitive.radius;
+        const widthSegments = primitive.width;
+        const heightSegments = primitive.height;
+    
+        console.log('Parsed radius:', radius);
+        console.log('Parsed widthSegments:', widthSegments);
+        console.log('Parsed heightSegments:', heightSegments);
     
         const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
-    
-        const meshMaterial = material || new THREE.MeshBasicMaterial({
-            color: 0xffffff
-        });
-    
+        const meshMaterial = material || new THREE.MeshBasicMaterial({ color: 0xffffff });
         return new THREE.Mesh(geometry, meshMaterial);
     }
     

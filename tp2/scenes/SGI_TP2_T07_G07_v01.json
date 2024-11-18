@@ -188,14 +188,14 @@
             }
           },
 
-          "square1": {
+          "square": {
             "type": "noderef",
-            "nodeId": "square1"
+            "nodeId": "square"
           },
 
-          "sphere1": {
+          "deathStar": {
             "type": "noderef",
-            "nodeId": "sphere1"
+            "nodeId": "deathStar"
           },
 
           "cubeTop": {
@@ -230,7 +230,7 @@
         }
       },
 
-      "square1": {
+      "square": {
         "type": "node",
         "materialref": {
           "materialId": "material1"
@@ -270,37 +270,18 @@
         }
       },  
       
-      "sphere1": {
+      "deathStar": {
         "type": "node",
         "materialref": {
           "materialId": "material2"  
         },
-        "transforms": [
-          {
-            "type": "translate",
-            "amount": {
-              "x": 0,
-              "y": 1,
-              "z": 0
-            }
-          },
 
-          {
-            "type": "scale",
-            "amount": {
-              "x": 1,
-              "y": 1,
-              "z": 1
-            }
-          }
-
-        ],
         "children": {
           "spherePrim": {
             "type": "sphere",
-            "radius": 15,  
-            "segments": 32, 
-            "rings": 16
+            "radius": 12,  
+            "width": 32, 
+            "height": 16
           }    
         }
 
