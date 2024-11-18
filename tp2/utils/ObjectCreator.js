@@ -62,7 +62,7 @@ class ObjectCreator {
             group.add(mesh);
         }
 
-        else if (node.geometry && node.geometry.type ==='sphere') {
+        else if (node.geometry && node.geometry.type === 'sphere') {
             const mesh = this.spherePrimitive(node.geometry, currentMaterial);
             group.add(mesh);
         }

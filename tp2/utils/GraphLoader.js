@@ -52,7 +52,15 @@ class GraphLoader {
                             xy1: childInfo.xy1,
                             xy2: childInfo.xy2
                         };
-                    }
+                    } else if (childInfo.type === "sphere") {
+                        node.geometry = {
+                            type: "sphere",
+                            radius: childInfo.radius,
+                            widthSegments: childInfo.width,
+                            heightSegments: childInfo.height
+                        };
+                    } 
+                    
                 }
             }
 
