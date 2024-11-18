@@ -1,23 +1,16 @@
-# sgi-tp2-base
-The starting point of the second assignment of SGI.
+# Group T07G07 - SW IV New Hope Recreation
 
-# Getting started
+Pedro Paixão - 202008467
+Diogo Santos - 202108747
 
-Considering a code block (for instance class A.js), to load an JSON file (in the defined structure) call:
+# Scene Description
 
-    let reader = new MyFileReader(app, this, *this.onSceneLoaded*);
-    reader.open("<path to JSON file>");	
+Our scene is based one an iconic scene from the first Star Wars movie. It has two point lights, a space background, a opening scrawl, a battle station ( Death Star) and a planet ( Alderaan ). The final scene will probably not be a full Star Wars scene, nor only in space. 
 
-The last argument in the MyFileReader object call is the name of the method that is to be called when the JSON file is loaded and parsed.
+# Rendered Images:
 
-Hence, In the same code block (for instance class A.js) add a function method with the following signature: 
+   Current Version
 
-    onSceneLoaded(data) {
-        // do something with the data object
-    }
+![Image 1](screenshots/Screenshot_1.png)
 
-This method is called once the JSON file is loaded and parsed successfully. This method single input argument, *data*, is an object containing the entire scene data object.
-
-# Version
-
-20241105v1
+![Image 2](screenshots/Screenshot_2.png)
