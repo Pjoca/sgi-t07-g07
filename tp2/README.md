@@ -1,7 +1,7 @@
 # Group T07G07 - SW IV New Hope Recreation
 
-Pedro Paixão - 202008467
-Diogo Santos - 202108747
+- Pedro Paixão - 202008467
+- Diogo Santos - 202108747
 
 # Scene Description
 
