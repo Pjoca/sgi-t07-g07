@@ -177,7 +177,7 @@
         "type": "node",
         "children": {
 
-          "pointLight": {
+          "pointLight1": {
             "type": "pointlight",
             "enabled": true,
             "color": {
@@ -196,9 +196,9 @@
             }
           },
 
-          "directionalLight": {
+          "pointLight2": {
             "type": "pointlight",
-            "enabled": false,
+            "enabled": true,
             "color": {
               "r": 1,
               "g": 1,
@@ -220,9 +220,9 @@
             }
           },
 
-          "square": {
+          "openingCrawl": {
             "type": "noderef",
-            "nodeId": "square"
+            "nodeId": "openingCrawl"
           },
 
           "deathStar": {
@@ -267,7 +267,7 @@
         }
       },
 
-      "square": {
+      "openingCrawl": {
         "type": "node",
         "materialref": {
           "materialId": "material1"
