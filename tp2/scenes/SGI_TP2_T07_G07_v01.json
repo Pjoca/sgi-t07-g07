@@ -23,7 +23,11 @@
       },
 
       "background": {
-        "filepath": "scenes/textures/conference_room_main.jpg"
+        "filepath": "scenes/textures/conference_room_main.png"
+      },
+
+      "floor": {
+        "filepath": "scenes/textures/floor.png"
       }
     },
     "materials": {
@@ -101,7 +105,33 @@
         "texlength_s": 1,
         "texlength_t": 1,
         "twosided": false
+      },
+
+      "floor": {
+        "emissive": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0
+        },
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0
+        },
+        "specular": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0
+        },
+        "shininess": 0,
+        "transparent": false,
+        "opacity": 1.0,
+        "textureref": "floor",
+        "texlength_s": 1,
+        "texlength_t": 1,
+        "twosided": false
       }
+
     },
     "cameras": {
       "initial": "cam1",
@@ -480,13 +510,13 @@
       "cubeBottom": {
         "type": "node",
         "materialref": {
-          "materialId": "backgroundMaterial"
+          "materialId": "floor"
         },
         "transforms": [
           {
             "type": "rotate",
             "amount": {
-              "x": 90,
+              "x": -90,
               "y": 0,
               "z": 0
             }
