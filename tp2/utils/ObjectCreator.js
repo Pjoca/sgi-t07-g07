@@ -95,7 +95,7 @@ class ObjectCreator {
         const heightSegments = primitive.height;
     
         const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
-        const meshMaterial = material || new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const meshMaterial = material || new THREE.MeshBasicMaterial({ color: 0x00000 });
         return new THREE.Mesh(geometry, meshMaterial);
     }
     
