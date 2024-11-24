@@ -67,6 +67,11 @@ class ObjectCreator {
             group.add(mesh);
         }
 
+        else if (node.geometry && node.geometry.type === 'cylinder') {
+            const mesh = this.cylinderPrimitiv(node.geometry, currentMaterial);
+            group.add(mesh);
+        }
+
         parent.add(group);
 
         if (node.children) {
@@ -98,6 +103,26 @@ class ObjectCreator {
         const meshMaterial = material || new THREE.MeshBasicMaterial({ color: 0x00000 });
         return new THREE.Mesh(geometry, meshMaterial);
     }
+
+    cylinderPrimitive(primitive, material = null) {
+        const radiusTop = primitive.radiusTop || primitive.radius;
+        const radiusBottom = primitive.radiusBottom || primitive.radius;
+        const height = primitive.height;
+        const radialSegments = primitive.radialSegments || 32; // Default to 32 for smoother cylinder
+    
+        const geometry = new THREE.CylinderGeometry(
+            radiusTop, 
+            radiusBottom, 
+            height, 
+            radialSegments
+        );
+    
+        const meshMaterial = material || new THREE.MeshBasicMaterial({
+            color: 0xffffff
+        });
+    
+        return new THREE.Mesh(geometry, meshMaterial);
+    }    
     
     pointLightPrimitive(node) {
         const color = new THREE.Color(

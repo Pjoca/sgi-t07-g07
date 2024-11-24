@@ -59,7 +59,15 @@ class GraphLoader {
                             widthSegments: childInfo.width,
                             heightSegments: childInfo.height
                         };
-                    } 
+                    } else if (childInfo.type === "cylinder") {
+                        node.geometry = {
+                            type: "cylinder",
+                            radiusTop: childInfo.radiusTop || childInfo.radius, 
+                            radiusBottom: childInfo.radiusBottom || childInfo.radius, 
+                            height: childInfo.height,
+                            radialSegments: childInfo.radialSegments || 32
+                        };
+                    }
                     
                 }
             }
