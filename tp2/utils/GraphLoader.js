@@ -52,6 +52,13 @@ class GraphLoader {
                             xy1: childInfo.xy1,
                             xy2: childInfo.xy2
                         };
+                    } else if (childInfo.type === "cube") {
+                        node.geometry = {
+                            type: "cube",
+                            width: childInfo.width,
+                            height: childInfo.height,
+                            depth: childInfo.depth,
+                        };
                     } else if (childInfo.type === "sphere") {
                         node.geometry = {
                             type: "sphere",
@@ -62,10 +69,10 @@ class GraphLoader {
                     } else if (childInfo.type === "cylinder") {
                         node.geometry = {
                             type: "cylinder",
-                            radiusTop: childInfo.radiusTop || childInfo.radius, 
-                            radiusBottom: childInfo.radiusBottom || childInfo.radius, 
+                            radiusTop: childInfo.radiusTop,
+                            radiusBottom: childInfo.radiusBottom,
                             height: childInfo.height,
-                            radialSegments: childInfo.radialSegments || 32
+                            radialSegments: childInfo.radialSegments 
                         };
                     }
                     

@@ -62,13 +62,18 @@ class ObjectCreator {
             group.add(mesh);
         }
 
+        else if (node.geometry && node.geometry.type === 'cube') {
+            const mesh = this.cubePrimitive(node.geometry, currentMaterial);
+            group.add(mesh);
+        }
+
         else if (node.geometry && node.geometry.type === 'sphere') {
             const mesh = this.spherePrimitive(node.geometry, currentMaterial);
             group.add(mesh);
         }
 
         else if (node.geometry && node.geometry.type === 'cylinder') {
-            const mesh = this.cylinderPrimitiv(node.geometry, currentMaterial);
+            const mesh = this.cylinderPrimitive(node.geometry, currentMaterial);
             group.add(mesh);
         }
 
@@ -94,6 +99,22 @@ class ObjectCreator {
         return new THREE.Mesh(geometry, meshMaterial);
     }
 
+    cubePrimitive(primitive, material = null) {
+        const width = primitive.width;
+        const height = primitive.height;
+        const depth = primitive.depth;
+    
+        // Use BoxGeometry for the parallelepiped
+        const geometry = new THREE.BoxGeometry(width, height, depth);
+    
+        const meshMaterial = material || new THREE.MeshBasicMaterial({
+            color: 0xffffff
+        });
+    
+        return new THREE.Mesh(geometry, meshMaterial);
+    }
+    
+
     spherePrimitive(primitive, material = null) {
         const radius = primitive.radius;
         const widthSegments = primitive.width;
@@ -105,17 +126,12 @@ class ObjectCreator {
     }
 
     cylinderPrimitive(primitive, material = null) {
-        const radiusTop = primitive.radiusTop || primitive.radius;
-        const radiusBottom = primitive.radiusBottom || primitive.radius;
+        const radiusTop = primitive.radiusTop;
+        const radiusBottom = primitive.radiusBottom;
         const height = primitive.height;
-        const radialSegments = primitive.radialSegments || 32; // Default to 32 for smoother cylinder
+        const radialSegments = primitive.radialSegments; 
     
-        const geometry = new THREE.CylinderGeometry(
-            radiusTop, 
-            radiusBottom, 
-            height, 
-            radialSegments
-        );
+        const geometry = new THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments);
     
         const meshMaterial = material || new THREE.MeshBasicMaterial({
             color: 0xffffff

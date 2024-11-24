@@ -200,6 +200,16 @@
             "nodeId": "hologram"
           },
 
+          "tableTop": {
+            "type": "noderef",
+            "nodeId": "tableTop"
+          },
+
+          "tableBottom": {
+            "type": "noderef",
+            "nodeId": "tableBottom"
+          },
+
           "cubeRight":{
             "type": "noderef",
             "nodeId": "cubeRight"
@@ -290,6 +300,63 @@
         }
 
       }, 
+
+      "tableTop": {
+        "type": "node",
+        "materialref": {
+          "materialId": "floor"
+        },
+
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -169,
+              "z": 0
+            }
+          }
+        ],
+
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "radiusTop": 100,
+            "radiusBottom": 100,
+            "height": 10,
+            "radialSegments": 32
+          }
+        }
+
+      },
+
+      "tableBottom": {
+        "type": "node",
+        "materialref": {
+          "materialId": "floor"
+        },
+
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -199,
+              "z": 0
+            }
+          }
+        ],
+
+        "children": {
+          "CubePrim": {
+            "type": "cube",
+            "width": 20,
+            "height": 50,
+            "depth": 20
+          }
+        }
+
+      },
       
       "cubeRight": {
         "type": "node",
