@@ -18,10 +18,6 @@
         "filepath": "scenes/textures/window.jpg"
       },
 
-      "alderaan": {
-        "filepath": "scenes/textures/alderaan.jpg"
-      },
-
       "background": {
         "filepath": "scenes/textures/conference_room_main.png"
       },
@@ -56,32 +52,6 @@
         "twosided": false
       },
 
-      "material3": {
-        "emissive": {
-          "r": 0,
-          "g": 0,
-          "b": 0
-        },
-        "color": {
-          "r": 1.0,
-          "g": 1.0,
-          "b": 1.0
-        },
-        "specular": {
-          "r": 1.0,
-          "g": 1.0,
-          "b": 1.0
-        },
-        "shininess": 0,
-        "transparent": false,
-        "opacity": 1.0,
-        "textureref": "alderaan",
-        "texlength_s": 1,
-        "texlength_t": 1,
-        "twosided": false
-      
-      },
-
       "backgroundMaterial": {
         "emissive": {
           "r": 0.0,
@@ -102,8 +72,8 @@
         "transparent": false,
         "opacity": 1.0,
         "textureref": "background",
-        "texlength_s": 1,
-        "texlength_t": 1,
+        "texlength_s": 2,
+        "texlength_t": 2,
         "twosided": false
       },
 
@@ -230,11 +200,6 @@
             "nodeId": "hologram"
           },
 
-          "alderaan": {
-            "type": "noderef",
-            "nodeId": "alderaan"
-          },
-
           "cubeRight":{
             "type": "noderef",
             "nodeId": "cubeRight"
@@ -280,8 +245,8 @@
           {
             "type": "translate",
             "amount": {
-              "x": -99,
-              "y": 5,
+              "x": -199,
+              "y": 20,
               "z": 0
             }
           }
@@ -291,12 +256,12 @@
           "rectanglePrim": {
             "type": "rectangle",
             "xy1": {
-              "x": -90,
-              "y": -60
+              "x": -180,
+              "y": -120
             },
             "xy2": {
-              "x": 90,
-              "y": 60
+              "x": 180,
+              "y": 120
             }
           }
         }
@@ -325,34 +290,6 @@
         }
 
       }, 
-
-      "alderaan": {
-        "type": "node",
-        "materialref": {
-          "materialId": "material3"  
-        },
-
-        "transforms": [
-          {
-            "type": "translate",
-            "amount": {
-              "x": -10,
-              "y": -35,
-              "z": 10
-            }
-          }
-        ],
-
-        "children": {
-          "spherePrim": {
-            "type": "sphere",
-            "radius": 2,  
-            "width": 3, 
-            "height": 2
-          }    
-        }
-
-      }, 
       
       "cubeRight": {
         "type": "node",
@@ -372,7 +309,7 @@
           {
             "type": "translate",
             "amount": {
-              "x": 100,
+              "x": 200,
               "y": 0,
               "z": 0
             }
@@ -383,12 +320,12 @@
           "rectanglePrim": {
             "type": "rectangle",
             "xy1": {
-              "x": -100,
-              "y": -100
+              "x": -200,
+              "y": -200
             },
             "xy2": {
-              "x": 100,
-              "y": 100
+              "x": 200,
+              "y": 200
             }
           }
         }  
@@ -412,7 +349,7 @@
           {
             "type": "translate",
             "amount": {
-              "x": -100,
+              "x": -200,
               "y": 0,
               "z": 0
             }
@@ -423,12 +360,12 @@
           "rectanglePrim": {
             "type": "rectangle",
             "xy1": {
-              "x": -100,
-              "y": -100
+              "x": -200,
+              "y": -200
             },
             "xy2": {
-              "x": 100,
-              "y": 100
+              "x": 200,
+              "y": 200
             }
           }
         }  
@@ -446,7 +383,7 @@
             "amount": {
               "x": 0,
               "y": 0,
-              "z": -100
+              "z": -200
             }
           }
 
@@ -455,12 +392,12 @@
           "rectanglePrim": {
             "type": "rectangle",
             "xy1": {
-              "x": -100,
-              "y": -100
+              "x": -200,
+              "y": -200
             },
             "xy2": {
-              "x": 100,
-              "y": 100
+              "x": 200,
+              "y": 200
             }
           }
         }  
@@ -487,7 +424,7 @@
             "amount": {
               "x": 0,
               "y": 0,
-              "z": 100
+              "z": 200
             }
           }
 
@@ -496,12 +433,12 @@
           "rectanglePrim": {
             "type": "rectangle",
             "xy1": {
-              "x": -100,
-              "y": -100
+              "x": -200,
+              "y": -200
             },
             "xy2": {
-              "x": 100,
-              "y": 100
+              "x": 200,
+              "y": 200
             }
           }
         }  
@@ -536,12 +473,12 @@
           "rectanglePrim": {
             "type": "rectangle",
             "xy1": {
-              "x": -100,
-              "y": -100
+              "x": -200,
+              "y": -200
             },
             "xy2": {
-              "x": 100,
-              "y": 100
+              "x": 200,
+              "y": 200
             }
           }
         }  
