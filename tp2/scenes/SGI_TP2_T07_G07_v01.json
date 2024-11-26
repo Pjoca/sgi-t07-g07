@@ -148,50 +148,9 @@
             }
           },
 
-          "window": {
-            "type": "noderef",
-            "nodeId": "window"
-          },
-
-          "holoprojector": {
-            "type": "noderef",
-            "nodeId": "holoprojector"
-          },
-
-          "tableTop": {
-            "type": "noderef",
-            "nodeId": "tabletop"
-          },
-
-          "tableBottom": {
-            "type": "noderef",
-            "nodeId": "tablebottom"
-          },
-
-          "circularwall": {
-            "type": "noderef",
-            "nodeId": "circularwall"
-          },
-
-          "floor1": {
-            "type": "noderef",
-            "nodeId": "floor1"
-          },
-
-          "floor2": {
-            "type": "noderef",
-            "nodeId": "floor2"
-          },
-
-          "wall1": {
-            "type": "noderef",
-            "nodeId": "wall1"
-          },
-
-          "wall2": {
-            "type": "noderef",
-            "nodeId": "wall2"
-          }
+          "nodesList" : [
+            "window", "hologram", "tabletop", "tablebottom", "circularwall", "wall1", "wall2", "floor1", "floor2"
+          ]
         }
       },
 
