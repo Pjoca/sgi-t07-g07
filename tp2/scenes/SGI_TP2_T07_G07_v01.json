@@ -15,15 +15,15 @@
     },
     "textures": {
       "tex1": {
-        "filepath": "scenes/textures/window.jpg"
+        "filepath": "scenes/textures/holoprojector.jpg"
       },
 
       "tex2": {
-        "filepath": "scenes/textures/conf_wall.png"
+        "filepath": "scenes/textures/wall.jpg"
       },
 
       "tex3": {
-        "filepath": "scenes/textures/floor.png"
+        "filepath": "scenes/textures/floor.jpg"
       }
     },
     "materials": {
@@ -194,7 +194,7 @@
         }
       },
 
-      "hologram": {
+      "holoprojector": {
         "type": "node",
         "transforms": [
           {
@@ -420,14 +420,14 @@
             "slices": 64,
             "stacks": 10,
             "color_c": {
-              "r": 0.078,
-              "g": 0.090,
-              "b": 0.118
+              "r": 0.145,
+              "g": 0.184,
+              "b": 0.227
             },
             "color_p": {
-              "r": 0.15,
-              "g": 0.17,
-              "b": 0.2
+              "r": 0.145,
+              "g": 0.184,
+              "b": 0.227
             }
           }
         }
@@ -460,14 +460,14 @@
             "slices": 4,
             "stacks": 2,
             "color_c": {
-              "r": 0.15,
-              "g": 0.17,
-              "b": 0.2
+              "r": 0.145,
+              "g": 0.184,
+              "b": 0.227
             },
             "color_p": {
-              "r": 0.15,
-              "g": 0.17,
-              "b": 0.2
+              "r": 0.145,
+              "g": 0.184,
+              "b": 0.227
             }
           }
         }
