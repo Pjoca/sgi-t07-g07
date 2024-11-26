@@ -32,9 +32,11 @@ class GraphLoader {
 
             if (currentData.children) {
                 for (const [childId, childInfo] of Object.entries(currentData.children)) {
-                    if (childInfo.type === "noderef") {
-                        node.children[childId] = childInfo.nodeId;
-                        stack.push(childInfo.nodeId);
+                    if (childId === "nodesList") {
+                        for (const nodeRef of childInfo) {
+                            node.children[nodeRef] = nodeRef;
+                            stack.push(nodeRef);
+                        }
                     } else if (childInfo.type === "pointlight") {
                         node.geometry = {
                             type: "pointlight",
