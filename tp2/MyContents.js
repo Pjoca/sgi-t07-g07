@@ -7,7 +7,7 @@ import { MaterialsLoader } from "./utils/MaterialsLoader.js";
 import { GraphLoader } from "./utils/GraphLoader.js";
 import {MyGuiInterface} from "./MyGuiInterface.js";
 import {ObjectCreator} from "./utils/ObjectCreator.js";
-//import { MyAxis } from './MyAxis.js';
+import { MyAxis } from './MyAxis.js';
 
 /**
  *  This class contains the contents of out application
@@ -20,7 +20,7 @@ class MyContents {
     */
     constructor(app) {
         this.app = app
-        //this.axis = null
+        this.axis = null
 
         this.reader = new MyFileReader(this.onSceneLoaded.bind(this));
         this.reader.open("scenes/SGI_TP2_T07_G07_v01.json");
@@ -39,11 +39,11 @@ class MyContents {
      */
     init() {
         // create once 
-        /*if (this.axis === null) {
+        if (this.axis === null) {
             // create and attach the axis to the scene
-            this.axis = new MyAxis(this)
-            this.app.scene.add(this.axis)
-        }*/
+            this.axis = new MyAxis(this);
+            this.app.scene.add(this.axis);
+        }
     }
 
     /**
@@ -70,7 +70,7 @@ class MyContents {
     onAfterSceneLoadedAndBeforeRender(data) {
         if (data.yasf !== undefined) {
             // Globals
-            this.globalsLoader.readAndApply(data.yasf);
+            this.globalsLoader.readAndApply(data.yasf.globals);
 
             // Cameras
             this.camerasLoader.readAndApply(data.yasf.cameras);

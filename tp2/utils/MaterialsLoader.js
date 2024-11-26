@@ -17,7 +17,8 @@ class MaterialsLoader {
             let shininess = materialData.shininess;
             let transparent = materialData.transparent;
             let opacity = materialData.opacity;
-            let texture = textures[materialData.textureref.toLowerCase()];
+
+            let texture = textures[materialData.textureref];
             let repeatS = materialData.texlength_s;
             let repeatT = materialData.texlength_t;
             let twoSided = materialData.twosided;
