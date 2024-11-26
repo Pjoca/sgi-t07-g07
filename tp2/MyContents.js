@@ -87,7 +87,7 @@ class MyContents {
             // Create Objects
             this.objectCreator.createObjects();
 
-            //console.log(this.app.scene)
+            //console.log(this.materialsLoader)
         }
 
         this.createGui();

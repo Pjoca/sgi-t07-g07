@@ -6,7 +6,7 @@ export class MyFloor {
         this.textureLoader = new THREE.TextureLoader();
 
         // Load the floor texture and set repeat properties for a tiled effect
-        this.floorTexture = this.textureLoader.load('textures/floor.jpg');
+        this.floorTexture = this.textureLoader.load('textures/table.jpg');
         this.floorTexture.wrapS = THREE.RepeatWrapping; // Repeat horizontally
         this.floorTexture.wrapT = THREE.RepeatWrapping; // Repeat vertically
         this.floorTexture.repeat.set(3, 3); // Set the number of tiles in each direction

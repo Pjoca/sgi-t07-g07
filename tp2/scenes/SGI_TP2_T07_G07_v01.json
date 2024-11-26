@@ -23,7 +23,19 @@
       },
 
       "tex3": {
-        "filepath": "scenes/textures/floor.jpg"
+        "filepath": "scenes/textures/table.jpg"
+      },
+
+      "tex4": {
+        "filepath": "scenes/textures/inside_wall_entrance.jpg"
+      },
+
+      "tex5": {
+        "filepath": "scenes/textures/outside_wall_entrance.jpg"
+      },
+
+      "tex6": {
+        "filepath": "scenes/textures/outside_wall_entrance.jpg"
       }
     },
     "materials": {
@@ -102,6 +114,66 @@
         "transparent": false,
         "opacity": 1.0,
         "twosided": false
+      },
+
+      "material5": {
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0
+        },
+        "specular": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0
+        },
+        "shininess": 10,
+        "transparent": false,
+        "opacity": 1.0,
+        "textureref": "tex4",
+        "texlength_s": 1,
+        "texlength_t": 1,
+        "twosided": false
+      },
+
+      "material6": {
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0
+        },
+        "specular": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0
+        },
+        "shininess": 10,
+        "transparent": false,
+        "opacity": 1.0,
+        "textureref": "tex5",
+        "texlength_s": 1,
+        "texlength_t": 1,
+        "twosided": false
+      },
+
+      "material7": {
+        "color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0
+        },
+        "specular": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0
+        },
+        "shininess": 10,
+        "transparent": false,
+        "opacity": 1.0,
+        "textureref": "tex6",
+        "texlength_s": 16,
+        "texlength_t": 1,
+        "twosided": true
       }
     },
     "cameras": {
@@ -149,7 +221,7 @@
           },
 
           "nodesList" : [
-            "window", "hologram", "tabletop", "tablebottom", "circularwall", "wall1", "wall2", "floor1", "floor2"
+            "window", "holoprojector", "tabletop", "tablebottom", "circularwall", "circularwall2", "wall1", "wall2", "wall3", "wall4", "floor1", "floor2"
           ]
         }
       },
@@ -201,7 +273,7 @@
             "type": "translate",
             "amount": {
               "x": 0,
-              "y": 1.8,
+              "y": 1.9,
               "z": 0
             }
           }
@@ -210,7 +282,7 @@
         "children": {
           "spherePrim": {
             "type": "sphere",
-            "radius": 0.4,
+            "radius": 0.5,
             "slices": 32,
             "stacks": 32
           }
@@ -324,10 +396,49 @@
         }
       },
 
+      "circularwall2": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material7"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 2,
+              "z": 0
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 30,
+              "z": 0
+            }
+          }
+        ],
+
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 7.01,
+            "top": 7.01,
+            "height": 4,
+            "slices": 32,
+            "stacks": 10,
+            "capsclose": true,
+            "thetastart": 0,
+            "thetalength": 300
+          }
+        }
+      },
+
       "wall1": {
         "type": "node",
         "materialref": {
-          "materialId": "material2"
+          "materialId": "material5"
         },
         "transforms": [
           {
@@ -365,7 +476,7 @@
       "wall2": {
         "type": "node",
         "materialref": {
-          "materialId": "material2"
+          "materialId": "material5"
         },
         "transforms": [
           {
@@ -381,6 +492,82 @@
             "amount": {
               "x": 0,
               "y": -90,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -1,
+              "y": 4
+            },
+            "xy2": {
+              "x": 1,
+              "y": 0
+            }
+          }
+        }
+      },
+
+      "wall3": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material6"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -3.5,
+              "y": 0,
+              "z": 7.062
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": -90,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -1,
+              "y": 4
+            },
+            "xy2": {
+              "x": 1,
+              "y": 0
+            }
+          }
+        }
+      },
+
+      "wall4": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material6"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 3.5,
+              "y": 0,
+              "z": 7.062
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
               "z": 0
             }
           }
@@ -420,9 +607,9 @@
             "slices": 64,
             "stacks": 10,
             "color_c": {
-              "r": 0.145,
-              "g": 0.184,
-              "b": 0.227
+              "r": 0.05,
+              "g": 0.00,
+              "b": 0.00
             },
             "color_p": {
               "r": 0.145,

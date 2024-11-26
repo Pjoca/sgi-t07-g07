@@ -107,7 +107,7 @@ class MyContents {
 
         // Initialize texture loader for loading textures
         this.textureLoader = new THREE.TextureLoader();
-        this.planeMaterial = new THREE.MeshBasicMaterial({ map: this.textureLoader.load('textures/floor.jpg') }); // Material for the floor
+        this.planeMaterial = new THREE.MeshBasicMaterial({ map: this.textureLoader.load('textures/table.jpg') }); // Material for the floor
     }
 
     /**
