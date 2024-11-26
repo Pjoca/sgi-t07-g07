@@ -53,8 +53,8 @@ class ObjectCreator {
             currentMaterial = this.materialsLoader.materials[node.materialRef];
         }
 
-        if (node.lightProperties) {
-            const light = this.pointLightPrimitive(node);
+        if (node.geometry && node.geometry.type === 'pointlight') {
+            const light = this.pointLightPrimitive(node.geometry);
             group.add(light);
         } 
         else if (node.geometry && node.geometry.type === 'rectangle') {
@@ -77,6 +77,11 @@ class ObjectCreator {
             group.add(mesh);
         }
 
+        else if (node.geometry && node.geometry.type === 'polygon') {
+            const mesh = this.polygonPrimitive(node.geometry, currentMaterial);
+            group.add(mesh);
+        }
+
         parent.add(group);
 
         if (node.children) {
@@ -96,15 +101,21 @@ class ObjectCreator {
             color: 0xffffff
         });
 
-        return new THREE.Mesh(geometry, meshMaterial);
+        const mesh = new THREE.Mesh(geometry, meshMaterial);
+
+        const centerX = (primitive.xy1.x + primitive.xy2.x) / 2;
+        const centerY = (primitive.xy1.y + primitive.xy2.y) / 2;
+
+        mesh.position.set(centerX, centerY, 0);
+
+        return mesh;
     }
 
     cubePrimitive(primitive, material = null) {
         const width = primitive.width;
         const height = primitive.height;
         const depth = primitive.depth;
-    
-        // Use BoxGeometry for the parallelepiped
+
         const geometry = new THREE.BoxGeometry(width, height, depth);
     
         const meshMaterial = material || new THREE.MeshBasicMaterial({
@@ -117,21 +128,37 @@ class ObjectCreator {
 
     spherePrimitive(primitive, material = null) {
         const radius = primitive.radius;
-        const widthSegments = primitive.width;
-        const heightSegments = primitive.height;
+        const slices = primitive.slices;
+        const stacks = primitive.stacks;
     
-        const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
+        const geometry = new THREE.SphereGeometry(radius, slices, stacks);
         const meshMaterial = material || new THREE.MeshBasicMaterial({ color: 0x00000 });
         return new THREE.Mesh(geometry, meshMaterial);
     }
 
     cylinderPrimitive(primitive, material = null) {
-        const radiusTop = primitive.radiusTop;
-        const radiusBottom = primitive.radiusBottom;
+        const radiusTop = primitive.top;
+        const radiusBottom = primitive.base;
         const height = primitive.height;
-        const radialSegments = primitive.radialSegments; 
+        const slices = primitive.slices;
+        const stacks = primitive.stacks;
+        var capsclose = false;
+        var thetastart = 0;
+        var thetalength = 2 * Math.PI;
+
+        if (primitive.capsclose !== undefined) {
+            capsclose = primitive.capsclose;
+        }
+
+        if (primitive.thetastart !== undefined) {
+            thetastart = this.degToRad(primitive.thetastart);
+        }
+
+        if (primitive.thetalength !== undefined) {
+            thetalength = this.degToRad(primitive.thetalength);
+        }
     
-        const geometry = new THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments);
+        const geometry = new THREE.CylinderGeometry(radiusTop, radiusBottom, height, slices, stacks, capsclose, thetastart, thetalength);
     
         const meshMaterial = material || new THREE.MeshBasicMaterial({
             color: 0xffffff
@@ -140,24 +167,90 @@ class ObjectCreator {
         return new THREE.Mesh(geometry, meshMaterial);
     }    
     
-    pointLightPrimitive(node) {
+    pointLightPrimitive(primitive) {
         const color = new THREE.Color(
-            node.lightProperties.color.r,
-            node.lightProperties.color.g,
-            node.lightProperties.color.b
+            primitive.color.r,
+            primitive.color.g,
+            primitive.color.b
         );
-        const intensity = node.lightProperties.intensity || 1;
-        const distance = node.lightProperties.distance || 0;
-        const decay = node.lightProperties.decay || 1;
+        const intensity = primitive.intensity || 1;
+        const distance = primitive.distance || 0;
+        const decay = primitive.decay || 1;
 
         const light = new THREE.PointLight(color, intensity, distance, decay);
         light.position.set(
-            node.lightProperties.position.x || 0,
-            node.lightProperties.position.y || 0,
-            node.lightProperties.position.z || 0
+            primitive.position.x || 0,
+            primitive.position.y || 0,
+            primitive.position.z || 0
         );
 
         return light;
+    }
+
+    polygonPrimitive(primitive) {
+        const radius = primitive.radius;
+        const stacks = primitive.stacks;
+        const slices = primitive.slices;
+        const color_c = new THREE.Color(
+            primitive.color_c.r,
+            primitive.color_c.g,
+            primitive.color_c.b
+        );
+        const color_p = new THREE.Color(
+            primitive.color_p.r,
+            primitive.color_p.g,
+            primitive.color_p.b
+        );
+
+        const positions = [];
+        const colors = [];
+        const indices = [];
+
+        positions.push(0, 0, 0);
+        colors.push(color_c.r, color_c.g, color_c.b);
+
+        for (let stack = 1; stack <= stacks; stack++) {
+            const stackRadius = (stack / stacks) * radius;
+            for (let slice = 0; slice < slices; slice++) {
+                const theta = (slice / slices) * Math.PI * 2;
+                const x = Math.cos(theta) * stackRadius;
+                const y = Math.sin(theta) * stackRadius;
+                positions.push(x, y, 0);
+
+                const t = stack / stacks;
+                const interpolatedColor = new THREE.Color(
+                    color_c.r + t * (color_p.r - color_c.r),
+                    color_c.g + t * (color_p.g - color_c.g),
+                    color_c.b + t * (color_p.b - color_c.b)
+                );
+                colors.push(interpolatedColor.r, interpolatedColor.g, interpolatedColor.b);
+            }
+        }
+
+        for (let stack = 0; stack < stacks; stack++) {
+            for (let slice = 0; slice < slices; slice++) {
+                const current = stack * slices + slice + 1;
+                const next = stack * slices + ((slice + 1) % slices) + 1;
+                const nextStack = (stack + 1) * slices + slice + 1;
+                const nextStackNext = (stack + 1) * slices + ((slice + 1) % slices) + 1;
+
+                if (stack === 0 || stack === stacks-1) {
+                    indices.push(0, current, next);
+                } else {
+                    indices.push(current, nextStack, nextStackNext);
+                    indices.push(current, nextStackNext, next);
+                }
+            }
+        }
+
+
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+        geometry.setIndex(indices);
+
+        const meshMaterial = new THREE.MeshBasicMaterial({ vertexColors: true});
+        return new THREE.Mesh(geometry, meshMaterial);
     }
 
     degToRad(degrees) {

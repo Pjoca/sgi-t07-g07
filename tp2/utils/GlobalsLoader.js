@@ -5,21 +5,7 @@ class GlobalsLoader {
         this.app = app;
     }
 
-    readAndApply(data) {
-        if (data.globals !== undefined) {
-            this.setGlobals(data.globals);
-        }
-
-        if (data.fog !== undefined) {
-            this.setFog(data.fog);
-        }
-
-        if (data.skybox !== undefined) {
-            this.setSkybox(data.skybox);
-        }
-    }
-
-    setGlobals(globals) {
+    readAndApply(globals) {
         if (globals.background !== undefined) {
             let backgroundColor = new THREE.Color(globals.background.r, globals.background.g, globals.background.b);
             this.app.scene.background = backgroundColor;
@@ -36,19 +22,19 @@ class GlobalsLoader {
             let ambientLight = new THREE.AmbientLight(ambientLightColor, intensity);
             this.app.scene.add(ambientLight);
         }
-    }
 
-    setFog(fog) {
-        let fogColor = new THREE.Color(fog.color.r, fog.color.g, fog.color.b);
-        let fogNear = fog.near;
-        let fogFar = fog.far;
+        if (globals.fog !== undefined) {
+            let fogColor = new THREE.Color(fog.color.r, fog.color.g, fog.color.b);
+            let fogNear = fog.near;
+            let fogFar = fog.far;
 
-        let Fog = new THREE.Fog(fogColor, fogNear, fogFar);
-        this.app.scene.fog = Fog;
-    }
+            let fog = new THREE.Fog(fogColor, fogNear, fogFar);
+            this.app.scene.fog = fog;
+        }
 
-    setSkybox(skybox) {
-        
+        if (globals.skybox !== undefined) {
+            // TODO
+        }
     }
 }
 

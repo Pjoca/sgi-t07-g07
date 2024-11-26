@@ -36,7 +36,7 @@ class GraphLoader {
                         node.children[childId] = childInfo.nodeId;
                         stack.push(childInfo.nodeId);
                     } else if (childInfo.type === "pointlight") {
-                        node.lightProperties = {
+                        node.geometry = {
                             type: "pointlight",
                             enabled: childInfo.enabled,
                             color: childInfo.color,
@@ -50,32 +50,52 @@ class GraphLoader {
                         node.geometry = {
                             type: "rectangle",
                             xy1: childInfo.xy1,
-                            xy2: childInfo.xy2
+                            xy2: childInfo.xy2,
+                            parts_x: childInfo.parts_x,
+                            parts_y: childInfo.parts_y
                         };
-                    } else if (childInfo.type === "cube") {
+                    } else if (childInfo.type === "box") {
                         node.geometry = {
-                            type: "cube",
-                            width: childInfo.width,
-                            height: childInfo.height,
-                            depth: childInfo.depth,
+                            type: "box",
+                            xyz1: childInfo.xyz1,
+                            xyz2: childInfo.xyz2,
+                            parts_x: childInfo.parts_x,
+                            parts_y: childInfo.parts_y,
+                            parts_z: childInfo.parts_z
                         };
                     } else if (childInfo.type === "sphere") {
                         node.geometry = {
                             type: "sphere",
                             radius: childInfo.radius,
-                            widthSegments: childInfo.width,
-                            heightSegments: childInfo.height
+                            slices: childInfo.slices,
+                            stacks: childInfo.stacks,
+                            thetastart: childInfo.thetastart,
+                            thetalength: childInfo.thetalength,
+                            phistart: childInfo.phistart,
+                            philength: childInfo.philength
                         };
                     } else if (childInfo.type === "cylinder") {
                         node.geometry = {
                             type: "cylinder",
-                            radiusTop: childInfo.radiusTop,
-                            radiusBottom: childInfo.radiusBottom,
+                            top: childInfo.top,
+                            base: childInfo.base,
                             height: childInfo.height,
-                            radialSegments: childInfo.radialSegments 
+                            slices: childInfo.slices,
+                            stacks: childInfo.stacks,
+                            capsclose: childInfo.capsclose,
+                            thetastart: childInfo.thetastart,
+                            thetalength: childInfo.thetalength
+                        };
+                    } else if (childInfo.type === "polygon") {
+                        node.geometry = {
+                            type: "polygon",
+                            radius: childInfo.radius,
+                            slices: childInfo.slices,
+                            stacks: childInfo.stacks,
+                            color_c: childInfo.color_c,
+                            color_p: childInfo.color_p
                         };
                     }
-                    
                 }
             }
 
@@ -89,9 +109,8 @@ class Node {
         this.children = {};
         this.transforms = [];
         this.materialRef = null;
-        this.lightProperties = null;
         this.geometry = null;
     }
 }
 
-export { GraphLoader };
+export {GraphLoader};
