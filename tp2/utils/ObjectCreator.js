@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import {NURBSSurface} from 'three/addons/curves/NURBSSurface.js';
+import {ParametricGeometry} from 'three/addons/geometries/ParametricGeometry.js';
 
 class ObjectCreator {
     constructor(app, graphLoader, materialsLoader) {
@@ -56,29 +58,26 @@ class ObjectCreator {
         if (node.geometry && node.geometry.type === 'pointlight') {
             const light = this.pointLightPrimitive(node.geometry);
             group.add(light);
-        } 
-        else if (node.geometry && node.geometry.type === 'rectangle') {
+        } else if (node.geometry && node.geometry.type === 'rectangle') {
             const mesh = this.rectanglePrimitive(node.geometry, currentMaterial);
             group.add(mesh);
-        }
-
-        else if (node.geometry && node.geometry.type === 'cube') {
-            const mesh = this.cubePrimitive(node.geometry, currentMaterial);
+        } else if (node.geometry && node.geometry.type === 'triangle') {
+            const mesh = this.trianglePrimitive(node.geometry, currentMaterial);
             group.add(mesh);
-        }
-
-        else if (node.geometry && node.geometry.type === 'sphere') {
+        } else if (node.geometry && node.geometry.type === 'box') {
+            const mesh = this.boxPrimitive(node.geometry, currentMaterial);
+            group.add(mesh);
+        } else if (node.geometry && node.geometry.type === 'sphere') {
             const mesh = this.spherePrimitive(node.geometry, currentMaterial);
             group.add(mesh);
-        }
-
-        else if (node.geometry && node.geometry.type === 'cylinder') {
+        } else if (node.geometry && node.geometry.type === 'cylinder') {
             const mesh = this.cylinderPrimitive(node.geometry, currentMaterial);
             group.add(mesh);
-        }
-
-        else if (node.geometry && node.geometry.type === 'polygon') {
+        } else if (node.geometry && node.geometry.type === 'polygon') {
             const mesh = this.polygonPrimitive(node.geometry, currentMaterial);
+            group.add(mesh);
+        } else if (node.geometry && node.geometry.type === 'nurbs') {
+            const mesh = this.nurbsPrimitive(node.geometry, currentMaterial);
             group.add(mesh);
         }
 
@@ -92,47 +91,80 @@ class ObjectCreator {
     }
 
     rectanglePrimitive(primitive, material = null) {
-        const width = Math.abs(primitive.xy1.x - primitive.xy2.x);
-        const height = Math.abs(primitive.xy1.y - primitive.xy2.y);
+        const x1 = primitive.xy1.x;
+        const y1 = primitive.xy1.y;
 
-        const geometry = new THREE.PlaneGeometry(width, height);
+        const x2 = primitive.xy2.x;
+        const y2 = primitive.xy2.y;
+
+        const width = Math.abs(x2 - x1);
+        const height = Math.abs(y2 - y1);
+
+        const parts_x = primitive.parts_x || 1;
+        const parts_y = primitive.parts_y || 1;
+
+        const geometry = new THREE.PlaneGeometry(width, height, parts_x, parts_y);
 
         const meshMaterial = material || new THREE.MeshBasicMaterial({
-            color: 0xffffff
+            color: 0xffffff,
         });
 
         const mesh = new THREE.Mesh(geometry, meshMaterial);
 
-        const centerX = (primitive.xy1.x + primitive.xy2.x) / 2;
-        const centerY = (primitive.xy1.y + primitive.xy2.y) / 2;
+        const centerX = (x1 + x2) / 2;
+        const centerY = (y1 + y2) / 2;
 
         mesh.position.set(centerX, centerY, 0);
 
         return mesh;
     }
 
-    cubePrimitive(primitive, material = null) {
-        const width = primitive.width;
-        const height = primitive.height;
-        const depth = primitive.depth;
-
-        const geometry = new THREE.BoxGeometry(width, height, depth);
-    
-        const meshMaterial = material || new THREE.MeshBasicMaterial({
-            color: 0xffffff
-        });
-    
-        return new THREE.Mesh(geometry, meshMaterial);
+    trianglePrimitive(geometry, currentMaterial) {
+        return 0;
     }
-    
+
+    boxPrimitive(primitive, material = null) {
+        const x1 = primitive.xyz1.x;
+        const y1 = primitive.xyz1.y;
+        const z1 = primitive.xyz1.z;
+
+        const x2 = primitive.xyz2.x;
+        const y2 = primitive.xyz2.y;
+        const z2 = primitive.xyz2.z;
+
+        const width = Math.abs(x2 - x1);
+        const height = Math.abs(y2 - y1);
+        const depth = Math.abs(z2 - z1);
+
+        const parts_x = primitive.parts_x || 1;
+        const parts_y = primitive.parts_y || 1;
+        const parts_z = primitive.parts_z || 1;
+
+        const geometry = new THREE.BoxGeometry(width, height, depth, parts_x, parts_y, parts_z);
+
+        const meshMaterial = material || new THREE.MeshBasicMaterial({
+            color: 0xff00ff
+        });
+
+        const mesh = new THREE.Mesh(geometry, meshMaterial);
+
+        const centerX = (x1 + x2) / 2;
+        const centerY = (y1 + y2) / 2;
+        const centerZ = (z1 + z2) / 2;
+
+        mesh.position.set(centerX, centerY, centerZ);
+
+        return mesh;
+    }
+
 
     spherePrimitive(primitive, material = null) {
         const radius = primitive.radius;
         const slices = primitive.slices;
         const stacks = primitive.stacks;
-    
+
         const geometry = new THREE.SphereGeometry(radius, slices, stacks);
-        const meshMaterial = material || new THREE.MeshBasicMaterial({ color: 0x00000 });
+        const meshMaterial = material || new THREE.MeshBasicMaterial({color: 0x00000});
         return new THREE.Mesh(geometry, meshMaterial);
     }
 
@@ -157,16 +189,16 @@ class ObjectCreator {
         if (primitive.thetalength !== undefined) {
             thetalength = this.degToRad(primitive.thetalength);
         }
-    
+
         const geometry = new THREE.CylinderGeometry(radiusTop, radiusBottom, height, slices, stacks, capsclose, thetastart, thetalength);
-    
+
         const meshMaterial = material || new THREE.MeshBasicMaterial({
             color: 0xffffff
         });
-    
+
         return new THREE.Mesh(geometry, meshMaterial);
-    }    
-    
+    }
+
     pointLightPrimitive(primitive) {
         const color = new THREE.Color(
             primitive.color.r,
@@ -234,7 +266,7 @@ class ObjectCreator {
                 const nextStack = (stack + 1) * slices + slice + 1;
                 const nextStackNext = (stack + 1) * slices + ((slice + 1) % slices) + 1;
 
-                if (stack === 0 || stack === stacks-1) {
+                if (stack === 0 || stack === stacks - 1) {
                     indices.push(0, current, next);
                 } else {
                     indices.push(current, nextStack, nextStackNext);
@@ -249,8 +281,72 @@ class ObjectCreator {
         geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
         geometry.setIndex(indices);
 
-        const meshMaterial = new THREE.MeshBasicMaterial({ vertexColors: true});
+        const meshMaterial = new THREE.MeshBasicMaterial({vertexColors: true});
         return new THREE.Mesh(geometry, meshMaterial);
+    }
+
+    nurbsPrimitive(primitive, material = null) {
+        const degreeU = primitive.degree_u;
+        const degreeV = primitive.degree_v;
+        const partsU = primitive.parts_u;
+        const partsV = primitive.parts_v;
+        const controlPoints = primitive.controlpoints;
+        const controlPointsArray = [];
+
+        for (let i = 0; i <= degreeU; i++) {
+            const row = [];
+            for (let j = 0; j <= degreeV; j++) {
+                const index = i * (degreeV + 1) + j;
+                const controlPointData = controlPoints[index];
+                row.push([controlPointData.x, controlPointData.y, controlPointData.z, 1]);
+            }
+            controlPointsArray.push(row);
+        }
+
+        const knotsU = [];
+        const knotsV = [];
+
+        for (let i = 0; i <= degreeU; i++) {
+            knotsU.push(0);
+        }
+
+        for (let i = 0; i <= degreeU; i++) {
+            knotsU.push(1);
+        }
+
+        for (let i = 0; i <= degreeV; i++) {
+            knotsV.push(0);
+        }
+
+        for (let i = 0; i <= degreeV; i++) {
+            knotsV.push(1);
+        }
+
+        let stackedPoints = [];
+
+        for (let i = 0; i < controlPointsArray.length; i++) {
+            let row = controlPointsArray[i];
+            let newRow = [];
+
+            for (let j = 0; j < row.length; j++) {
+                let item = row[j];
+                newRow.push(new THREE.Vector4(item[0], item[1], item[2], item[3]));
+            }
+
+            stackedPoints[i] = newRow;
+        }
+
+        const nurbsSurface = new NURBSSurface(degreeU, degreeV, knotsU, knotsV, stackedPoints);
+
+        const geometry = new ParametricGeometry((u, v, target) => {
+            return nurbsSurface.getPoint(u, v, target)
+        }, partsU, partsV);
+
+        const meshMaterial = material || new THREE.MeshBasicMaterial({color: 0x111111, side: THREE.DoubleSide});
+
+        const mesh = new THREE.Mesh(geometry, meshMaterial);
+
+        return mesh;
     }
 
     degToRad(degrees) {
@@ -258,4 +354,4 @@ class ObjectCreator {
     }
 }
 
-export { ObjectCreator };
+export {ObjectCreator};
