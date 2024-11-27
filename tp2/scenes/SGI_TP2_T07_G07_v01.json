@@ -17,23 +17,18 @@
       "tex1": {
         "filepath": "scenes/textures/holoprojector.jpg"
       },
-
       "tex2": {
         "filepath": "scenes/textures/wall.jpg"
       },
-
       "tex3": {
         "filepath": "scenes/textures/table.jpg"
       },
-
       "tex4": {
         "filepath": "scenes/textures/inside_wall_entrance.jpg"
       },
-
       "tex5": {
         "filepath": "scenes/textures/outside_wall_entrance.jpg"
       },
-
       "tex6": {
         "filepath": "scenes/textures/outside_wall_entrance.jpg"
       }
@@ -58,7 +53,6 @@
         "texlength_t": 1,
         "twosided": false
       },
-
       "material2": {
         "color": {
           "r": 1.0,
@@ -78,7 +72,6 @@
         "texlength_t": 1,
         "twosided": true
       },
-
       "material3": {
         "color": {
           "r": 1.0,
@@ -98,7 +91,6 @@
         "texlength_t": 1,
         "twosided": false
       },
-
       "material4": {
         "color": {
           "r": 0.651,
@@ -115,7 +107,6 @@
         "opacity": 1.0,
         "twosided": false
       },
-
       "material5": {
         "color": {
           "r": 1.0,
@@ -135,7 +126,6 @@
         "texlength_t": 1,
         "twosided": false
       },
-
       "material6": {
         "color": {
           "r": 1.0,
@@ -155,7 +145,6 @@
         "texlength_t": 1,
         "twosided": false
       },
-
       "material7": {
         "color": {
           "r": 1.0,
@@ -173,6 +162,38 @@
         "textureref": "tex6",
         "texlength_s": 16,
         "texlength_t": 1,
+        "twosided": true
+      },
+      "material8": {
+        "color": {
+          "r": 0.0667,
+          "g": 0.0667,
+          "b": 0.0667
+        },
+        "specular": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0
+        },
+        "shininess": 10,
+        "transparent": false,
+        "opacity": 1.0,
+        "twosided": true
+      },
+      "material9": {
+        "color": {
+          "r": 0.8,
+          "g": 0.8,
+          "b": 0.8
+        },
+        "specular": {
+          "r": 1,
+          "g": 1,
+          "b": 1
+        },
+        "shininess": 100,
+        "transparent": false,
+        "opacity": 1.0,
         "twosided": true
       }
     },
@@ -200,7 +221,6 @@
       "scene": {
         "type": "node",
         "children": {
-
           "pointLight1": {
             "type": "pointlight",
             "enabled": true,
@@ -219,13 +239,29 @@
               "z": 0
             }
           },
-
-          "nodesList" : [
-            "window", "holoprojector", "tabletop", "tablebottom", "circularwall", "circularwall2", "wall1", "wall2", "wall3", "wall4", "floor1", "floor2"
+          "nodesList": [
+            "window",
+            "holoprojector",
+            "tabletop",
+            "tablebottom",
+            "circularwall",
+            "circularwall2",
+            "wall1",
+            "wall2",
+            "wall3",
+            "wall4",
+            "floor1",
+            "floor2",
+            "chair1",
+            "chair2",
+            "chair3",
+            "chair4",
+            "chair5",
+            "chair6",
+            "chair7"
           ]
         }
       },
-
       "window": {
         "type": "node",
         "materialref": {
@@ -240,7 +276,6 @@
               "z": 0
             }
           },
-
           {
             "type": "translate",
             "amount": {
@@ -249,7 +284,6 @@
               "z": 0
             }
           }
-
         ],
         "children": {
           "rectanglePrim": {
@@ -265,7 +299,6 @@
           }
         }
       },
-
       "holoprojector": {
         "type": "node",
         "transforms": [
@@ -278,7 +311,6 @@
             }
           }
         ],
-
         "children": {
           "spherePrim": {
             "type": "sphere",
@@ -287,15 +319,12 @@
             "stacks": 32
           }
         }
-
       },
-
       "tabletop": {
         "type": "node",
         "materialref": {
           "materialId": "material3"
         },
-
         "transforms": [
           {
             "type": "scale",
@@ -314,7 +343,6 @@
             }
           }
         ],
-
         "children": {
           "cylinderPrim": {
             "type": "cylinder",
@@ -325,15 +353,12 @@
             "stacks": 10
           }
         }
-
       },
-
       "tablebottom": {
         "type": "node",
         "materialref": {
           "materialId": "material3"
         },
-
         "transforms": [
           {
             "type": "translate",
@@ -344,7 +369,6 @@
             }
           }
         ],
-
         "children": {
           "cylinderPrim": {
             "type": "cylinder",
@@ -356,7 +380,6 @@
           }
         }
       },
-
       "circularwall": {
         "type": "node",
         "materialref": {
@@ -380,7 +403,6 @@
             }
           }
         ],
-
         "children": {
           "cylinderPrim": {
             "type": "cylinder",
@@ -395,7 +417,6 @@
           }
         }
       },
-
       "circularwall2": {
         "type": "node",
         "materialref": {
@@ -419,7 +440,6 @@
             }
           }
         ],
-
         "children": {
           "cylinderPrim": {
             "type": "cylinder",
@@ -434,7 +454,6 @@
           }
         }
       },
-
       "wall1": {
         "type": "node",
         "materialref": {
@@ -472,7 +491,6 @@
           }
         }
       },
-
       "wall2": {
         "type": "node",
         "materialref": {
@@ -510,7 +528,6 @@
           }
         }
       },
-
       "wall3": {
         "type": "node",
         "materialref": {
@@ -548,7 +565,6 @@
           }
         }
       },
-
       "wall4": {
         "type": "node",
         "materialref": {
@@ -586,7 +602,6 @@
           }
         }
       },
-
       "floor1": {
         "type": "node",
         "transforms": [
@@ -598,7 +613,6 @@
               "z": 20
             }
           }
-
         ],
         "children": {
           "polygonPrim": {
@@ -619,7 +633,6 @@
           }
         }
       },
-
       "floor2": {
         "type": "node",
         "transforms": [
@@ -656,6 +669,6131 @@
               "g": 0.184,
               "b": 0.227
             }
+          }
+        }
+      },
+      "chair1": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material8"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0.75,
+              "z": -2.8
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 180,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "nodesList": [
+            "chairComponent1",
+            "chairComponent2",
+            "chairComponent3",
+            "chairComponent4",
+            "chairComponent5",
+            "chairComponent6",
+            "chairComponent7",
+            "chairComponent8",
+            "chairComponent9",
+            "chairComponent10",
+            "chairComponent11",
+            "chairComponent12",
+            "chairComponent13",
+            "chairComponent14",
+            "chairComponent15",
+            "chairComponent16",
+            "chairComponent17",
+            "chairComponent18",
+            "chairComponent19",
+            "chairComponent20"
+          ]
+        }
+      },
+      "chairComponent1": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 2,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent2": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent3": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent4": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 2,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent5": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": -0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent6": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent7": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent8": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent9": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent10": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent11": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 2,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent12": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 2,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent13": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent14": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.3725,
+              "z": 0.7
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.49,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent15": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.6,
+              "z": 0.65
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": -0.6,
+              "y": 0.12,
+              "z": 0.1
+            },
+            "xyz2": {
+              "x": 0.6,
+              "y": 0,
+              "z": 0
+            }
+          }
+        }
+      },
+      "chairComponent16": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.05,
+              "y": -0.6,
+              "z": 0.65
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": -0.6,
+              "y": 0.12,
+              "z": 0.1
+            },
+            "xyz2": {
+              "x": 0.6,
+              "y": 0,
+              "z": 0
+            }
+          }
+        }
+      },
+      "chairComponent17": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.55,
+              "y": -0.675,
+              "z": 0.7
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 20
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent18": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.55,
+              "y": -0.675,
+              "z": 0.7
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 50
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent19": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.675,
+              "z": 0.1
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent20": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.675,
+              "z": 1.2
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chair2": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material8"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -2,
+              "y": 0.75,
+              "z": -1.9
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 228,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "nodesList": [
+            "chairComponent21",
+            "chairComponent22",
+            "chairComponent23",
+            "chairComponent24",
+            "chairComponent25",
+            "chairComponent26",
+            "chairComponent27",
+            "chairComponent28",
+            "chairComponent29",
+            "chairComponent30",
+            "chairComponent31",
+            "chairComponent32",
+            "chairComponent33",
+            "chairComponent34",
+            "chairComponent35",
+            "chairComponent36",
+            "chairComponent37",
+            "chairComponent38",
+            "chairComponent39",
+            "chairComponent40"
+          ]
+        }
+      },
+      "chairComponent21": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 2,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent22": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent23": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent24": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 2,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent25": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": -0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent26": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent27": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent28": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent29": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent30": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent31": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 2,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent32": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 2,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent33": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent34": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.3725,
+              "z": 0.7
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.49,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent35": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.6,
+              "z": 0.65
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": -0.6,
+              "y": 0.12,
+              "z": 0.1
+            },
+            "xyz2": {
+              "x": 0.6,
+              "y": 0,
+              "z": 0
+            }
+          }
+        }
+      },
+      "chairComponent36": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.05,
+              "y": -0.6,
+              "z": 0.65
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": -0.6,
+              "y": 0.12,
+              "z": 0.1
+            },
+            "xyz2": {
+              "x": 0.6,
+              "y": 0,
+              "z": 0
+            }
+          }
+        }
+      },
+      "chairComponent37": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.55,
+              "y": -0.675,
+              "z": 0.7
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 20
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent38": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.55,
+              "y": -0.675,
+              "z": 0.7
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 50
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent39": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.675,
+              "z": 0.1
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent40": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.675,
+              "z": 1.2
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chair3": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material8"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 3.4,
+              "y": 0.75,
+              "z": -2.8
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 200,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "nodesList": [
+            "chairComponent41",
+            "chairComponent42",
+            "chairComponent43",
+            "chairComponent44",
+            "chairComponent45",
+            "chairComponent46",
+            "chairComponent47",
+            "chairComponent48",
+            "chairComponent49",
+            "chairComponent50",
+            "chairComponent51",
+            "chairComponent52",
+            "chairComponent53",
+            "chairComponent54",
+            "chairComponent55",
+            "chairComponent56",
+            "chairComponent57",
+            "chairComponent58",
+            "chairComponent59",
+            "chairComponent60"
+          ]
+        }
+      },
+      "chairComponent41": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 2,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent42": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent43": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent44": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 2,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent45": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": -0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent46": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent47": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent48": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent49": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent50": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent51": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 2,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent52": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 2,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent53": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent54": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.3725,
+              "z": 0.7
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.49,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent55": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.6,
+              "z": 0.65
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": -0.6,
+              "y": 0.12,
+              "z": 0.1
+            },
+            "xyz2": {
+              "x": 0.6,
+              "y": 0,
+              "z": 0
+            }
+          }
+        }
+      },
+      "chairComponent56": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.05,
+              "y": -0.6,
+              "z": 0.65
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": -0.6,
+              "y": 0.12,
+              "z": 0.1
+            },
+            "xyz2": {
+              "x": 0.6,
+              "y": 0,
+              "z": 0
+            }
+          }
+        }
+      },
+      "chairComponent57": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.55,
+              "y": -0.675,
+              "z": 0.7
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 20
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent58": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.55,
+              "y": -0.675,
+              "z": 0.7
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 50
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent59": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.675,
+              "z": 0.1
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent60": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.675,
+              "z": 1.2
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chair4": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material8"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -2.7,
+              "y": 0.75,
+              "z": 0
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 270,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "nodesList": [
+            "chairComponent61",
+            "chairComponent62",
+            "chairComponent63",
+            "chairComponent64",
+            "chairComponent65",
+            "chairComponent66",
+            "chairComponent67",
+            "chairComponent68",
+            "chairComponent69",
+            "chairComponent70",
+            "chairComponent71",
+            "chairComponent72",
+            "chairComponent73",
+            "chairComponent74",
+            "chairComponent75",
+            "chairComponent76",
+            "chairComponent77",
+            "chairComponent78",
+            "chairComponent79",
+            "chairComponent80"
+          ]
+        }
+      },
+      "chairComponent61": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 2,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent62": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent63": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent64": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 2,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent65": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": -0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent66": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent67": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent68": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent69": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent70": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent71": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 2,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent72": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 2,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent73": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent74": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.3725,
+              "z": 0.7
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.49,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent75": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.6,
+              "z": 0.65
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": -0.6,
+              "y": 0.12,
+              "z": 0.1
+            },
+            "xyz2": {
+              "x": 0.6,
+              "y": 0,
+              "z": 0
+            }
+          }
+        }
+      },
+      "chairComponent76": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.05,
+              "y": -0.6,
+              "z": 0.65
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": -0.6,
+              "y": 0.12,
+              "z": 0.1
+            },
+            "xyz2": {
+              "x": 0.6,
+              "y": 0,
+              "z": 0
+            }
+          }
+        }
+      },
+      "chairComponent77": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.55,
+              "y": -0.675,
+              "z": 0.7
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 20
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent78": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.55,
+              "y": -0.675,
+              "z": 0.7
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 50
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent79": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.675,
+              "z": 0.1
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent80": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.675,
+              "z": 1.2
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chair5": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material8"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 2.7,
+              "y": 0.75,
+              "z": 0
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "nodesList": [
+            "chairComponent81",
+            "chairComponent82",
+            "chairComponent83",
+            "chairComponent84",
+            "chairComponent85",
+            "chairComponent86",
+            "chairComponent87",
+            "chairComponent88",
+            "chairComponent89",
+            "chairComponent90",
+            "chairComponent91",
+            "chairComponent92",
+            "chairComponent93",
+            "chairComponent94",
+            "chairComponent95",
+            "chairComponent96",
+            "chairComponent97",
+            "chairComponent98",
+            "chairComponent99",
+            "chairComponent100"
+          ]
+        }
+      },
+      "chairComponent81": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 2,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent82": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent83": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent84": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 2,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent85": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": -0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent86": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent87": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent88": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent89": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent90": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent91": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 2,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent92": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 2,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent93": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent94": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.3725,
+              "z": 0.7
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.49,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent95": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.6,
+              "z": 0.65
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": -0.6,
+              "y": 0.12,
+              "z": 0.1
+            },
+            "xyz2": {
+              "x": 0.6,
+              "y": 0,
+              "z": 0
+            }
+          }
+        }
+      },
+      "chairComponent96": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.05,
+              "y": -0.6,
+              "z": 0.65
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": -0.6,
+              "y": 0.12,
+              "z": 0.1
+            },
+            "xyz2": {
+              "x": 0.6,
+              "y": 0,
+              "z": 0
+            }
+          }
+        }
+      },
+      "chairComponent97": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.55,
+              "y": -0.675,
+              "z": 0.7
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 20
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent98": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.55,
+              "y": -0.675,
+              "z": 0.7
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 50
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent99": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.675,
+              "z": 0.1
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent100": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.675,
+              "z": 1.2
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chair6": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material8"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -2,
+              "y": 0.75,
+              "z": 1.9
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 318,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "nodesList": [
+            "chairComponent101",
+            "chairComponent102",
+            "chairComponent103",
+            "chairComponent104",
+            "chairComponent105",
+            "chairComponent106",
+            "chairComponent107",
+            "chairComponent108",
+            "chairComponent109",
+            "chairComponent110",
+            "chairComponent111",
+            "chairComponent112",
+            "chairComponent113",
+            "chairComponent114",
+            "chairComponent115",
+            "chairComponent116",
+            "chairComponent117",
+            "chairComponent118",
+            "chairComponent119",
+            "chairComponent120"
+          ]
+        }
+      },
+      "chairComponent101": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 2,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent102": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent103": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent104": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 2,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent105": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": -0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent106": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent107": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent108": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent109": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent110": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent111": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 2,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent112": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 2,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent113": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent114": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.3725,
+              "z": 0.7
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.49,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent115": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.6,
+              "z": 0.65
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": -0.6,
+              "y": 0.12,
+              "z": 0.1
+            },
+            "xyz2": {
+              "x": 0.6,
+              "y": 0,
+              "z": 0
+            }
+          }
+        }
+      },
+      "chairComponent116": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.05,
+              "y": -0.6,
+              "z": 0.65
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": -0.6,
+              "y": 0.12,
+              "z": 0.1
+            },
+            "xyz2": {
+              "x": 0.6,
+              "y": 0,
+              "z": 0
+            }
+          }
+        }
+      },
+      "chairComponent117": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.55,
+              "y": -0.675,
+              "z": 0.7
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 20
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent118": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.55,
+              "y": -0.675,
+              "z": 0.7
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 50
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent119": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.675,
+              "z": 0.1
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent120": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.675,
+              "z": 1.2
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chair7": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material8"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 2,
+              "y": 0.75,
+              "z": 1.9
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 48,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "nodesList": [
+            "chairComponent121",
+            "chairComponent122",
+            "chairComponent123",
+            "chairComponent124",
+            "chairComponent125",
+            "chairComponent126",
+            "chairComponent127",
+            "chairComponent128",
+            "chairComponent129",
+            "chairComponent130",
+            "chairComponent131",
+            "chairComponent132",
+            "chairComponent133",
+            "chairComponent134",
+            "chairComponent135",
+            "chairComponent136",
+            "chairComponent137",
+            "chairComponent138",
+            "chairComponent139",
+            "chairComponent140"
+          ]
+        }
+      },
+      "chairComponent121": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 2,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent122": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent123": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent124": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 2,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent125": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": -0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": -0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent126": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 3,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.35,
+                "z": 1.85
+              },
+              {
+                "x": 0.6,
+                "y": -0.25,
+                "z": 1.75
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.85
+              },
+              {
+                "x": 0.6,
+                "y": 0.5,
+                "z": 0.75
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent127": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent128": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent129": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": -0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent130": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0.6,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent131": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 2,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": 0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent132": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 2,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.2
+              },
+              {
+                "x": -0.6,
+                "y": 1.8,
+                "z": 1.3
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.1
+              },
+              {
+                "x": 0,
+                "y": 1.5,
+                "z": 1.2
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent133": {
+        "type": "node",
+        "transforms": [],
+        "children": {
+          "nurbsPrim": {
+            "type": "nurbs",
+            "degree_u": 1,
+            "degree_v": 1,
+            "parts_u": 10,
+            "parts_v": 10,
+            "controlpoints": [
+              {
+                "x": -0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": 0,
+                "z": 0.1
+              },
+              {
+                "x": -0.6,
+                "y": -0.1,
+                "z": 0.1
+              },
+              {
+                "x": 0.6,
+                "y": -0.1,
+                "z": 0.1
+              }
+            ]
+          }
+        }
+      },
+      "chairComponent134": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.3725,
+              "z": 0.7
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.49,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent135": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.6,
+              "z": 0.65
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": -0.6,
+              "y": 0.12,
+              "z": 0.1
+            },
+            "xyz2": {
+              "x": 0.6,
+              "y": 0,
+              "z": 0
+            }
+          }
+        }
+      },
+      "chairComponent136": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.05,
+              "y": -0.6,
+              "z": 0.65
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": -0.6,
+              "y": 0.12,
+              "z": 0.1
+            },
+            "xyz2": {
+              "x": 0.6,
+              "y": 0,
+              "z": 0
+            }
+          }
+        }
+      },
+      "chairComponent137": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.55,
+              "y": -0.675,
+              "z": 0.7
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 20
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent138": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.55,
+              "y": -0.675,
+              "z": 0.7
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 50
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent139": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.675,
+              "z": 0.1
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
+          }
+        }
+      },
+      "chairComponent140": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material9"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.675,
+              "z": 1.2
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.075,
+            "top": 0.075,
+            "height": 0.1,
+            "slices": 64,
+            "stacks": 10
           }
         }
       }

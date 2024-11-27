@@ -56,6 +56,13 @@ class GraphLoader {
                             parts_x: childInfo.parts_x,
                             parts_y: childInfo.parts_y
                         };
+                    } else if (childInfo.type === "triangle") {
+                        node.geometry = {
+                            type: "triangle",
+                            xyz1: childInfo.xyz1,
+                            xyz2: childInfo.xyz2,
+                            xyz3: childInfo.xyz3
+                        }
                     } else if (childInfo.type === "box") {
                         node.geometry = {
                             type: "box",
@@ -97,6 +104,15 @@ class GraphLoader {
                             color_c: childInfo.color_c,
                             color_p: childInfo.color_p
                         };
+                    } else if (childInfo.type === "nurbs") {
+                        node.geometry = {
+                            type: "nurbs",
+                            degree_u: childInfo.degree_u,
+                            degree_v: childInfo.degree_v,
+                            parts_u: childInfo.parts_u,
+                            parts_v: childInfo.parts_v,
+                            controlpoints: childInfo.controlpoints
+                        }
                     }
                 }
             }
