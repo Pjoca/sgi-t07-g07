@@ -119,8 +119,26 @@ class ObjectCreator {
         return mesh;
     }
 
-    trianglePrimitive(geometry, currentMaterial) {
-        return 0;
+    trianglePrimitive(primitive, material = null) {
+        const v1 = new THREE.Vector3(primitive.xyz1.x, primitive.xyz1.y, primitive.xyz1.z);
+        const v2 = new THREE.Vector3(primitive.xyz2.x, primitive.xyz2.y, primitive.xyz2.z);
+        const v3 = new THREE.Vector3(primitive.xyz3.x, primitive.xyz3.y, primitive.xyz3.z);
+
+        const geometry = new THREE.BufferGeometry();
+
+        const vertices = new Float32Array([
+            v1.x, v1.y, v1.z,
+            v2.x, v2.y, v2.z,
+            v3.x, v3.y, v3.z
+        ]);
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+
+        const meshMaterial = material || new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+        const triangle = new THREE.Mesh(geometry, meshMaterial);
+
+        return triangle;
     }
 
     boxPrimitive(primitive, material = null) {
@@ -174,12 +192,12 @@ class ObjectCreator {
         const height = primitive.height;
         const slices = primitive.slices;
         const stacks = primitive.stacks;
-        var capsclose = false;
+        var capsclose = true;
         var thetastart = 0;
         var thetalength = 2 * Math.PI;
 
         if (primitive.capsclose !== undefined) {
-            capsclose = primitive.capsclose;
+            capsclose = !primitive.capsclose;
         }
 
         if (primitive.thetastart !== undefined) {
@@ -215,6 +233,7 @@ class ObjectCreator {
             primitive.position.y || 0,
             primitive.position.z || 0
         );
+
 
         return light;
     }
