@@ -38,6 +38,7 @@ class GraphLoader {
                             stack.push(nodeRef);
                         }
                     } else if (childInfo.type === "pointlight") {
+
                         node.geometry = {
                             type: "pointlight",
                             enabled: childInfo.enabled,
