@@ -87,7 +87,7 @@ class MyContents {
             // Create Objects
             this.objectCreator.createObjects();
 
-            // console.log(this.app.scene)
+            console.log(this.app.scene)
         }
 
         this.createGui();
@@ -101,6 +101,13 @@ class MyContents {
         gui.setContents(this);
         this.app.setGui(gui);
         gui.init();
+    }
+
+    // Iterate over each polygon and update the wireframe mode
+    updatePolygonWireframe(wireframe) {
+        this.objectCreator.polygons.forEach(polygon => {
+            polygon.material.wireframe = wireframe;
+        });
     }
 }
 

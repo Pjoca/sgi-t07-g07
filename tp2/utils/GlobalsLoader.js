@@ -33,9 +33,38 @@ class GlobalsLoader {
         }
 
         if (globals.skybox !== undefined) {
-            // TODO
+            let skybox = globals.skybox;
+
+            let geometry = new THREE.BoxGeometry(skybox.size.x, skybox.size.y, skybox.size.z);
+
+            let textureLoader = new THREE.TextureLoader();
+
+            let materials = [];
+
+            let loadTexture = (path, i) => {
+                textureLoader.load(path, (texture) => {
+                    let material = new THREE.MeshStandardMaterial({
+                        map: texture,
+                        fog: false,
+                        side: THREE.BackSide
+                    });
+                    materials[i] = material;
+                });
+            };
+
+            loadTexture(skybox.front, 0);
+            loadTexture(skybox.back, 1);
+            loadTexture(skybox.up, 2);
+            loadTexture(skybox.down, 3);
+            loadTexture(skybox.left, 4);
+            loadTexture(skybox.right, 5);
+
+            let skyboxMesh = new THREE.Mesh(geometry, materials);
+            skyboxMesh.position.set(skybox.center.x, skybox.center.y, skybox.center.z);
+
+            this.app.scene.add(skyboxMesh);
         }
     }
 }
 
-export { GlobalsLoader };
+export {GlobalsLoader};
