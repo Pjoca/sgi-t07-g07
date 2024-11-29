@@ -3,7 +3,7 @@
     "globals": {
       "background": {
         "r": 1,
-        "g": 1,
+        "g": 0,
         "b": 1
       },
       "ambient": {
@@ -11,6 +11,18 @@
         "g": 0.1,
         "b": 0.1,
         "intensity": 1
+      },
+      "skybox": {
+        "size": {"x": 100, "y": 100, "z": 100},
+        "center": {"x": 0, "y": 0, "z": 0},
+        "emissive": {"r": 0, "g": 0, "b": 0},
+        "intensity": 0.1,
+        "front": "scenes/textures/space1.jpg",
+        "back": "scenes/textures/space1.jpg",
+        "up": "scenes/textures/space.jpg",
+        "down": "scenes/textures/space.jpg",
+        "left": "scenes/textures/space2.jpg",
+        "right": "scenes/textures/space3.jpg"
       }
     },
     "textures": {

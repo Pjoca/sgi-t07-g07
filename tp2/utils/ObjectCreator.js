@@ -7,6 +7,10 @@ class ObjectCreator {
         this.app = app;
         this.graphLoader = graphLoader;
         this.materialsLoader = materialsLoader;
+
+        // For wireframe visualization
+        this.polygons = [];
+        this.polygonWireframe = false;
     }
 
     createObjects() {
@@ -75,6 +79,7 @@ class ObjectCreator {
             group.add(mesh);
         } else if (node.geometry && node.geometry.type === 'polygon') {
             const mesh = this.polygonPrimitive(node.geometry, currentMaterial);
+            this.polygons.push(mesh);
             group.add(mesh);
         } else if (node.geometry && node.geometry.type === 'nurbs') {
             const mesh = this.nurbsPrimitive(node.geometry, currentMaterial);
@@ -136,7 +141,7 @@ class ObjectCreator {
 
         geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
 
-        const meshMaterial = material || new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const meshMaterial = material || new THREE.MeshBasicMaterial({color: 0xffffff});
 
         const triangle = new THREE.Mesh(geometry, meshMaterial);
 
@@ -240,7 +245,7 @@ class ObjectCreator {
         return light;
     }
 
-    polygonPrimitive(primitive) {
+    polygonPrimitive(primitive, wireframe = false) {
         const radius = primitive.radius;
         const stacks = primitive.stacks;
         const slices = primitive.slices;
@@ -302,7 +307,8 @@ class ObjectCreator {
         geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
         geometry.setIndex(indices);
 
-        const meshMaterial = new THREE.MeshBasicMaterial({vertexColors: true});
+        const meshMaterial = new THREE.MeshBasicMaterial({vertexColors: true, wireframe: wireframe});
+
         return new THREE.Mesh(geometry, meshMaterial);
     }
 
