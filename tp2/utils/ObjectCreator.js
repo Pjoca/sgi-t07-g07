@@ -414,7 +414,7 @@ class ObjectCreator {
         const material = new THREE.ShaderMaterial({
             uniforms: {
                 uTexture: { value: texture },
-                uOpacity: { value: 0.7 },
+                uOpacity: { value: 1.25 },
             },
             vertexShader: `
                 varying vec2 vUv;

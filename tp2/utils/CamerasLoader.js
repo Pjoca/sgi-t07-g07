@@ -32,7 +32,8 @@ class CamerasLoader {
             }
 
             camera.position.set(cameraData.location.x, cameraData.location.y, cameraData.location.z);
-            camera.lookAt(new THREE.Vector3(cameraData.target.x, cameraData.target.y, cameraData.target.z));
+            camera.lookAt(cameraData.target.x, cameraData.target.y, cameraData.target.z);
+            this.app.renderer.render(this.app.scene, camera);
 
             this.app.cameras[key] = camera;
         }

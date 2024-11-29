@@ -13,9 +13,21 @@
         "intensity": 1
       },
       "skybox": {
-        "size": {"x": 100, "y": 100, "z": 100},
-        "center": {"x": 0, "y": 0, "z": 0},
-        "emissive": {"r": 0, "g": 0, "b": 0},
+        "size": {
+          "x": 160,
+          "y": 100,
+          "z": 90
+        },
+        "center": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "emissive": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        },
         "intensity": 0.1,
         "front": "scenes/textures/space1.jpg",
         "back": "scenes/textures/space1.jpg",
@@ -284,22 +296,114 @@
       }
     },
     "cameras": {
-      "initial": "cam1",
-      "cam1": {
+      "initial": "perspective1",
+      "perspective1": {
         "type": "perspective",
-        "angle": 60,
+        "angle": 100,
         "near": 0.1,
         "far": 1000,
         "location": {
-          "x": 15,
-          "y": 15,
-          "z": 15
+          "x": 0,
+          "y": 5,
+          "z": 10
         },
         "target": {
           "x": 0,
           "y": 0,
           "z": 0
         }
+      },
+      "perspective2": {
+        "type": "perspective",
+        "angle": 75,
+        "near": 0.1,
+        "far": 1000,
+        "location": {
+          "x": 5.75,
+          "y": 3,
+          "z": -4
+        },
+        "target": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "orthogonal1": {
+        "type": "orthogonal",
+        "near": 0.1,
+        "far": 1000,
+        "location": {
+          "x": 0,
+          "y": 10,
+          "z": 0
+        },
+        "target": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "left": -16,
+        "right": 16,
+        "bottom": -9,
+        "top":9
+      },
+      "orthogonal2": {
+        "type": "orthogonal",
+        "near": 20,
+        "far": 1000,
+        "location": {
+          "x": 0,
+          "y": 0,
+          "z": 1
+        },
+        "target": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "left": -80,
+        "right": 80,
+        "bottom": -50,
+        "top":50
+      },
+      "orthogonal3": {
+        "type": "orthogonal",
+        "near": 20,
+        "far": 1000,
+        "location": {
+          "x": 0,
+          "y": 0,
+          "z": -1
+        },
+        "target": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "left": -80,
+        "right": 80,
+        "bottom": -50,
+        "top":50
+      },
+      "orthogonal4": {
+        "type": "orthogonal",
+        "near": 20,
+        "far": 1000,
+        "location": {
+          "x": 1,
+          "y": 0,
+          "z": 0
+        },
+        "target": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "left": -45,
+        "right": 45,
+        "bottom": -50,
+        "top":50
       }
     },
     "graph": {
@@ -1597,7 +1701,6 @@
           }
         }
       },
-
       "video1": {
         "type": "node",
         "transforms": [
@@ -1628,7 +1731,6 @@
           }
         }
       },
-
       "chair1": {
         "type": "node",
         "materialref": {
