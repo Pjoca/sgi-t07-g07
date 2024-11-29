@@ -79,8 +79,10 @@ class ObjectCreator {
         } else if (node.geometry && node.geometry.type === 'nurbs') {
             const mesh = this.nurbsPrimitive(node.geometry, currentMaterial);
             group.add(mesh);
+        } else if (node.geometry && node.geometry.type === 'video') {
+            const mesh = this.videoPrimitive(node.geometry);
+            group.add(mesh);
         }
-
         parent.add(group);
 
         if (node.children) {
@@ -367,6 +369,71 @@ class ObjectCreator {
 
         return mesh;
     }
+
+    videoPrimitive(primitive) {
+        const video = document.createElement('video');
+        video.src = primitive.url;
+        video.crossOrigin = 'anonymous';
+        video.loop = true;
+        video.autoplay = true;
+        video.muted = true;
+    
+        video.play().catch((err) => {
+            console.error('Error starting video playback:', err);
+        });
+    
+        const texture = new THREE.VideoTexture(video);
+        texture.colorSpace = THREE.SRGBColorSpace;
+        texture.flipY = true; 
+
+        const openCone = true;
+    
+        const radius = primitive.radius; 
+        const height = primitive.height;
+        const radialSegments = primitive.radialSegments;
+        
+        const geometry = new THREE.ConeGeometry(radius, height, radialSegments, 1, openCone);
+    
+        // Rotate the cone 
+        geometry.rotateX(Math.PI);
+
+        // Adjust UV mapping to flip the video vertically
+        geometry.attributes.uv.array.forEach((_, index) => {
+            if (index % 2 === 1) { 
+                geometry.attributes.uv.array[index] = 1 - geometry.attributes.uv.array[index];
+            }
+        });
+    
+        // Better hologram look
+        const material = new THREE.ShaderMaterial({
+            uniforms: {
+                uTexture: { value: texture },
+                uOpacity: { value: 0.7 },
+            },
+            vertexShader: `
+                varying vec2 vUv;
+                void main() {
+                    vUv = uv;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: `
+                uniform sampler2D uTexture;
+                uniform float uOpacity;
+                varying vec2 vUv;
+                void main() {
+                    vec4 texColor = texture2D(uTexture, vUv);
+                    float gradient = 1.0 - vUv.y; // Add gradient transparency
+                    gl_FragColor = vec4(texColor.rgb, texColor.a * gradient * uOpacity);
+                }
+            `,
+            transparent: true,
+        });
+    
+        const mesh = new THREE.Mesh(geometry, material);
+    
+        return mesh;
+    }     
 
     degToRad(degrees) {
         return degrees * (Math.PI / 180);

@@ -324,6 +324,7 @@
             "wall4",
             "floor1",
             "floor2",
+            "video1",
             "chair1",
             "chair2",
             "chair3",
@@ -1584,6 +1585,38 @@
           }
         }
       },
+
+      "video1": {
+        "type": "node",
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 4.4,
+              "z": 0
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "videoPrim": {
+            "type": "video",
+            "url": "scenes/videos/mourinho.mp4",
+            "radius": 1.5,
+            "height": 4,
+            "radialSegments": 64
+          }
+        }
+      },
+
       "chair1": {
         "type": "node",
         "materialref": {

@@ -105,7 +105,8 @@ class GraphLoader {
                             color_c: childInfo.color_c,
                             color_p: childInfo.color_p
                         };
-                    } else if (childInfo.type === "nurbs") {
+                    } 
+                    else if (childInfo.type === "nurbs") {
                         node.geometry = {
                             type: "nurbs",
                             degree_u: childInfo.degree_u,
@@ -113,9 +114,17 @@ class GraphLoader {
                             parts_u: childInfo.parts_u,
                             parts_v: childInfo.parts_v,
                             controlpoints: childInfo.controlpoints
-                        }
+                        };
+                    }  else if (childInfo.type === "video") {
+                        node.geometry = {
+                            type: "video",
+                            url: childInfo.url,
+                            radius: childInfo.radius,
+                            height: childInfo.height,
+                            radialSegments: childInfo.radialSegments
+                        };
                     }
-                }
+                } 
             }
 
             this.nodes[currentId] = node;
