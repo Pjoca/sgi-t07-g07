@@ -12196,18 +12196,70 @@
           }
         }
       },
+
       "box1": {
         "type": "node",
-        "materialref": {
-          "materialId": "material13"
-        },
         "transforms": [
           {
             "type": "translate",
             "amount": {
               "x": 0,
-              "y": 10,
+              "y": 10.42,
+              "z": -2.45
+            }
+          }
+        ],
+        "children": {
+          "nodesList": [
+            "boxcomponent1",
+            "boxcomponent2",
+            "boxcomponent3",
+            "boxcomponent4",
+            "boxcomponent5",
+            "boxcomponent6"
+          ]
+        }
+      },
+      "boxcomponent1": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent2": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": -90,
+              "y": 0,
               "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0.5,
+              "z": -0.5
             }
           }
         ],
@@ -12215,16 +12267,169 @@
           "bumpmap": {
             "type": "bumpmap",
             "xy1": {
-              "x": -1,
-              "y": -1
+              "x": -0.5,
+              "y": -0.5
             },
             "xy2": {
-              "x": 1,
-              "y": 1
+              "x": 0.5,
+              "y": 0.5
             }
           }
-        }  
+        }
+      },
+
+      "boxcomponent3": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.5,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+
+      "boxcomponent4": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.5,
+              "y": 0,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+
+      "boxcomponent5": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": -90,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.5,
+              "y": 0,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+
+      "boxcomponent6": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 180,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": -1
+            }
+          }
+        ],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
       }
+
 
     }
   }
