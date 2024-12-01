@@ -62,6 +62,12 @@
       },
       "tex8": {
         "filepath": "scenes/textures/floor_bump.jpg"
+      },
+      "tex9": {
+        "filepath": "scenes/textures/robot1.jpg"
+      },
+      "tex10": {
+        "filepath": "scenes/textures/robot2.jpg"
       }
     },
     "materials": {
@@ -316,7 +322,7 @@
         },
         "shininess": 10,
         "transparent": true,
-        "opacity": 0.875,
+        "opacity": 0.75,
         "textureref": "tex7",
         "texlength_s": 1,
         "texlength_t": 1,
@@ -341,6 +347,60 @@
         "shininess": 10,
         "transparent": false,
         "opacity": 1.0,
+        "twosided": true
+      },
+      "material16": {
+        "color": {
+          "r": 1,
+          "g": 1,
+          "b": 1
+        },
+        "specular": {
+          "r": 1,
+          "g": 1,
+          "b": 1
+        },
+        "shininess": 10,
+        "transparent": false,
+        "opacity": 1.0,
+        "twosided": true
+      },
+      "material17": {
+        "color": {
+          "r": 1,
+          "g": 1,
+          "b": 1
+        },
+        "specular": {
+          "r": 1,
+          "g": 1,
+          "b": 1
+        },
+        "shininess": 10,
+        "transparent": false,
+        "opacity": 1.0,
+        "textureref": "tex9",
+        "texlength_s": 1,
+        "texlength_t": 1,
+        "twosided": true
+      },
+      "material18": {
+        "color": {
+          "r": 1,
+          "g": 1,
+          "b": 1
+        },
+        "specular": {
+          "r": 1,
+          "g": 1,
+          "b": 1
+        },
+        "shininess": 10,
+        "transparent": false,
+        "opacity": 1.0,
+        "textureref": "tex10",
+        "texlength_s": 1,
+        "texlength_t": 1,
         "twosided": true
       }
     },
@@ -510,7 +570,9 @@
             "spotlight1",
             "box1",
             "box2",
-            "box3"
+            "box3",
+            "lightsaber1",
+            "r2d2"
           ]
         }
       },
@@ -1787,7 +1849,7 @@
           "cylinderPrim": {
             "type": "cylinder",
             "base": 0,
-            "top": 1.25,
+            "top": 1.2,
             "height": 2.75,
             "slices": 64,
             "stacks": 10,
@@ -13230,6 +13292,693 @@
             "xy2": {
               "x": 0.5,
               "y": 0.5
+            }
+          }
+        }
+      },
+      "lightsaber1": {
+        "type": "node",
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 1.5,
+              "y": 1.47,
+              "z": -0.3
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": -10
+            }
+          }
+        ],
+        "children": {
+          "nodesList": [
+            "lightsabercomponent1",
+            "lightsabercomponent2",
+            "lightsabercomponent3"
+          ]
+        }
+      },
+      "lightsabercomponent1": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material15"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.05,
+            "top": 0.05,
+            "height": 2,
+            "slices": 64,
+            "stacks": 10,
+            "capsclose": true
+          }
+        }
+      },
+      "lightsabercomponent2": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material15"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 1,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "spherePrim": {
+            "type": "sphere",
+            "radius": 0.05,
+            "slices": 32,
+            "stacks": 32
+          }
+        }
+      },
+      "lightsabercomponent3": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -1.2,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.06,
+            "top": 0.06,
+            "height": 0.5,
+            "slices": 64,
+            "stacks": 10,
+            "capsclose": true
+          }
+        }
+      },
+      "r2d2": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material17"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0.75,
+              "z": 6
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "nodesList": [
+            "r2d2component1",
+            "r2d2component2",
+            "r2d2component3",
+            "r2d2component4",
+            "r2d2component5",
+            "r2d2component6",
+            "r2d2component7",
+            "r2d2component8",
+            "r2d2component9",
+            "r2d2component10",
+            "r2d2component11",
+            "r2d2component12",
+            "r2d2component13",
+            "r2d2component14",
+            "r2d2component15"
+          ]
+        }
+      },
+      "r2d2component1": {
+        "type": "node",
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0.25,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.5,
+            "top": 0.5,
+            "height": 1,
+            "slices": 64,
+            "stacks": 10,
+            "capsclose": true
+          }
+        }
+      },
+      "r2d2component2": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material18"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0.75,
+              "z": 0
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "spherePrim": {
+            "type": "sphere",
+            "radius": 0.50,
+            "slices": 32,
+            "stacks": 32
+          }
+        }
+      },
+      "r2d2component3": {
+        "type": "node",
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.32,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.325,
+            "top": 0.5,
+            "height": 0.14,
+            "slices": 64,
+            "stacks": 10,
+            "capsclose": true
+          }
+        }
+      },
+      "r2d2component4": {
+        "type": "node",
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.55,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": 0.65,
+              "y": 0.09,
+              "z": 0.1
+            },
+            "xyz2": {
+              "x": -0.65,
+              "y": -0.09,
+              "z": -0.1
+            }
+          }
+        }
+      },
+      "r2d2component5": {
+        "type": "node",
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.55,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": 0.65,
+              "y": 0.09,
+              "z": 0.1
+            },
+            "xyz2": {
+              "x": -0.65,
+              "y": -0.09,
+              "z": -0.1
+            }
+          }
+        }
+      },
+      "r2d2component6": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material16"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.55,
+              "y": 0.6,
+              "z": 0
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.15,
+            "top": 0.15,
+            "height": 0.2,
+            "slices": 64,
+            "stacks": 10,
+            "capsclose": true,
+            "thetastart": 0,
+            "thetalength": 180
+          }
+        }
+      },
+      "r2d2component7": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material16"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.55,
+              "y": 0.6,
+              "z": 0
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "cylinderPrim": {
+            "type": "cylinder",
+            "base": 0.15,
+            "top": 0.15,
+            "height": 0.2,
+            "slices": 64,
+            "stacks": 10,
+            "capsclose": true,
+            "thetastart": 0,
+            "thetalength": 180
+          }
+        }
+      },
+      "r2d2component8": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material16"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.55,
+              "y": 0.50,
+              "z": 0
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": 0.10,
+              "y": 0.1,
+              "z": 0.15
+            },
+            "xyz2": {
+              "x": -0.1,
+              "y": -0.1,
+              "z": -0.15
+            }
+          }
+        }
+      },
+      "r2d2component9": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material16"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.55,
+              "y": 0.50,
+              "z": 0
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": 0.10,
+              "y": 0.1,
+              "z": 0.15
+            },
+            "xyz2": {
+              "x": -0.1,
+              "y": -0.1,
+              "z": -0.15
+            }
+          }
+        }
+      },
+      "r2d2component10": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material16"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.55,
+              "y": -0.6,
+              "z": 0
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": 0.175,
+              "y": 0.1,
+              "z": 0.15
+            },
+            "xyz2": {
+              "x": -0.175,
+              "y": -0.1,
+              "z": -0.15
+            }
+          }
+        }
+      },
+      "r2d2component11": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material16"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.55,
+              "y": -0.6,
+              "z": 0
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": 0.175,
+              "y": 0.1,
+              "z": 0.15
+            },
+            "xyz2": {
+              "x": -0.175,
+              "y": -0.1,
+              "z": -0.15
+            }
+          }
+        }
+      },
+      "r2d2component12": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material16"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.55,
+              "y": -0.602,
+              "z": -0.255
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 45,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": 0.2,
+              "y": 0.1,
+              "z": 0.18
+            },
+            "xyz2": {
+              "x": -0.25,
+              "y": -0.1,
+              "z": -0.05
+            }
+          }
+        }
+      },
+      "r2d2component13": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material16"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.55,
+              "y": -0.602,
+              "z": -0.255
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 45,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": 0.2,
+              "y": 0.1,
+              "z": 0.18
+            },
+            "xyz2": {
+              "x": -0.25,
+              "y": -0.1,
+              "z": -0.05
+            }
+          }
+        }
+      },
+      "r2d2component14": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material16"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.55,
+              "y": -0.602,
+              "z": 0.255
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 135,
+              "y": 0,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": 0.25,
+              "y": 0.1,
+              "z": 0.18
+            },
+            "xyz2": {
+              "x": -0.2,
+              "y": -0.1,
+              "z": -0.05
+            }
+          }
+        }
+      },
+      "r2d2component15": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material16"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.55,
+              "y": -0.602,
+              "z": 0.255
+            }
+          },
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 135,
+              "y": 180,
+              "z": 90
+            }
+          }
+        ],
+        "children": {
+          "boxPrim": {
+            "type": "box",
+            "xyz1": {
+              "x": 0.25,
+              "y": 0.1,
+              "z": 0.05
+            },
+            "xyz2": {
+              "x": -0.20,
+              "y": -0.1,
+              "z": -0.18
             }
           }
         }
