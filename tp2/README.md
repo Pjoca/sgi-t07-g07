@@ -5,7 +5,7 @@
 
 # Scene Description
 
-Our scene is based one an iconic scene from the first Star Wars movie. It has two point lights, a space background, a opening scrawl, a battle station ( Death Star) and a planet ( Alderaan ). The final scene will probably not be a full Star Wars scene, nor only in space. 
+Our scene is based one the imperial conference room, from the first Star Wars movie. It has various lights
 
 # Rendered Images:
 
@@ -14,3 +14,15 @@ Our scene is based one an iconic scene from the first Star Wars movie. It has tw
 ![Image 1](screenshots/Screenshot_1.png)
 
 ![Image 2](screenshots/Screenshot_2.png)
+
+![Image 3](screenshots/Screenshot_1.png)
+
+![Image 4](screenshots/Screenshot_2.png)
+
+![Image 5](screenshots/Screenshot_1.png)
+
+![Image 6](screenshots/Screenshot_2.png)
+
+![Image 7](screenshots/Screenshot_1.png)
+
+![Image 8](screenshots/Screenshot_2.png)
