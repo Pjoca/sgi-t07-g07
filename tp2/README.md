@@ -5,7 +5,7 @@
 
 # Scene Description
 
-Our scene is based one the imperial conference room, from the first Star Wars movie. Here is the scene we inspired on:
+Our scene is based on the imperial conference room, from the first Star Wars movie. Here is the image which our scene was inspired from: 
 
 ![Image 0](screenshots/Screenshot_0.png)
 
