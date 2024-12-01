@@ -22,7 +22,7 @@ Our scene is based one the imperial conference room, from the first Star Wars mo
 
 ![Image 3](screenshots/Screenshot_2.png)
 
-# Boxes
+# Boxes (BumpMap)
 
 ![Image 4](screenshots/Screenshot_3.png)
 
@@ -38,7 +38,7 @@ Our scene is based one the imperial conference room, from the first Star Wars mo
 
 ![Image 7](screenshots/Screenshot_7.png)
 
-# Projection of José Mourinho on video
+# Projection of José Mourinho
 
 ![Image 8](screenshots/Screenshot_8.png)
 
