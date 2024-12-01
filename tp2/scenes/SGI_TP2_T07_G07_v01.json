@@ -45,7 +45,7 @@
         "filepath": "scenes/textures/wall.jpg"
       },
       "tex3": {
-        "filepath": "scenes/textures/table.jpg"
+        "filepath": "scenes/textures/floor.jpg"
       },
       "tex4": {
         "filepath": "scenes/textures/inside_wall_entrance.jpg"
@@ -455,7 +455,8 @@
             "device5",
             "device6",
             "device7",
-            "device8"
+            "device8",
+            "box1"
           ]
         }
       },
@@ -12194,7 +12195,37 @@
             }
           }
         }
+      },
+      "box1": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material13"
+        },
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 10,
+              "z": 0
+            }
+          }
+        ],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -1,
+              "y": -1
+            },
+            "xy2": {
+              "x": 1,
+              "y": 1
+            }
+          }
+        }  
       }
+
     }
   }
 }

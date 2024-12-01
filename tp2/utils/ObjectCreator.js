@@ -7,10 +7,6 @@ class ObjectCreator {
         this.app = app;
         this.graphLoader = graphLoader;
         this.materialsLoader = materialsLoader;
-
-        // For wireframe visualization
-        this.polygons = [];
-        this.polygonWireframe = false;
     }
 
     createObjects() {
@@ -79,13 +75,15 @@ class ObjectCreator {
             group.add(mesh);
         } else if (node.geometry && node.geometry.type === 'polygon') {
             const mesh = this.polygonPrimitive(node.geometry, currentMaterial);
-            this.polygons.push(mesh);
             group.add(mesh);
         } else if (node.geometry && node.geometry.type === 'nurbs') {
             const mesh = this.nurbsPrimitive(node.geometry, currentMaterial);
             group.add(mesh);
         } else if (node.geometry && node.geometry.type === 'video') {
             const mesh = this.videoPrimitive(node.geometry);
+            group.add(mesh);
+        } else if (node.geometry && node.geometry.type === 'bumpmap') {
+            const mesh = this.bumpmap(node.geometry, currentMaterial);
             group.add(mesh);
         }
         parent.add(group);
@@ -126,6 +124,41 @@ class ObjectCreator {
         return mesh;
     }
 
+    bumpmap(primitive, material = null) {
+        const x1 = primitive.xy1.x;
+        const y1 = primitive.xy1.y;
+    
+        const x2 = primitive.xy2.x;
+        const y2 = primitive.xy2.y;
+    
+        const width = Math.abs(x2 - x1);
+        const height = Math.abs(y2 - y1);
+    
+        const parts_x = primitive.parts_x || 1;
+        const parts_y = primitive.parts_y || 1;
+    
+        const geometry = new THREE.PlaneGeometry(width, height, parts_x, parts_y);
+    
+        // If no material is provided, create a default material with bump mapping
+        const meshMaterial = material || new THREE.MeshPhongMaterial({
+            color: 0xffffff,                         // Default diffuse color
+            map: new THREE.TextureLoader().load('textures/floor.jpg'), // Diffuse texture
+            bumpMap: new THREE.TextureLoader().load('textures/floor_bump.jpg'), // Bump texture
+            bumpScale: 0.03,                         // Bump intensity
+            shininess: 30,                           // Highlight shininess
+        });
+    
+        const mesh = new THREE.Mesh(geometry, meshMaterial);
+    
+        const centerX = (x1 + x2) / 2;
+        const centerY = (y1 + y2) / 2;
+    
+        mesh.position.set(centerX, centerY, 0);
+    
+        return mesh;
+    }
+    
+
     trianglePrimitive(primitive, material = null) {
         const v1 = new THREE.Vector3(primitive.xyz1.x, primitive.xyz1.y, primitive.xyz1.z);
         const v2 = new THREE.Vector3(primitive.xyz2.x, primitive.xyz2.y, primitive.xyz2.z);
@@ -141,7 +174,7 @@ class ObjectCreator {
 
         geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
 
-        const meshMaterial = material || new THREE.MeshBasicMaterial({color: 0xffffff});
+        const meshMaterial = material || new THREE.MeshBasicMaterial({ color: 0xffffff });
 
         const triangle = new THREE.Mesh(geometry, meshMaterial);
 
@@ -245,7 +278,7 @@ class ObjectCreator {
         return light;
     }
 
-    polygonPrimitive(primitive, wireframe = false) {
+    polygonPrimitive(primitive) {
         const radius = primitive.radius;
         const stacks = primitive.stacks;
         const slices = primitive.slices;
@@ -307,8 +340,7 @@ class ObjectCreator {
         geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
         geometry.setIndex(indices);
 
-        const meshMaterial = new THREE.MeshBasicMaterial({vertexColors: true, wireframe: wireframe});
-
+        const meshMaterial = new THREE.MeshBasicMaterial({vertexColors: true});
         return new THREE.Mesh(geometry, meshMaterial);
     }
 
@@ -414,7 +446,7 @@ class ObjectCreator {
         const material = new THREE.ShaderMaterial({
             uniforms: {
                 uTexture: { value: texture },
-                uOpacity: { value: 1.25 },
+                uOpacity: { value: 0.7 },
             },
             vertexShader: `
                 varying vec2 vUv;

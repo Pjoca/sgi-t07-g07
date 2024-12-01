@@ -123,6 +123,14 @@ class GraphLoader {
                             height: childInfo.height,
                             radialSegments: childInfo.radialSegments
                         };
+                    } else if (childInfo.type === "bumpmap") {
+                        node.geometry = {
+                            type: "bumpmap",
+                            xy1: childInfo.xy1,
+                            xy2: childInfo.xy2,
+                            parts_x: childInfo.parts_x,
+                            parts_y: childInfo.parts_y
+                        };
                     }
                 } 
             }
