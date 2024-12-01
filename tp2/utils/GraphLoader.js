@@ -9,16 +9,17 @@ class GraphLoader {
     }
 
     bfs(graph, rootNodeId) {
-        const stack = [rootNodeId];
+        const stack = [{id: rootNodeId, parentCastShadows: false, parentReceiveShadows: false}];
 
         while (stack.length > 0) {
-            const currentId = stack.shift();
+            const {id: currentId, parentCastShadows, parentReceiveShadows} = stack.shift();
             const currentData = graph[currentId];
 
             if (this.nodes[currentId]) continue;
 
             const node = new Node(currentData.type);
 
+            // Apply transforms if available
             if (currentData.transforms) {
                 node.transforms = currentData.transforms.map(transform => ({
                     type: transform.type,
@@ -26,19 +27,33 @@ class GraphLoader {
                 }));
             }
 
+            // Apply material reference if available
             if (currentData.materialref) {
                 node.materialRef = currentData.materialref.materialId.toLocaleLowerCase();
             }
 
+            // Determine castshadows and receiveshadows properties
+            node.castshadows = currentData.castshadows !== undefined
+                ? currentData.castshadows
+                : parentCastShadows; // Inherit from parent if not defined
+
+            node.receiveshadows = currentData.receiveshadows !== undefined
+                ? currentData.receiveshadows
+                : parentReceiveShadows; // Inherit from parent if not defined
+
+            // Process child nodes
             if (currentData.children) {
                 for (const [childId, childInfo] of Object.entries(currentData.children)) {
                     if (childId === "nodesList") {
                         for (const nodeRef of childInfo) {
                             node.children[nodeRef] = nodeRef;
-                            stack.push(nodeRef);
+                            stack.push({
+                                id: nodeRef,
+                                parentCastShadows: node.castshadows,
+                                parentReceiveShadows: node.receiveshadows
+                            });
                         }
                     } else if (childInfo.type === "pointlight") {
-
                         node.geometry = {
                             type: "pointlight",
                             enabled: childInfo.enabled,
@@ -46,8 +61,31 @@ class GraphLoader {
                             intensity: childInfo.intensity,
                             distance: childInfo.distance,
                             decay: childInfo.decay,
-                            castShadow: childInfo.castshadow,
+                            castshadow: childInfo.castshadow,
                             position: childInfo.position
+                        };
+                    } else if (childInfo.type === "directionallight") {
+                        node.geometry = {
+                            type: "directionallight",
+                            enabled: childInfo.enabled,
+                            color: childInfo.color,
+                            intensity: childInfo.intensity,
+                            position: childInfo.position,
+                            castshadow: childInfo.castshadow
+                        };
+                    } else if (childInfo.type === "spotlight") {
+                        node.geometry = {
+                            type: "spotlight",
+                            enabled: childInfo.enabled,
+                            color: childInfo.color,
+                            intensity: childInfo.intensity,
+                            distance: childInfo.distance,
+                            angle: childInfo.angle,
+                            decay: childInfo.decay,
+                            penumbra: childInfo.penumbra,
+                            castshadow: childInfo.castshadow,
+                            position: childInfo.position,
+                            target: childInfo.target,
                         };
                     } else if (childInfo.type === "rectangle") {
                         node.geometry = {
@@ -63,7 +101,7 @@ class GraphLoader {
                             xyz1: childInfo.xyz1,
                             xyz2: childInfo.xyz2,
                             xyz3: childInfo.xyz3
-                        }
+                        };
                     } else if (childInfo.type === "box") {
                         node.geometry = {
                             type: "box",
@@ -105,8 +143,7 @@ class GraphLoader {
                             color_c: childInfo.color_c,
                             color_p: childInfo.color_p
                         };
-                    } 
-                    else if (childInfo.type === "nurbs") {
+                    } else if (childInfo.type === "nurbs") {
                         node.geometry = {
                             type: "nurbs",
                             degree_u: childInfo.degree_u,
@@ -115,16 +152,8 @@ class GraphLoader {
                             parts_v: childInfo.parts_v,
                             controlpoints: childInfo.controlpoints
                         };
-                    }  else if (childInfo.type === "video") {
-                        node.geometry = {
-                            type: "video",
-                            url: childInfo.url,
-                            radius: childInfo.radius,
-                            height: childInfo.height,
-                            radialSegments: childInfo.radialSegments
-                        };
-                    } 
-                } 
+                    }
+                }
             }
 
             this.nodes[currentId] = node;
@@ -138,6 +167,8 @@ class Node {
         this.transforms = [];
         this.materialRef = null;
         this.geometry = null;
+        this.castshadows = null;
+        this.receiveshadows = null;
     }
 }
 

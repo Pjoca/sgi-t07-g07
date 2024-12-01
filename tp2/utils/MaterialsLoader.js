@@ -26,18 +26,54 @@ class MaterialsLoader {
             let repeatT = materialData.texlength_t;
             let twoSided = materialData.twosided;
             let shading = materialData.shading;
-
-            let material = new THREE.MeshPhongMaterial({
-                emissive: emissive,
-                color: color,
-                specular: specular,
-                shininess: shininess,
-                transparent: transparent,
-                opacity: opacity,
-                side: twoSided ? THREE.DoubleSide : THREE.FrontSide
-            });
+            let isVideo = false;
 
             if (texture !== undefined) {
+                isVideo = texture.isVideo;
+            }
+
+            let material;
+
+            if (isVideo) {
+                const video = document.createElement('video');
+                video.src = texture.videoPath;
+                video.crossOrigin = 'anonymous';
+                video.loop = true;
+                video.autoplay = true;
+                video.muted = true;
+
+                video.play().catch((err) => {
+                    console.error('Error starting video playback:', err);
+                });
+
+                const videoTexture = new THREE.VideoTexture(video);
+                videoTexture.colorSpace = THREE.SRGBColorSpace;
+                videoTexture.flipY = true;
+
+                material = new THREE.MeshPhongMaterial({
+                    emissive: emissive,
+                    color: color,
+                    specular: specular,
+                    shininess: shininess,
+                    transparent: transparent,
+                    opacity: opacity,
+                    side: twoSided ? THREE.DoubleSide : THREE.FrontSide
+                });
+
+                material.map = new THREE.VideoTexture(video);
+            } else {
+                material = new THREE.MeshPhongMaterial({
+                    emissive: emissive,
+                    color: color,
+                    specular: specular,
+                    shininess: shininess,
+                    transparent: transparent,
+                    opacity: opacity,
+                    side: twoSided ? THREE.DoubleSide : THREE.FrontSide
+                });
+            }
+
+            if (texture !== undefined && !isVideo) {
                 material.map = texture;
                 material.map.wrapS = THREE.RepeatWrapping;
                 material.map.wrapT = THREE.RepeatWrapping;

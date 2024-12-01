@@ -31,6 +31,32 @@ class MyGuiInterface {
     init() {
         this.datgui = new GUI();
 
+        const lightsFolder = this.datgui.addFolder('Lights');
+
+        const pointLightsFolder = lightsFolder.addFolder('PointLights');
+        const spotLightsFolder = lightsFolder.addFolder('SpotLights');
+        const directionalLightsFolder = lightsFolder.addFolder('DirectionalLights');
+
+        for (const [lightId, light] of Object.entries(this.app.contents.objectCreator.lights)) {
+            if (light.type === "PointLight") {
+                const folder = pointLightsFolder.addFolder(`PointLight ${lightId}`)
+                folder.add(this.app.contents.objectCreator.lights[lightId], 'intensity', 0, this.app.contents.objectCreator.lights[lightId].intensity*20, this.app.contents.objectCreator.lights[lightId].intensity/10).name(`Intensity`);
+            } else if (light.type === "SpotLight") {
+                const folder = spotLightsFolder.addFolder(`SpotLight ${lightId}`)
+                folder.add(this.app.contents.objectCreator.lights[lightId], 'intensity', 0, this.app.contents.objectCreator.lights[lightId].intensity*200, this.app.contents.objectCreator.lights[lightId].intensity/10).name(`Intensity`);
+                folder.addColor(this.app.contents.objectCreator.lights[lightId], 'color').name(`Color`);
+                folder.add(this.app.contents.objectCreator.lights[lightId], 'distance', 0, 1000, 1).name(`Distance`);
+                folder.add(this.app.contents.objectCreator.lights[lightId], 'decay', 1, 5, 0.1).name(`Decay`);
+                folder.add(this.app.contents.objectCreator.lights[lightId], 'angle', 0, Math.PI / 2, 0.01).name(`Angle`);
+                folder.add(this.app.contents.objectCreator.lights[lightId], 'penumbra', 0, 1, 0.01).name(`Penumbra`);
+            } else {
+                const folder = directionalLightsFolder.addFolder(`DirectionalLight ${lightId}`)
+                folder.add(this.app.contents.objectCreator.lights[lightId], 'intensity', 0, this.app.contents.objectCreator.lights[lightId].intensity*20, this.app.contents.objectCreator.lights[lightId].intensity/10).name(`Intensity`);
+            }
+        }
+
+        lightsFolder.close()
+
         const polygonFolder = this.datgui.addFolder('Polygons');
         polygonFolder.add(this.app.contents.objectCreator, 'polygonWireframe').name('Wireframe Mode').onChange((value) => {
             this.contents.updatePolygonWireframe(value);
