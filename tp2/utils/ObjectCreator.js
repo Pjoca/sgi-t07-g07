@@ -7,6 +7,10 @@ class ObjectCreator {
         this.app = app;
         this.graphLoader = graphLoader;
         this.materialsLoader = materialsLoader;
+
+        // For wireframe visualization
+        this.polygons = [];
+        this.polygonWireframe = false;
     }
 
     createObjects() {
@@ -75,6 +79,7 @@ class ObjectCreator {
             group.add(mesh);
         } else if (node.geometry && node.geometry.type === 'polygon') {
             const mesh = this.polygonPrimitive(node.geometry, currentMaterial);
+            this.polygons.push(mesh);
             group.add(mesh);
         } else if (node.geometry && node.geometry.type === 'nurbs') {
             const mesh = this.nurbsPrimitive(node.geometry, currentMaterial);
@@ -121,7 +126,6 @@ class ObjectCreator {
         return mesh;
     }
     
-
     trianglePrimitive(primitive, material = null) {
         const v1 = new THREE.Vector3(primitive.xyz1.x, primitive.xyz1.y, primitive.xyz1.z);
         const v2 = new THREE.Vector3(primitive.xyz2.x, primitive.xyz2.y, primitive.xyz2.z);
@@ -241,7 +245,7 @@ class ObjectCreator {
         return light;
     }
 
-    polygonPrimitive(primitive) {
+    polygonPrimitive(primitive, wireframe = false) {
         const radius = primitive.radius;
         const stacks = primitive.stacks;
         const slices = primitive.slices;
@@ -303,7 +307,7 @@ class ObjectCreator {
         geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
         geometry.setIndex(indices);
 
-        const meshMaterial = new THREE.MeshBasicMaterial({vertexColors: true});
+        const meshMaterial = new THREE.MeshBasicMaterial({vertexColors: true, wireframe: wireframe});
         return new THREE.Mesh(geometry, meshMaterial);
     }
 
@@ -409,7 +413,7 @@ class ObjectCreator {
         const material = new THREE.ShaderMaterial({
             uniforms: {
                 uTexture: { value: texture },
-                uOpacity: { value: 0.7 },
+                uOpacity: { value: 1.25 },
             },
             vertexShader: `
                 varying vec2 vUv;

@@ -43,13 +43,6 @@ class MaterialsLoader {
                 material.map.repeat.set(repeatS, repeatT);
             }
 
-            if (bumpTexture !== undefined) {
-                material.bumpMap = bumpTexture;
-                material.bumpMap.wrapS = THREE.RepeatWrapping;
-                material.bumpMap.wrapT = THREE.RepeatWrapping;
-                material.bumpMap.repeat.set(repeatS, repeatT);
-                material.bumpscale = bumpScale;
-            }
 
             if (shading !== undefined) {
                 if (shading === "flat") {
