@@ -39,7 +39,7 @@
     },
     "textures": {
       "tex1": {
-        "filepath": "scenes/textures/holoprojector.jpg"
+        "filepath": "scenes/textures/holo_projector.jpg"
       },
       "tex2": {
         "filepath": "scenes/textures/wall.jpg"
@@ -506,6 +506,9 @@
       },
       "holoprojector": {
         "type": "node",
+        "materialref": {
+          "materialId": "material1"
+        },
         "transforms": [
           {
             "type": "translate",
