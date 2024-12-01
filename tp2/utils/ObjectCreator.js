@@ -164,8 +164,8 @@ class ObjectCreator {
         const meshMaterial = material || new THREE.MeshBasicMaterial({color: 0xffffff});
 
         const triangle = new THREE.Mesh(geometry, meshMaterial);
-        mesh.castShadow = castshadow;
-        mesh.receiveShadow = receiveShadow;
+        triangle.castShadow = castshadow;
+        triangle.receiveShadow = receiveShadow;
 
         return triangle;
     }
@@ -331,6 +331,8 @@ class ObjectCreator {
             );
             light.target = target;
         }
+
+        console.log(light.target)
 
         if (primitive.castshadow !== undefined) {
             light.castShadow = primitive.castshadow;
