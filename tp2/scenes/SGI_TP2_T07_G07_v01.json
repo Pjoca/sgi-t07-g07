@@ -55,6 +55,9 @@
       },
       "tex6": {
         "filepath": "scenes/textures/outside_wall_entrance.jpg"
+      },
+      "tex7": { 
+        "filepath": "scenes/textures/floor_bump.jpg"
       }
     },
     "materials": {
@@ -111,6 +114,8 @@
         "transparent": false,
         "opacity": 1.0,
         "textureref": "tex3",
+        "bumpmapref": "tex7",
+        "bumpscale": 0.03,
         "texlength_s": 1,
         "texlength_t": 1,
         "twosided": false
@@ -12229,8 +12234,8 @@
         },
         "transforms": [],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12266,8 +12271,8 @@
           }
         ],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12304,8 +12309,8 @@
           }
         ],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12342,8 +12347,8 @@
           }
         ],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12380,8 +12385,8 @@
           }
         ],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12418,8 +12423,8 @@
           }
         ],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12462,8 +12467,8 @@
         },
         "transforms": [],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12499,8 +12504,8 @@
           }
         ],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12537,8 +12542,8 @@
           }
         ],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12575,8 +12580,8 @@
           }
         ],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12613,8 +12618,8 @@
           }
         ],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12651,8 +12656,8 @@
           }
         ],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12695,8 +12700,8 @@
         },
         "transforms": [],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12732,8 +12737,8 @@
           }
         ],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12770,8 +12775,8 @@
           }
         ],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12808,8 +12813,8 @@
           }
         ],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12846,8 +12851,8 @@
           }
         ],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5
@@ -12884,8 +12889,8 @@
           }
         ],
         "children": {
-          "bumpmap": {
-            "type": "bumpmap",
+          "rectanglePrim": {
+            "type": "rectangle",
             "xy1": {
               "x": -0.5,
               "y": -0.5

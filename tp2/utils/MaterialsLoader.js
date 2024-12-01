@@ -19,6 +19,8 @@ class MaterialsLoader {
             let opacity = materialData.opacity;
 
             let texture = textures[materialData.textureref];
+            let bumpTexture = textures[materialData.bumpmapref];
+            let bumpScale = materialData.bumpscale; 
             let repeatS = materialData.texlength_s;
             let repeatT = materialData.texlength_t;
             let twoSided = materialData.twosided;
@@ -39,6 +41,14 @@ class MaterialsLoader {
                 material.map.wrapS = THREE.RepeatWrapping;
                 material.map.wrapT = THREE.RepeatWrapping;
                 material.map.repeat.set(repeatS, repeatT);
+            }
+
+            if (bumpTexture !== undefined) {
+                material.bumpMap = bumpTexture;
+                material.bumpMap.wrapS = THREE.RepeatWrapping;
+                material.bumpMap.wrapT = THREE.RepeatWrapping;
+                material.bumpMap.repeat.set(repeatS, repeatT);
+                material.bumpscale = bumpScale;
             }
 
             if (shading !== undefined) {
