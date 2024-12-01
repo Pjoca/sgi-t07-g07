@@ -35,6 +35,10 @@ class MyGuiInterface {
         polygonFolder.add(this.app.contents.objectCreator, 'polygonWireframe').name('Wireframe Mode').onChange((value) => {
             this.contents.updatePolygonWireframe(value);
         });
+
+        polygonFolder.add(this.contents.objectCreator.materialsLoader, 'bumpScale', 0.0001, 0.9).name('Bump Scale').onChange((value) => {
+            this.contents.updateBumpScale(value);
+        });
         polygonFolder.close();
 
         const cameraFolder = this.datgui.addFolder('Camera');

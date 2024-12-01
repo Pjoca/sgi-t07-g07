@@ -115,7 +115,7 @@
         "opacity": 1.0,
         "textureref": "tex3",
         "bumpmapref": "tex7",
-        "bumpscale": 0.03,
+        "bumpscale": 0.2,
         "texlength_s": 1,
         "texlength_t": 1,
         "twosided": false

@@ -109,6 +109,15 @@ class MyContents {
             polygon.material.wireframe = wireframe;
         });
     }
+    updateBumpScale(bumpScale) {
+        for (let materialKey in this.materialsLoader.materials) {
+            const material = this.materialsLoader.materials[materialKey];
+            if (material.bumpMap) {
+                material.bumpScale = bumpScale * 1.5;
+            }
+        }
+    }
+    
 }
 
 export { MyContents };
