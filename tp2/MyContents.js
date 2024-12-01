@@ -42,7 +42,7 @@ class MyContents {
         if (this.axis === null) {
             // create and attach the axis to the scene
             this.axis = new MyAxis(this);
-            this.app.scene.add(this.axis);
+            // this.app.scene.add(this.axis);
         }
     }
 
@@ -86,8 +86,6 @@ class MyContents {
 
             // Create Objects
             this.objectCreator.createObjects();
-
-            // console.log(this.app.scene)
         }
 
         this.createGui();
