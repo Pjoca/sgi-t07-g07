@@ -142,8 +142,8 @@ class ObjectCreator {
         // If no material is provided, create a default material with bump mapping
         const meshMaterial = material || new THREE.MeshPhongMaterial({
             color: 0xffffff,                         // Default diffuse color
-            map: new THREE.TextureLoader().load('textures/floor.jpg'), // Diffuse texture
-            bumpMap: new THREE.TextureLoader().load('textures/floor_bump.jpg'), // Bump texture
+            map: new THREE.TextureLoader().load(material), // Diffuse texture
+            bumpMap: new THREE.TextureLoader().load(material), // Bump texture
             bumpScale: 0.03,                         // Bump intensity
             shininess: 30,                           // Highlight shininess
         });

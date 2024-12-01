@@ -456,7 +456,9 @@
             "device6",
             "device7",
             "device8",
-            "box1"
+            "box1",
+            "box2",
+            "box3"
           ]
         }
       },
@@ -12203,9 +12205,9 @@
           {
             "type": "translate",
             "amount": {
-              "x": 0,
-              "y": 10.42,
-              "z": -2.45
+              "x": -6.25,
+              "y": 0.5,
+              "z": -0.55
             }
           }
         ],
@@ -12428,8 +12430,473 @@
             }
           }
         }
-      }
+      },
 
+      "box2": {
+        "type": "node",
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -6.35,
+              "y": 0.5,
+              "z": 0.55
+            }
+          }
+        ],
+        "children": {
+          "nodesList": [
+            "boxcomponent7",
+            "boxcomponent8",
+            "boxcomponent9",
+            "boxcomponent10",
+            "boxcomponent11",
+            "boxcomponent12"
+          ]
+        }
+      },
+      "boxcomponent7": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent8": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": -90,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0.5,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+
+      "boxcomponent9": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.5,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+
+      "boxcomponent10": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.5,
+              "y": 0,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+
+      "boxcomponent11": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": -90,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.5,
+              "y": 0,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+
+      "boxcomponent12": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 180,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": -1
+            }
+          }
+        ],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+
+      "box3": {
+        "type": "node",
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -6.30,
+              "y": 1.5,
+              "z": -0.25
+            }
+          }
+        ],
+        "children": {
+          "nodesList": [
+            "boxcomponent13",
+            "boxcomponent14",
+            "boxcomponent15",
+            "boxcomponent16",
+            "boxcomponent17",
+            "boxcomponent18"
+          ]
+        }
+      },
+      "boxcomponent13": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent14": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": -90,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0.5,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+
+      "boxcomponent15": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.5,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+
+      "boxcomponent16": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.5,
+              "y": 0,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+
+      "boxcomponent17": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": -90,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.5,
+              "y": 0,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+
+      "boxcomponent18": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 180,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": -1
+            }
+          }
+        ],
+        "children": {
+          "bumpmap": {
+            "type": "bumpmap",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      }
 
     }
   }
