@@ -1,9 +1,10 @@
 import * as THREE from 'three';
 
 class MaterialsLoader {
-    constructor(app) {
+    constructor(app,) {
         this.app = app;
         this.materials = [];
+        this.bumpScale = 0.2;
     }
 
     read(materials, textures) {
@@ -19,6 +20,8 @@ class MaterialsLoader {
             let opacity = materialData.opacity;
 
             let texture = textures[materialData.textureref];
+            let bumpTexture = textures[materialData.bumpmapref];
+            let bumpScale = materialData.bumpscale !== undefined ? materialData.bumpscale : this.bumpScale; 
             let repeatS = materialData.texlength_s;
             let repeatT = materialData.texlength_t;
             let twoSided = materialData.twosided;
@@ -77,6 +80,14 @@ class MaterialsLoader {
                 material.map.repeat.set(repeatS, repeatT);
             }
 
+            if (bumpTexture !== undefined) {
+                material.bumpMap = bumpTexture;
+                material.bumpMap.wrapS = THREE.RepeatWrapping;
+                material.bumpMap.wrapT = THREE.RepeatWrapping;
+                material.bumpMap.repeat.set(repeatS, repeatT);
+                material.bumpScale = bumpScale;
+            }
+
             if (shading !== undefined) {
                 if (shading === "flat") {
                     material.flatShading = true;
@@ -87,6 +98,15 @@ class MaterialsLoader {
 
             this.materials[key.toLowerCase()] = material;
             this.materials[key.toLowerCase()].name = key.toLowerCase();
+        }
+    }
+    updateBumpScale(newScale) {
+        this.bumpScale = newScale;
+        for (let key in this.materials) {
+            let material = this.materials[key];
+            if (material.bumpMap) {
+                material.bumpScale = newScale;
+            }
         }
     }
 }

@@ -39,13 +39,13 @@
     },
     "textures": {
       "tex1": {
-        "filepath": "scenes/textures/holoprojector.jpg"
+        "filepath": "scenes/textures/holo_projector.jpg"
       },
       "tex2": {
         "filepath": "scenes/textures/wall.jpg"
       },
       "tex3": {
-        "filepath": "scenes/textures/table.jpg"
+        "filepath": "scenes/textures/floor.jpg"
       },
       "tex4": {
         "filepath": "scenes/textures/inside_wall_entrance.jpg"
@@ -59,6 +59,9 @@
       "tex7": {
         "filepath": "scenes/videos/mourinho.mp4",
         "isVideo": true
+      },
+      "tex8": {
+        "filepath": "scenes/textures/floor_bump.jpg"
       }
     },
     "materials": {
@@ -115,6 +118,8 @@
         "transparent": false,
         "opacity": 1.0,
         "textureref": "tex3",
+        "bumpmapref": "tex8",
+        "bumpscale": 0.2,
         "texlength_s": 1,
         "texlength_t": 1,
         "twosided": false
@@ -502,7 +507,10 @@
             "device8",
             "lightball1",
             "lightball2",
-            "spotlight1"
+            "spotlight1",
+            "box1",
+            "box2",
+            "box3"
           ]
         }
       },
@@ -510,6 +518,9 @@
         "type": "node",
         "castshadows": true,
         "receiveshadows": false,
+        "materialref": {
+          "materialId": "material1"
+        },
         "transforms": [
           {
             "type": "translate",
@@ -12536,6 +12547,690 @@
             "radius": 0.3,
             "slices": 32,
             "stacks": 32
+          }
+        }
+      },
+      "box1": {
+        "type": "node",
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -6.25,
+              "y": 0.5,
+              "z": -0.55
+            }
+          }
+        ],
+        "children": {
+          "nodesList": [
+            "boxcomponent1",
+            "boxcomponent2",
+            "boxcomponent3",
+            "boxcomponent4",
+            "boxcomponent5",
+            "boxcomponent6"
+          ]
+        }
+      },
+      "boxcomponent1": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent2": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": -90,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0.5,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent3": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.5,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent4": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.5,
+              "y": 0,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent5": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": -90,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.5,
+              "y": 0,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent6": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 180,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": -1
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "box2": {
+        "type": "node",
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -6.35,
+              "y": 0.5,
+              "z": 0.55
+            }
+          }
+        ],
+        "children": {
+          "nodesList": [
+            "boxcomponent7",
+            "boxcomponent8",
+            "boxcomponent9",
+            "boxcomponent10",
+            "boxcomponent11",
+            "boxcomponent12"
+          ]
+        }
+      },
+      "boxcomponent7": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent8": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": -90,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0.5,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent9": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.5,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent10": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.5,
+              "y": 0,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent11": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": -90,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.5,
+              "y": 0,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent12": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 180,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": -1
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "box3": {
+        "type": "node",
+        "transforms": [
+          {
+            "type": "translate",
+            "amount": {
+              "x": -6.30,
+              "y": 1.5,
+              "z": -0.25
+            }
+          }
+        ],
+        "children": {
+          "nodesList": [
+            "boxcomponent13",
+            "boxcomponent14",
+            "boxcomponent15",
+            "boxcomponent16",
+            "boxcomponent17",
+            "boxcomponent18"
+          ]
+        }
+      },
+      "boxcomponent13": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent14": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": -90,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0.5,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent15": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 90,
+              "y": 0,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": -0.5,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent16": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 90,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0.5,
+              "y": 0,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent17": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": -90,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": -0.5,
+              "y": 0,
+              "z": -0.5
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        }
+      },
+      "boxcomponent18": {
+        "type": "node",
+        "materialref": {
+          "materialId": "material3"
+        },
+        "transforms": [
+          {
+            "type": "rotate",
+            "amount": {
+              "x": 0,
+              "y": 180,
+              "z": 0
+            }
+          },
+          {
+            "type": "translate",
+            "amount": {
+              "x": 0,
+              "y": 0,
+              "z": -1
+            }
+          }
+        ],
+        "children": {
+          "rectanglePrim": {
+            "type": "rectangle",
+            "xy1": {
+              "x": -0.5,
+              "y": -0.5
+            },
+            "xy2": {
+              "x": 0.5,
+              "y": 0.5
+            }
           }
         }
       }

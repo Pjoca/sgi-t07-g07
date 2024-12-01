@@ -9,10 +9,10 @@ class GraphLoader {
     }
 
     bfs(graph, rootNodeId) {
-        const stack = [{ id: rootNodeId, parentCastShadows: false, parentReceiveShadows: false }];
+        const stack = [{id: rootNodeId, parentCastShadows: false, parentReceiveShadows: false}];
 
         while (stack.length > 0) {
-            const { id: currentId, parentCastShadows, parentReceiveShadows } = stack.shift();
+            const {id: currentId, parentCastShadows, parentReceiveShadows} = stack.shift();
             const currentData = graph[currentId];
 
             if (this.nodes[currentId]) continue;
