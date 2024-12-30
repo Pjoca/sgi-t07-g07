@@ -24,7 +24,7 @@ class MyContents {
 
         // Initialize file reader and load the scene JSON file
         this.reader = new MyFileReader(this.onSceneLoaded.bind(this));
-        this.reader.open("scenes/SGI_TP2_T07_G07_v01.json"); // Open the specific scene file
+        this.reader.open("scenes/SGI_TP3_T07_G07.json"); // Open the specific scene file
 
         // Initialize loaders for various scene elements
         this.globalsLoader = new GlobalsLoader(this.app); // Loader for global settings
