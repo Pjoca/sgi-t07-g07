@@ -29,12 +29,12 @@
           "b": 0
         },
         "intensity": 0.1,
-        "front": "scenes/textures/space1.jpg",
-        "back": "scenes/textures/space1.jpg",
-        "up": "scenes/textures/space.jpg",
-        "down": "scenes/textures/space.jpg",
-        "left": "scenes/textures/space2.jpg",
-        "right": "scenes/textures/space3.jpg"
+        "front": "scenes/textures/sky.jpg",
+        "back": "scenes/textures/sky.jpg",
+        "up": "scenes/textures/sky.jpg",
+        "down": "scenes/textures/floor.jpg",
+        "left": "scenes/textures/sky.jpg",
+        "right": "scenes/textures/sky.jpg"
       }
     },
     "textures": {
@@ -55,10 +55,6 @@
       },
       "tex6": {
         "filepath": "scenes/textures/outside_wall_entrance.jpg"
-      },
-      "tex7": {
-        "filepath": "scenes/videos/mourinho.mp4",
-        "isVideo": true
       },
       "tex8": {
         "filepath": "scenes/textures/floor_bump.jpg"
@@ -549,7 +545,6 @@
             "wall4",
             "floor1",
             "floor2",
-            "video1",
             "chair1",
             "chair2",
             "chair3",
@@ -1817,43 +1812,6 @@
               "g": 0.184,
               "b": 0.227
             }
-          }
-        }
-      },
-      "video1": {
-        "type": "node",
-        "castshadows": false,
-        "receiveshadows": false,
-        "materialref": {
-          "materialId": "material14"
-        },
-        "transforms": [
-          {
-            "type": "translate",
-            "amount": {
-              "x": 0,
-              "y": 3.7,
-              "z": 0
-            }
-          },
-          {
-            "type": "rotate",
-            "amount": {
-              "x": 0,
-              "y": 180,
-              "z": 0
-            }
-          }
-        ],
-        "children": {
-          "cylinderPrim": {
-            "type": "cylinder",
-            "base": 0,
-            "top": 1.2,
-            "height": 2.75,
-            "slices": 64,
-            "stacks": 10,
-            "capsclose": false
           }
         }
       },
