@@ -31,57 +31,6 @@ class MyGuiInterface {
     init() {
         this.datgui = new GUI(); // Create a new GUI instance using the imported library
 
-        // Create a folder for light-related settings
-        const lightsFolder = this.datgui.addFolder('Lights');
-
-        // Subfolders for different types of lights (PointLights, SpotLights, DirectionalLights)
-        const pointLightsFolder = lightsFolder.addFolder('PointLights');
-        const spotLightsFolder = lightsFolder.addFolder('SpotLights');
-        const directionalLightsFolder = lightsFolder.addFolder('DirectionalLights');
-
-        // Iterate through each light in the scene and create GUI controls based on its type
-        for (const [lightId, light] of Object.entries(this.app.contents.objectCreator.lights)) {
-            // If it's a PointLight, create controls for its properties
-            if (light.type === "PointLight") {
-                const folder = pointLightsFolder.addFolder(`PointLight ${lightId}`);
-                folder.add(this.app.contents.objectCreator.lights[lightId], 'intensity', 0, this.app.contents.objectCreator.lights[lightId].intensity*20, this.app.contents.objectCreator.lights[lightId].intensity/10).name(`Intensity`);
-            } 
-            // If it's a SpotLight, create controls for its properties, including color, distance, decay, angle, and penumbra
-            else if (light.type === "SpotLight") {
-                const folder = spotLightsFolder.addFolder(`SpotLight ${lightId}`);
-                folder.add(this.app.contents.objectCreator.lights[lightId], 'intensity', 0, this.app.contents.objectCreator.lights[lightId].intensity*200, this.app.contents.objectCreator.lights[lightId].intensity/10).name(`Intensity`);
-                folder.addColor(this.app.contents.objectCreator.lights[lightId], 'color').name(`Color`);
-                folder.add(this.app.contents.objectCreator.lights[lightId], 'distance', 0, 1000, 1).name(`Distance`);
-                folder.add(this.app.contents.objectCreator.lights[lightId], 'decay', 1, 5, 0.1).name(`Decay`);
-                folder.add(this.app.contents.objectCreator.lights[lightId], 'angle', 0, Math.PI / 2, 0.01).name(`Angle`);
-                folder.add(this.app.contents.objectCreator.lights[lightId], 'penumbra', 0, 1, 0.01).name(`Penumbra`);
-            } 
-            // If it's a DirectionalLight, create controls for intensity
-            else {
-                const folder = directionalLightsFolder.addFolder(`DirectionalLight ${lightId}`);
-                folder.add(this.app.contents.objectCreator.lights[lightId], 'intensity', 0, this.app.contents.objectCreator.lights[lightId].intensity*20, this.app.contents.objectCreator.lights[lightId].intensity/10).name(`Intensity`);
-            }
-        }
-
-        // Close the lights folder
-        lightsFolder.close();
-
-        // Create a folder for polygon-related settings
-        const polygonFolder = this.datgui.addFolder('Polygons');
-        
-        // Add wireframe toggle control for polygons
-        polygonFolder.add(this.app.contents.objectCreator, 'polygonWireframe').name('Wireframe Mode').onChange((value) => {
-            this.contents.updatePolygonWireframe(value); // Update wireframe mode in the contents
-        });
-
-        // Add control for bump scale of materials
-        polygonFolder.add(this.contents.objectCreator.materialsLoader, 'bumpScale', 0.0001, 0.9).name('Bump Scale').onChange((value) => {
-            this.contents.updateBumpScale(value); // Update bump scale in the contents
-        });
-
-        // Close the polygon folder
-        polygonFolder.close();
-
         // Create a folder for camera settings
         const cameraFolder = this.datgui.addFolder('Camera');
         

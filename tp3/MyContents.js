@@ -1,13 +1,13 @@
 import * as THREE from 'three'; // Import the THREE.js library for 3D rendering
-import { MyFileReader } from './parser/MyFileReader.js'; // Import custom file reader for loading scene data
-import { GlobalsLoader } from "./utils/GlobalsLoader.js"; // Import loader for global settings in the scene
-import { CamerasLoader } from "./utils/CamerasLoader.js"; // Import loader for camera settings
-import { TexturesLoader } from "./utils/TexturesLoader.js"; // Import loader for textures in the scene
-import { MaterialsLoader } from "./utils/MaterialsLoader.js"; // Import loader for materials in the scene
-import { GraphLoader } from "./utils/GraphLoader.js"; // Import loader for the scene graph (objects and structure)
-import { MyGuiInterface } from "./MyGuiInterface.js"; // Import custom GUI interface for user controls
-import { ObjectCreator } from "./utils/ObjectCreator.js"; // Import object creator to create scene objects
-//import { MyAxis } from './MyAxis.js'; // Import axis helper for scene visualization
+import {MyFileReader} from './parser/MyFileReader.js'; // Import custom file reader for loading scene data
+import {GlobalsLoader} from "./utils/GlobalsLoader.js"; // Import loader for global settings in the scene
+import {CamerasLoader} from "./utils/CamerasLoader.js"; // Import loader for camera settings
+import {TexturesLoader} from "./utils/TexturesLoader.js"; // Import loader for textures in the scene
+import {MaterialsLoader} from "./utils/MaterialsLoader.js"; // Import loader for materials in the scene
+import {GraphLoader} from "./utils/GraphLoader.js"; // Import loader for the scene graph (objects and structure)
+import {MyGuiInterface} from "./MyGuiInterface.js"; // Import custom GUI interface for user controls
+import {ObjectCreator} from "./utils/ObjectCreator.js"; // Import object creator to create scene objects
+import {MyAxis} from './MyAxis.js'; // Import axis helper for scene visualization
 
 /**
  * This class contains and manages the contents of the application, including loading and creating scene elements.
@@ -20,7 +20,7 @@ class MyContents {
      */
     constructor(app) {
         this.app = app // Store reference to the application object
-        //this.axis = null // Axis object for visualization
+        this.axis = null // Axis object for visualization
 
         // Initialize file reader and load the scene JSON file
         this.reader = new MyFileReader(this.onSceneLoaded.bind(this));
@@ -42,10 +42,10 @@ class MyContents {
      */
     init() {
         // Check if the axis has already been created; if not, create it
-       /*if (this.axis === null) {
+        if (this.axis === null) {
             this.axis = new MyAxis(this); // Create the axis object
-            // this.app.scene.add(this.axis); // Optionally add the axis to the scene
-        }*/
+            this.app.scene.add(this.axis); // Optionally add the axis to the scene
+        }
     }
 
     /**
@@ -150,4 +150,4 @@ class MyContents {
     }
 }
 
-export { MyContents }; // Export the MyContents class to be used elsewhere
+export {MyContents}; // Export the MyContents class to be used elsewhere
