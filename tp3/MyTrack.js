@@ -7,6 +7,8 @@ class MyTrack {
         this.route = new MyRoute(scene);
         this.centerLine = null;
         this.trackWidth = trackWidth;
+        this.centerLineMesh = null;
+        this.trackMesh = null;
     }
 
     init() {
@@ -30,9 +32,9 @@ class MyTrack {
             color: 0x333333
         });
 
-        const trackMesh = new THREE.Mesh(tubeGeometry, trackMaterial);
-        trackMesh.scale.set(1, 0.01, 1);
-        this.scene.add(trackMesh);
+        this.trackMesh = new THREE.Mesh(tubeGeometry, trackMaterial);
+        this.trackMesh.scale.set(1, 0.01, 1);
+        this.scene.add(this.trackMesh);
 
         const divisions = 100;
         const centerPoints = this.centerLine.getPoints(divisions);
@@ -42,10 +44,15 @@ class MyTrack {
             dashSize: 3,
             gapSize: 2
         });
-        const centerLineMesh = new THREE.LineLoop(centerLineGeometry, centerLineMaterial);
-        centerLineMesh.computeLineDistances();
-        centerLineMesh.position.y += 0.1;
-        this.scene.add(centerLineMesh);
+        this.centerLineMesh = new THREE.LineLoop(centerLineGeometry, centerLineMaterial);
+        this.centerLineMesh.computeLineDistances();
+        this.centerLineMesh.position.y += 0.1;
+        this.scene.add(this.centerLineMesh);
+    }
+
+    clear() {
+        this.scene.remove(this.trackMesh);
+        this.scene.remove(this.centerLineMesh);
     }
 }
 

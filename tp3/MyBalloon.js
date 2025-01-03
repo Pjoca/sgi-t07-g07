@@ -1,21 +1,22 @@
 import * as THREE from 'three';
 
 class MyBalloon {
-    constructor(scene, routePoints) {
+    constructor(scene, routePoints, isHuman) {
         this.scene = scene;
-        this.routePoints = routePoints; // Route points the AI balloon will follow
+        this.routePoints = routePoints;
+        this.isHuman = isHuman;
         this.balloon = null;
         this.currentPointIndex = 0;
-        this.speed = 0.1; 
-        this.maxSpeed = 1.0; 
-        this.minSpeed = 0.05; 
-        this.acceleration = 0.01; 
+        this.speed = 0.1;
+        this.maxSpeed = 1.0;
+        this.minSpeed = 0.05;
+        this.acceleration = 0.01;
         this.activeKeys = {};
     }
 
     initBalloon() {
         const balloonGeometry = new THREE.SphereGeometry(1, 32, 32);
-        const balloonMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+        const balloonMaterial = new THREE.MeshBasicMaterial({color: 0xff0000});
         this.balloon = new THREE.Mesh(balloonGeometry, balloonMaterial);
 
         const startPosition = this.routePoints[0];
@@ -25,14 +26,20 @@ class MyBalloon {
         this.addKeyboardListeners();
     }
 
-    addKeyboardListeners() {
-        window.addEventListener('keydown', (event) => {
-            this.activeKeys[event.key.toLowerCase()] = true;
-        });
+    removeBalloon() {
+        this.scene.remove(this.balloon);
+    }
 
-        window.addEventListener('keyup', (event) => {
-            this.activeKeys[event.key.toLowerCase()] = false;
-        });
+    addKeyboardListeners() {
+        if (this.isHuman) {
+            window.addEventListener('keydown', (event) => {
+                this.activeKeys[event.key.toLowerCase()] = true;
+            });
+
+            window.addEventListener('keyup', (event) => {
+                this.activeKeys[event.key.toLowerCase()] = false;
+            });
+        }
     }
 
     updateSpeed() {
@@ -66,4 +73,4 @@ class MyBalloon {
     }
 }
 
-export { MyBalloon };
+export {MyBalloon};
