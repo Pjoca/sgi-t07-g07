@@ -6,7 +6,11 @@ class MyBalloon {
         this.routePoints = routePoints; // Route points the AI balloon will follow
         this.balloon = null;
         this.currentPointIndex = 0;
-        this.speed = 0.1;
+        this.speed = 0.1; 
+        this.maxSpeed = 1.0; 
+        this.minSpeed = 0.05; 
+        this.acceleration = 0.01; 
+        this.activeKeys = {};
     }
 
     initBalloon() {
@@ -17,13 +21,35 @@ class MyBalloon {
         const startPosition = this.routePoints[0];
         this.balloon.position.set(startPosition.x, startPosition.y, startPosition.z);
         this.scene.add(this.balloon);
+
+        this.addKeyboardListeners();
+    }
+
+    addKeyboardListeners() {
+        window.addEventListener('keydown', (event) => {
+            this.activeKeys[event.key.toLowerCase()] = true;
+        });
+
+        window.addEventListener('keyup', (event) => {
+            this.activeKeys[event.key.toLowerCase()] = false;
+        });
+    }
+
+    updateSpeed() {
+        if (this.activeKeys['w']) {
+            this.speed = Math.min(this.speed + this.acceleration, this.maxSpeed);
+        }
+        if (this.activeKeys['s']) {
+            this.speed = Math.max(this.speed - this.acceleration, this.minSpeed);
+        }
     }
 
     update() {
         if (!this.balloon || this.routePoints.length === 0) return;
 
-        const targetPoint = this.routePoints[this.currentPointIndex];
+        this.updateSpeed();
 
+        const targetPoint = this.routePoints[this.currentPointIndex];
         const direction = new THREE.Vector3().subVectors(targetPoint, this.balloon.position);
 
         const distance = direction.length();
