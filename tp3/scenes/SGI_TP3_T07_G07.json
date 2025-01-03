@@ -73,8 +73,8 @@
         },
         "left": -80,
         "right": 80,
-        "bottom": -65,
-        "top": 65
+        "bottom": -50,
+        "top": 50
       }
     },
     "graph": {

@@ -6,7 +6,8 @@ class MyReader {
     constructor(app) {
         this.app = app;
         this.track = null;
-        this.balloon = null;
+        this.aiBalloon = null;
+        this.humanBalloon = null;
         this.menu = null; // Reference to the menu
         this.gameState = 'menu';  // Start with the menu state
 
@@ -20,11 +21,10 @@ class MyReader {
         this.menu = new MyMenu(this.app, this);
         this.menu.init();
 
-        // Setup the mouse move listener to update mouse position
+        // Setup event listeners
         window.addEventListener('mousemove', this.onMouseMove.bind(this));
-
-        // Setup the mouse click listener to handle button clicks
         window.addEventListener('click', this.onMouseClick.bind(this));
+        window.addEventListener('keydown', this.onKeyDown.bind(this)); // New keydown listener
 
         // Render loop starts
         this.animate();
@@ -42,6 +42,19 @@ class MyReader {
         }
     }
 
+    onKeyDown(event) {
+        switch (event.key) {
+            case ' ': // Spacebar
+                this.togglePause();
+                break;
+            case 'Escape': // Esc key
+                this.returnToMenu();
+                break;
+            default:
+                break;
+        }
+    }
+
     setState(state) {
         this.gameState = state;
         if (state === 'running') {
@@ -52,12 +65,39 @@ class MyReader {
 
     startGame() {
         console.log("Starting the game...");
-        this.menu.hide();  // Hide the menu when game starts
+        this.menu.hide();
         this.track = new MyTrack(this.app.scene, 20);
         this.track.init();
         const routePoints = this.track.route.getRoutePoints();
-        this.balloon = new MyBalloon(this.app.scene, routePoints);
-        this.balloon.initBalloon();
+        this.aiBalloon = new MyBalloon(this.app.scene, routePoints, false);
+        this.aiBalloon.initBalloon();
+    }
+
+    togglePause() {
+        if (this.gameState === 'running') {
+            console.log("Game Paused");
+            this.gameState = 'paused';
+        } else if (this.gameState === 'paused') {
+            console.log("Game Resumed");
+            this.gameState = 'running';
+        }
+    }
+
+    returnToMenu() {
+        if (this.gameState !== 'menu') {
+            console.log("Returning to menu...");
+            if (this.track) {
+                this.track.clear();
+            }
+            if (this.aiBalloon) {
+                this.aiBalloon.removeBalloon();
+            }
+            this.gameState = 'menu';
+            this.menu.show();
+            this.menu.humanBalloonSelected = false;
+            this.menu.aiBalloonSelected = false;
+            this.app.setActiveCamera("orthogonal1");
+        }
     }
 
     animate() {
@@ -71,7 +111,7 @@ class MyReader {
 
         // Update balloon if the game is in the 'running' state
         if (this.gameState === 'running') {
-            this.balloon.update(); // Update balloon position
+            this.aiBalloon.update(); // Update balloon position
         }
 
         // Render the scene
