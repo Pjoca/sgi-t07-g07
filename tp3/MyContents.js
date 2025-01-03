@@ -8,6 +8,7 @@ import {GraphLoader} from "./utils/GraphLoader.js"; // Import loader for the sce
 import {MyGuiInterface} from "./MyGuiInterface.js"; // Import custom GUI interface for user controls
 import {ObjectCreator} from "./utils/ObjectCreator.js"; // Import object creator to create scene objects
 import {MyAxis} from './MyAxis.js'; // Import axis helper for scene visualization
+import {MyReader} from './MyReader.js';
 
 /**
  * This class contains and manages the contents of the application, including loading and creating scene elements.
@@ -35,6 +36,8 @@ class MyContents {
 
         // Object creator to generate objects from the graph and materials
         this.objectCreator = new ObjectCreator(this.app, this.graphLoader, this.materialsLoader);
+
+        this.reader = new MyReader(this.app);
     }
 
     /**
@@ -104,6 +107,8 @@ class MyContents {
 
         // Create and initialize the GUI for the application
         this.createGui();
+
+        this.reader.init();
     }
 
     /**
