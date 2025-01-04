@@ -16,6 +16,10 @@ class MyBalloon {
         this.maxVerticalSpeed = 0.2; 
         this.verticalAcceleration = 0.01;
         this.activeKeys = {};
+
+        this.windSpeed = 0.15;
+        this.layerHeights = [0, 10, 20, 30, 40]; 
+        
     }
 
     initBalloon() {
@@ -53,10 +57,33 @@ class MyBalloon {
         } else if (this.activeKeys['s']) {
             this.verticalSpeed = Math.max(this.verticalSpeed - this.verticalAcceleration, -this.maxVerticalSpeed);
         } 
+    }
 
-        if (this.balloon.position.y <= 0) {
-            this.balloon.position.y = 1;
-            this.verticalSpeed = 0;
+    getActiveLayer() {
+        // Determine the active layer based on the balloon's height
+        const height = this.balloon.position.y;
+        for (let i = this.layerHeights.length - 1; i >= 0; i--) {
+            if (height >= this.layerHeights[i]) {
+                return i;
+            }
+        }
+        return 0; // Default to the lowest layer
+    }
+
+    getWindForLayer(layer) {
+        // Return the wind direction for the given layer
+        switch (layer) {
+            case 4: // West
+                return new THREE.Vector3(-this.windSpeed, 0, 0);
+            case 3: // East
+                return new THREE.Vector3(this.windSpeed, 0, 0);
+            case 2: // South
+                return new THREE.Vector3(0, 0, -this.windSpeed);
+            case 1: // North
+                return new THREE.Vector3(0, 0, this.windSpeed);
+            case 0: // No wind
+            default:
+                return new THREE.Vector3(0, 0, 0);
         }
     }
 
@@ -64,6 +91,12 @@ class MyBalloon {
         if (!this.balloon || this.routePoints.length === 0) return;
 
         this.updateSpeed();
+
+        const activeLayer = this.getActiveLayer();
+        const wind = this.getWindForLayer(activeLayer);
+        this.balloon.position.add(wind);
+
+        //console.log(`Active Layer: ${activeLayer}, Wind: ${wind.toArray()}`);
 
         const targetPoint = this.routePoints[this.currentPointIndex];
         const direction = new THREE.Vector3().subVectors(targetPoint, this.balloon.position);
@@ -78,6 +111,11 @@ class MyBalloon {
         }
 
         this.balloon.position.y += this.verticalSpeed;
+
+        if (this.balloon.position.y < 0) {
+            this.balloon.position.y = 1;
+            this.verticalSpeed = 0;
+        }
 
         const tangent = new THREE.Vector3().subVectors(this.routePoints[this.currentPointIndex], this.balloon.position);
         this.balloon.rotation.y = Math.atan2(tangent.z, tangent.x);
