@@ -99,29 +99,32 @@ class MyBalloon {
         const wind = this.getWindForLayer(activeLayer);
         this.balloon.position.add(wind);
 
-        //console.log(`Active Layer: ${activeLayer}, Wind: ${wind.toArray()}`);
+        if(this.isHuman) {
+            this.balloon.position.y += this.verticalSpeed;
 
-        const targetPoint = this.routePoints[this.currentPointIndex];
-        const direction = new THREE.Vector3().subVectors(targetPoint, this.balloon.position);
-
-        const distance = direction.length();
-        if (distance < this.speed) {
-            this.balloon.position.copy(targetPoint);
-            this.currentPointIndex = (this.currentPointIndex + 1) % this.routePoints.length;
-        } else {
-            direction.normalize().multiplyScalar(this.speed);
-            this.balloon.position.add(direction);
+            if (this.balloon.position.y < 0) {
+                this.balloon.position.y = 1;
+                this.verticalSpeed = 0;
+            }
         }
 
-        this.balloon.position.y += this.verticalSpeed;
+        if(this.isHuman == false) {
 
-        if (this.balloon.position.y < 0) {
-            this.balloon.position.y = 1;
-            this.verticalSpeed = 0;
+            const targetPoint = this.routePoints[this.currentPointIndex];
+            const direction = new THREE.Vector3().subVectors(targetPoint, this.balloon.position);
+            const distance = direction.length();
+            if (distance < this.speed) {
+                this.balloon.position.copy(targetPoint);
+                this.currentPointIndex = (this.currentPointIndex + 1) % this.routePoints.length;
+            } else {
+                direction.normalize().multiplyScalar(this.speed);
+                this.balloon.position.add(direction);
+            }
+    
+            const tangent = new THREE.Vector3().subVectors(this.routePoints[this.currentPointIndex], this.balloon.position);
+            this.balloon.rotation.y = Math.atan2(tangent.z, tangent.x);
         }
 
-        const tangent = new THREE.Vector3().subVectors(this.routePoints[this.currentPointIndex], this.balloon.position);
-        this.balloon.rotation.y = Math.atan2(tangent.z, tangent.x);
     }
 }
 
