@@ -106,6 +106,11 @@ class MyBalloon {
                 this.balloon.position.y = 1;
                 this.verticalSpeed = 0;
             }
+
+            if (this.balloon.position.y > 20) {
+                this.balloon.position.y = 20;
+                this.verticalSpeed = 0;
+            }
         }
 
         if(this.isHuman == false) {
