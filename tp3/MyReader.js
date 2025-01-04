@@ -73,6 +73,7 @@ class MyReader {
         this.aiBalloon.initBalloon();
         this.humanBalloon = new MyBalloon(this.app.scene, routePoints, true);
         this.humanBalloon.initBalloon();
+        this.humanBalloon.addDynamicWindIndicator();
     }
 
     togglePause() {

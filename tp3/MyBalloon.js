@@ -32,6 +32,7 @@ class MyBalloon {
         this.scene.add(this.balloon);
 
         this.addKeyboardListeners();
+
     }
 
     removeBalloon() {
@@ -51,7 +52,7 @@ class MyBalloon {
     }
 
     updateSpeed() {
-        // Update vertical speed (up and down movement)
+        
         if(this.isHuman) {
             if (this.activeKeys['w']) {
                 this.verticalSpeed = Math.min(this.verticalSpeed + this.verticalAcceleration, this.maxVerticalSpeed);
@@ -90,6 +91,79 @@ class MyBalloon {
         }
     }
 
+
+    addWindIndicators() {
+        this.windIndicators = [];
+    
+        for (let i = 0; i < this.layerHeights.length; i++) {
+            const layerHeight = this.layerHeights[i];
+            const windDirection = this.getWindForLayer(i).normalize(); 
+            const arrowLength = 10; // Length of the arrow
+            const arrowColor = 0x00ff00; 
+    
+    
+            if (windDirection.length() > 0) {
+                const arrowHelper = new THREE.ArrowHelper(
+                    windDirection, 
+                    new THREE.Vector3(0, layerHeight, 0), 
+                    arrowLength, 
+                    arrowColor 
+                );
+    
+                this.scene.add(arrowHelper);
+                this.windIndicators.push(arrowHelper);
+            }
+        }
+    }
+    
+    removeWindIndicators() {
+        if (this.windIndicators) {
+            this.windIndicators.forEach((indicator) => {
+                this.scene.remove(indicator);
+            });
+            this.windIndicators = []; // Clear the array after removal
+        }
+    } 
+    
+    addDynamicWindIndicator() {
+        
+        const arrowLength = 6; 
+        const arrowColor = 0x00ff00; 
+    
+        this.windIndicator = new THREE.ArrowHelper(
+            new THREE.Vector3(0, 0, 0), 
+            new THREE.Vector3(0, 0, 0), 
+            arrowLength,
+            arrowColor
+        );
+    
+        
+        this.scene.add(this.windIndicator);
+    }
+    
+
+    updateWindIndicator() {
+        const activeLayer = this.getActiveLayer(); 
+        const windDirection = this.getWindForLayer(activeLayer).normalize(); 
+        const balloonPosition = this.balloon.position.clone();
+    
+        if (windDirection.length() === 0) {
+            // No wind in layer 0, hide the arrow
+            this.windIndicator.visible = false;
+        } else {
+            // Wind is present, make the arrow visible and update its position
+            this.windIndicator.visible = true;
+    
+        
+            const arrowOffset = windDirection.clone().multiplyScalar(5); 
+            const arrowPosition = balloonPosition.add(arrowOffset);
+    
+            this.windIndicator.position.copy(arrowPosition);
+            this.windIndicator.setDirection(windDirection);
+        }
+    }
+    
+
     update() {
         if (!this.balloon || this.routePoints.length === 0) return;
 
@@ -97,6 +171,7 @@ class MyBalloon {
 
         const activeLayer = this.getActiveLayer();
         const wind = this.getWindForLayer(activeLayer);
+        
         this.balloon.position.add(wind);
 
         if(this.isHuman) {
@@ -111,6 +186,7 @@ class MyBalloon {
                 this.balloon.position.y = 20;
                 this.verticalSpeed = 0;
             }
+            this.updateWindIndicator();
         }
 
         if(this.isHuman == false) {
