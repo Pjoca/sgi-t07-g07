@@ -39,7 +39,7 @@ class MyBalloon {
     }
 
     addKeyboardListeners() {
-        //if (this.isHuman) {
+        if (this.isHuman) {
             window.addEventListener('keydown', (event) => {
                 this.activeKeys[event.key.toLowerCase()] = true;
             });
@@ -47,16 +47,19 @@ class MyBalloon {
             window.addEventListener('keyup', (event) => {
                 this.activeKeys[event.key.toLowerCase()] = false;
             });
-        //}
+        }
     }
 
     updateSpeed() {
         // Update vertical speed (up and down movement)
-        if (this.activeKeys['w']) {
-            this.verticalSpeed = Math.min(this.verticalSpeed + this.verticalAcceleration, this.maxVerticalSpeed);
-        } else if (this.activeKeys['s']) {
-            this.verticalSpeed = Math.max(this.verticalSpeed - this.verticalAcceleration, -this.maxVerticalSpeed);
-        } 
+        if(this.isHuman) {
+            if (this.activeKeys['w']) {
+                this.verticalSpeed = Math.min(this.verticalSpeed + this.verticalAcceleration, this.maxVerticalSpeed);
+            } else if (this.activeKeys['s']) {
+                this.verticalSpeed = Math.max(this.verticalSpeed - this.verticalAcceleration, -this.maxVerticalSpeed);
+            } 
+        }
+        
     }
 
     getActiveLayer() {

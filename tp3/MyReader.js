@@ -71,6 +71,8 @@ class MyReader {
         const routePoints = this.track.route.getRoutePoints();
         this.aiBalloon = new MyBalloon(this.app.scene, routePoints, false);
         this.aiBalloon.initBalloon();
+        this.humanBalloon = new MyBalloon(this.app.scene, routePoints, true);
+        this.humanBalloon.initBalloon();
     }
 
     togglePause() {
@@ -112,6 +114,7 @@ class MyReader {
         // Update balloon if the game is in the 'running' state
         if (this.gameState === 'running') {
             this.aiBalloon.update(); // Update balloon position
+            this.humanBalloon.update(); // Update balloon position
         }
 
         // Render the scene
