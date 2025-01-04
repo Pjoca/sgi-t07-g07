@@ -11,6 +11,10 @@ class MyBalloon {
         this.maxSpeed = 1.0;
         this.minSpeed = 0.05;
         this.acceleration = 0.01;
+
+        this.verticalSpeed = 0; 
+        this.maxVerticalSpeed = 0.2; 
+        this.verticalAcceleration = 0.01;
         this.activeKeys = {};
     }
 
@@ -31,7 +35,7 @@ class MyBalloon {
     }
 
     addKeyboardListeners() {
-        if (this.isHuman) {
+        //if (this.isHuman) {
             window.addEventListener('keydown', (event) => {
                 this.activeKeys[event.key.toLowerCase()] = true;
             });
@@ -39,15 +43,20 @@ class MyBalloon {
             window.addEventListener('keyup', (event) => {
                 this.activeKeys[event.key.toLowerCase()] = false;
             });
-        }
+        //}
     }
 
     updateSpeed() {
+        // Update vertical speed (up and down movement)
         if (this.activeKeys['w']) {
-            this.speed = Math.min(this.speed + this.acceleration, this.maxSpeed);
-        }
-        if (this.activeKeys['s']) {
-            this.speed = Math.max(this.speed - this.acceleration, this.minSpeed);
+            this.verticalSpeed = Math.min(this.verticalSpeed + this.verticalAcceleration, this.maxVerticalSpeed);
+        } else if (this.activeKeys['s']) {
+            this.verticalSpeed = Math.max(this.verticalSpeed - this.verticalAcceleration, -this.maxVerticalSpeed);
+        } 
+
+        if (this.balloon.position.y <= 0) {
+            this.balloon.position.y = 1;
+            this.verticalSpeed = 0;
         }
     }
 
@@ -67,6 +76,8 @@ class MyBalloon {
             direction.normalize().multiplyScalar(this.speed);
             this.balloon.position.add(direction);
         }
+
+        this.balloon.position.y += this.verticalSpeed;
 
         const tangent = new THREE.Vector3().subVectors(this.routePoints[this.currentPointIndex], this.balloon.position);
         this.balloon.rotation.y = Math.atan2(tangent.z, tangent.x);
