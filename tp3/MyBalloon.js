@@ -18,7 +18,7 @@ class MyBalloon {
         this.activeKeys = {};
 
         this.windSpeed = 0.15;
-        this.layerHeights = [0, 10, 20, 30, 40]; 
+        this.layerHeights = [0, 5, 10, 15, 20]; 
         
     }
 
@@ -102,7 +102,7 @@ class MyBalloon {
         if(this.isHuman) {
             this.balloon.position.y += this.verticalSpeed;
 
-            if (this.balloon.position.y < 0) {
+            if (this.balloon.position.y < 1) {
                 this.balloon.position.y = 1;
                 this.verticalSpeed = 0;
             }
