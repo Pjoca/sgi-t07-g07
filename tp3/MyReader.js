@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 import { MyMenu } from './MyMenu.js';
 import { MyTrack } from './MyTrack.js';
 import { MyBalloon } from './MyBalloon.js';
@@ -50,6 +51,9 @@ class MyReader {
             case 'Escape': // Esc key
                 this.returnToMenu();
                 break;
+            case '3':
+                this.app.setActiveCamera("perspective2");
+                break;
             default:
                 break;
         }
@@ -66,12 +70,12 @@ class MyReader {
     startGame() {
         console.log("Starting the game...");
         this.menu.hide();
-        this.track = new MyTrack(this.app.scene, 20);
+        this.track = new MyTrack(this.app.scene, 30);
         this.track.init();
         const routePoints = this.track.route.getRoutePoints();
-        this.aiBalloon = new MyBalloon(this.app.scene, routePoints, false);
+        this.aiBalloon = new MyBalloon(this.app, routePoints, false);
         this.aiBalloon.initBalloon();
-        this.humanBalloon = new MyBalloon(this.app.scene, routePoints, true);
+        this.humanBalloon = new MyBalloon(this.app, routePoints, true);
         this.humanBalloon.initBalloon();
         this.humanBalloon.addDynamicWindIndicator();
     }
@@ -98,11 +102,12 @@ class MyReader {
             if (this.humanBalloon) {
                 this.humanBalloon.removeBalloon();
             }
+            this.app.setActiveCamera("orthogonal1");
             this.gameState = 'menu';
             this.menu.show();
             this.menu.humanBalloonSelected = false;
             this.menu.aiBalloonSelected = false;
-            this.app.setActiveCamera("orthogonal1");
+
         }
     }
 

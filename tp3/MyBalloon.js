@@ -1,16 +1,17 @@
 import * as THREE from 'three';
 
 class MyBalloon {
-    constructor(scene, routePoints, isHuman) {
-        this.scene = scene;
+    constructor(app, routePoints, isHuman) {
+        this.app = app;
+        this.scene = this.app.scene;
         this.routePoints = routePoints;
         this.isHuman = isHuman;
         this.balloon = null;
         this.currentPointIndex = 1;
-        this.botSpeed = 0.04;
-        this.verticalSpeed = 0.1;
+        this.botSpeed = 0.0375;
+        this.verticalSpeed = 0.08;
         this.activeKeys = {};
-
+        this.cameraMode = "thirdPerson";
         this.windSpeed = 0.05;
         this.layerHeights = [0, 5, 10, 15, 20];
     }
@@ -23,9 +24,9 @@ class MyBalloon {
         const startPosition = this.routePoints[0];
 
         if (this.isHuman) {
-            this.balloon.position.set(startPosition.x, startPosition.y, startPosition.z - 5);
+            this.balloon.position.set(startPosition.x, startPosition.y, startPosition.z - 7.5);
         } else {
-            this.balloon.position.set(startPosition.x, startPosition.y, startPosition.z + 5);
+            this.balloon.position.set(startPosition.x, startPosition.y, startPosition.z + 7.5);
         }
         this.scene.add(this.balloon);
 
@@ -49,6 +50,40 @@ class MyBalloon {
         }
     }
 
+    updateCamera(wind) {
+        let x = wind.x;
+        let z = wind.z;
+
+        if (x === -this.windSpeed)  x = 1;
+        if (x === this.windSpeed) x = -1;
+        if (z === -this.windSpeed) z = 1;
+        if (z === this.windSpeed) z = -1;
+
+        if (this.cameraMode === "thirdPerson") {
+            if (x === 0 && z === 0) {
+                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(10, 7.5, 0));
+                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-100, this.balloon.position.y-25, this.balloon.position.z));
+            } else if (x === 0) {
+                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(0, 7.5, z*10));
+                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(this.balloon.position.x, this.balloon.position.y-25, -z*100));
+            } else if (z === 0) {
+                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(x*10, 7.5, 0));
+                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-x*100, this.balloon.position.y-25, this.balloon.position.z));
+            }
+        } else {
+            if (x === 0 && z === 0) {
+                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position);
+                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-100, this.balloon.position.y-25, this.balloon.position.z));
+            } else if (x === 0) {
+                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position);
+                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(this.balloon.position.x, this.balloon.position.y-25, -z*100));
+            } else if (z === 0) {
+                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position);
+                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-x*100, this.balloon.position.y-25, this.balloon.position.z));
+            }
+        }
+    }
+
     update() {
         if (!this.balloon || this.routePoints.length === 0) return;
 
@@ -57,12 +92,20 @@ class MyBalloon {
 
         this.balloon.position.add(wind);
 
+        if (this.app.activeCameraName === "perspective1") this.updateCamera(wind);
+
         if (this.isHuman) {
             // Adjust vertical movement based on key presses
             if (this.activeKeys['w']) {
                 this.balloon.position.y += this.verticalSpeed;
             } else if (this.activeKeys['s']) {
                 this.balloon.position.y -= this.verticalSpeed;
+            } else if (this.activeKeys['1']) {
+                this.app.setActiveCamera("perspective1");
+                this.cameraMode = "firstPerson";
+            } else if (this.activeKeys['2']) {
+                this.app.setActiveCamera("perspective1");
+                this.cameraMode = "thirdPerson";
             }
 
             // Prevent the balloon from going out of bounds

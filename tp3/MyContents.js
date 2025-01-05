@@ -47,7 +47,7 @@ class MyContents {
         // Check if the axis has already been created; if not, create it
         if (this.axis === null) {
             this.axis = new MyAxis(this); // Create the axis object
-            this.app.scene.add(this.axis); // Optionally add the axis to the scene
+            //this.app.scene.add(this.axis); // Optionally add the axis to the scene
         }
     }
 
