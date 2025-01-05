@@ -92,7 +92,7 @@ class MyBalloon {
 
         this.balloon.position.add(wind);
 
-        this.updateCamera(wind);
+        if (this.app.activeCameraName === "perspective1") this.updateCamera(wind);
 
         if (this.isHuman) {
             // Adjust vertical movement based on key presses
@@ -101,8 +101,10 @@ class MyBalloon {
             } else if (this.activeKeys['s']) {
                 this.balloon.position.y -= this.verticalSpeed;
             } else if (this.activeKeys['1']) {
+                this.app.setActiveCamera("perspective1");
                 this.cameraMode = "firstPerson";
             } else if (this.activeKeys['2']) {
+                this.app.setActiveCamera("perspective1");
                 this.cameraMode = "thirdPerson";
             }
 

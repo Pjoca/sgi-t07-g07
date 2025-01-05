@@ -2,7 +2,6 @@ import * as THREE from 'three';
 import { MyMenu } from './MyMenu.js';
 import { MyTrack } from './MyTrack.js';
 import { MyBalloon } from './MyBalloon.js';
-import {MyObstacle} from "./MyObstacle.js";
 
 class MyReader {
     constructor(app) {
@@ -10,7 +9,6 @@ class MyReader {
         this.track = null;
         this.aiBalloon = null;
         this.humanBalloon = null;
-        this.obstacles = null;
         this.menu = null; // Reference to the menu
         this.gameState = 'menu';  // Start with the menu state
 
@@ -53,6 +51,9 @@ class MyReader {
             case 'Escape': // Esc key
                 this.returnToMenu();
                 break;
+            case '3':
+                this.app.setActiveCamera("perspective2");
+                break;
             default:
                 break;
         }
@@ -77,8 +78,6 @@ class MyReader {
         this.humanBalloon = new MyBalloon(this.app, routePoints, true);
         this.humanBalloon.initBalloon();
         this.humanBalloon.addDynamicWindIndicator();
-        this.obstacles = new MyObstacle(this.app.scene);
-        this.obstacles.createObstacleMarkers();
     }
 
     togglePause() {
@@ -102,9 +101,6 @@ class MyReader {
             }
             if (this.humanBalloon) {
                 this.humanBalloon.removeBalloon();
-            }
-            if (this.obstacles) {
-                this.obstacles.removeObstacleMarkers();
             }
             this.app.setActiveCamera("orthogonal1");
             this.gameState = 'menu';
