@@ -1,14 +1,15 @@
 import * as THREE from 'three';
 
 class MyBalloon {
-    constructor(app, routePoints, isHuman) {
+    constructor(app, routePoints, isHuman, gameStateManager) {
         this.app = app;
         this.scene = this.app.scene;
         this.routePoints = routePoints;
         this.isHuman = isHuman;
+        this.gameStateManager = gameStateManager;
         this.balloon = null;
         this.currentPointIndex = 1;
-        this.botSpeed = 0.0375;
+        this.botSpeed = 1;
         this.verticalSpeed = 0.08;
         this.activeKeys = {};
         this.cameraMode = "thirdPerson";
@@ -54,7 +55,7 @@ class MyBalloon {
         let x = wind.x;
         let z = wind.z;
 
-        if (x === -this.windSpeed)  x = 1;
+        if (x === -this.windSpeed) x = 1;
         if (x === this.windSpeed) x = -1;
         if (z === -this.windSpeed) z = 1;
         if (z === this.windSpeed) z = -1;
@@ -62,24 +63,24 @@ class MyBalloon {
         if (this.cameraMode === "thirdPerson") {
             if (x === 0 && z === 0) {
                 this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(10, 7.5, 0));
-                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-100, this.balloon.position.y-25, this.balloon.position.z));
+                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-100, this.balloon.position.y - 25, this.balloon.position.z));
             } else if (x === 0) {
-                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(0, 7.5, z*10));
-                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(this.balloon.position.x, this.balloon.position.y-25, -z*100));
+                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(0, 7.5, z * 10));
+                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(this.balloon.position.x, this.balloon.position.y - 25, -z * 100));
             } else if (z === 0) {
-                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(x*10, 7.5, 0));
-                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-x*100, this.balloon.position.y-25, this.balloon.position.z));
+                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(x * 10, 7.5, 0));
+                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-x * 100, this.balloon.position.y - 25, this.balloon.position.z));
             }
         } else {
             if (x === 0 && z === 0) {
                 this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position);
-                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-100, this.balloon.position.y-25, this.balloon.position.z));
+                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-100, this.balloon.position.y - 25, this.balloon.position.z));
             } else if (x === 0) {
                 this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position);
-                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(this.balloon.position.x, this.balloon.position.y-25, -z*100));
+                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(this.balloon.position.x, this.balloon.position.y - 25, -z * 100));
             } else if (z === 0) {
                 this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position);
-                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-x*100, this.balloon.position.y-25, this.balloon.position.z));
+                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-x * 100, this.balloon.position.y - 25, this.balloon.position.z));
             }
         }
     }
@@ -87,9 +88,12 @@ class MyBalloon {
     update() {
         if (!this.balloon || this.routePoints.length === 0) return;
 
+        // Save the previous position
+        const prevPosition = this.balloon.position.clone();
+
+        // Update position based on wind or human input
         const activeLayer = this.getActiveLayer();
         const wind = this.getWindForLayer(activeLayer);
-
         this.balloon.position.add(wind);
 
         if (this.app.activeCameraName === "perspective1") this.updateCamera(wind);
@@ -135,7 +139,39 @@ class MyBalloon {
             const tangent = new THREE.Vector3().subVectors(this.routePoints[this.currentPointIndex], this.balloon.position);
             this.balloon.rotation.y = Math.atan2(tangent.z, tangent.x);
         }
+
+        // Check for crossing the goal line
+        this.checkGoalLineCrossing(prevPosition);
     }
+
+    checkGoalLineCrossing(prevPosition) {
+        const goalLineX = 7.5; // X position of the goal line
+        const minZ = 23; // Minimum Z position for the goal posts
+        const maxZ = 57; // Maximum Z position for the goal posts
+        const maxY = 25; // Maximum Y position the balloon can cross below
+        const tolerance = 0.5; // Small tolerance for crossing detection
+
+        const isCrossingGoalLine = Math.abs(this.balloon.position.x - goalLineX) < tolerance;
+        const isWithinVerticalBounds = this.balloon.position.y < maxY;
+        const isWithinHorizontalBounds = this.balloon.position.z >= minZ && this.balloon.position.z <= maxZ;
+        const isMovingForward = this.balloon.position.x < prevPosition.x;
+
+        if (isCrossingGoalLine && isWithinVerticalBounds && isWithinHorizontalBounds) {
+            if (isMovingForward) {
+                this.onGoalLineCrossed(); // Proceed with endgame mechanic
+            } else {
+                this.balloon.position.x = prevPosition.x; // Block the balloon from crossing in the wrong direction
+                console.log("Cannot cross the goal line in the wrong direction!");
+            }
+        }
+    }
+
+    onGoalLineCrossed() {
+        console.log(`${this.isHuman ? 'Human' : 'Bot'} balloon crossed the goal line!`);
+        this.gameStateManager.setWinner(this.isHuman ? 'Human' : 'Bot');
+        this.gameStateManager.setState('end');
+    }
+
 
     getActiveLayer() {
         const height = this.balloon.position.y;
