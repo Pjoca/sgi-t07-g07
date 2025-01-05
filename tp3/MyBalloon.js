@@ -9,7 +9,7 @@ class MyBalloon {
         this.gameStateManager = gameStateManager;
         this.balloon = null;
         this.currentPointIndex = 1;
-        this.botSpeed = 1;
+        this.botSpeed = 0.0375;
         this.verticalSpeed = 0.08;
         this.activeKeys = {};
         this.cameraMode = "thirdPerson";
