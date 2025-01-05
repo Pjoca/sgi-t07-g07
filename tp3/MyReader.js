@@ -1,6 +1,8 @@
+import * as THREE from 'three';
 import { MyMenu } from './MyMenu.js';
 import { MyTrack } from './MyTrack.js';
 import { MyBalloon } from './MyBalloon.js';
+import {MyObstacle} from "./MyObstacle.js";
 
 class MyReader {
     constructor(app) {
@@ -8,6 +10,7 @@ class MyReader {
         this.track = null;
         this.aiBalloon = null;
         this.humanBalloon = null;
+        this.obstacles = null;
         this.menu = null; // Reference to the menu
         this.gameState = 'menu';  // Start with the menu state
 
@@ -66,14 +69,16 @@ class MyReader {
     startGame() {
         console.log("Starting the game...");
         this.menu.hide();
-        this.track = new MyTrack(this.app.scene, 20);
+        this.track = new MyTrack(this.app.scene, 30);
         this.track.init();
         const routePoints = this.track.route.getRoutePoints();
-        this.aiBalloon = new MyBalloon(this.app.scene, routePoints, false);
+        this.aiBalloon = new MyBalloon(this.app, routePoints, false);
         this.aiBalloon.initBalloon();
-        this.humanBalloon = new MyBalloon(this.app.scene, routePoints, true);
+        this.humanBalloon = new MyBalloon(this.app, routePoints, true);
         this.humanBalloon.initBalloon();
         this.humanBalloon.addDynamicWindIndicator();
+        this.obstacles = new MyObstacle(this.app.scene);
+        this.obstacles.createObstacleMarkers();
     }
 
     togglePause() {
@@ -98,11 +103,15 @@ class MyReader {
             if (this.humanBalloon) {
                 this.humanBalloon.removeBalloon();
             }
+            if (this.obstacles) {
+                this.obstacles.removeObstacleMarkers();
+            }
+            this.app.setActiveCamera("orthogonal1");
             this.gameState = 'menu';
             this.menu.show();
             this.menu.humanBalloonSelected = false;
             this.menu.aiBalloonSelected = false;
-            this.app.setActiveCamera("orthogonal1");
+
         }
     }
 
