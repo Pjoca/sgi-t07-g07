@@ -95,6 +95,9 @@ class MyReader {
             if (this.aiBalloon) {
                 this.aiBalloon.removeBalloon();
             }
+            if (this.humanBalloon) {
+                this.humanBalloon.removeBalloon();
+            }
             this.gameState = 'menu';
             this.menu.show();
             this.menu.humanBalloonSelected = false;
