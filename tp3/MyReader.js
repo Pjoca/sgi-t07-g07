@@ -1,7 +1,8 @@
 import * as THREE from 'three';
-import { MyMenu } from './MyMenu.js';
-import { MyTrack } from './MyTrack.js';
-import { MyBalloon } from './MyBalloon.js';
+import {MyMenu} from './MyMenu.js';
+import {MyTrack} from './MyTrack.js';
+import {MyBalloon} from './MyBalloon.js';
+import {MyResults} from "./MyResults.js";
 
 class MyReader {
     constructor(app) {
@@ -9,37 +10,48 @@ class MyReader {
         this.track = null;
         this.aiBalloon = null;
         this.humanBalloon = null;
-        this.menu = null; // Reference to the menu
-        this.gameState = 'menu';  // Start with the menu state
+        this.initialMenu = null;
+        this.finalMenu = null;
+        this.gameState = 'menu'; // Start with the menu state
 
-        // Mouse coordinates to track the cursor position
-        this.mouseX = 0;
+        this.mouseX = 0; // Mouse coordinates
         this.mouseY = 0;
+
+        this.startTime = null; // Time tracking
+        this.endTime = null;
+
+        this.winner = null;
     }
 
     init() {
-        // Initialize the menu
-        this.menu = new MyMenu(this.app, this);
-        this.menu.init();
+        // Initialize menus
+        this.initialMenu = new MyMenu(this.app, this);
+        this.initialMenu.init();
 
-        // Setup event listeners
+        this.finalMenu = new MyResults(this.app, this);
+        this.finalMenu.init();
+        this.finalMenu.hide();
+
+        // Event listeners
         window.addEventListener('mousemove', this.onMouseMove.bind(this));
         window.addEventListener('click', this.onMouseClick.bind(this));
-        window.addEventListener('keydown', this.onKeyDown.bind(this)); // New keydown listener
+        window.addEventListener('keydown', this.onKeyDown.bind(this));
 
-        // Render loop starts
+        // Start the animation loop
         this.animate();
     }
 
     onMouseMove(event) {
-        // Update the mouse position whenever the mouse moves
         this.mouseX = event.clientX;
         this.mouseY = event.clientY;
     }
 
     onMouseClick(event) {
         if (this.gameState === 'menu') {
-            this.menu.onClick(); // Handle the click event if in the menu state
+            this.initialMenu.onClick();
+        }
+        if (this.gameState === 'end') {
+            this.finalMenu.onClick();
         }
     }
 
@@ -65,19 +77,54 @@ class MyReader {
             this.startGame();
             this.app.setActiveCamera("perspective1");
         }
+        if (state === 'end') {
+            this.endGame();
+            this.app.setActiveCamera("orthogonal1");
+        }
     }
 
     startGame() {
         console.log("Starting the game...");
-        this.menu.hide();
+        this.initialMenu.hide();
+        this.finalMenu.hide();
+
+        this.startTime = Date.now();
+
         this.track = new MyTrack(this.app.scene, 30);
         this.track.init();
         const routePoints = this.track.route.getRoutePoints();
-        this.aiBalloon = new MyBalloon(this.app, routePoints, false);
+        this.aiBalloon = new MyBalloon(this.app, routePoints, false, this);
         this.aiBalloon.initBalloon();
-        this.humanBalloon = new MyBalloon(this.app, routePoints, true);
+        this.humanBalloon = new MyBalloon(this.app, routePoints, true, this);
         this.humanBalloon.initBalloon();
         this.humanBalloon.addDynamicWindIndicator();
+    }
+
+    setWinner(winner) {
+        this.winner = winner;
+    }
+
+    endGame() {
+        console.log("Final results...");
+        console.log(this.winner);
+
+        this.endTime = Date.now();
+
+        if (this.track) {
+            this.track.clear();
+        }
+        if (this.aiBalloon) {
+            this.aiBalloon.removeBalloon();
+        }
+        if (this.humanBalloon) {
+            this.humanBalloon.removeBalloon();
+        }
+
+        // Calculate and pass the elapsed time to the results menu
+        const elapsedTime = ((this.endTime - this.startTime) / 1000).toFixed(2);
+        this.finalMenu.setFinalTime(elapsedTime);
+
+        this.finalMenu.show();
     }
 
     togglePause() {
@@ -92,6 +139,7 @@ class MyReader {
 
     returnToMenu() {
         if (this.gameState !== 'menu') {
+            this.finalMenu.hide();
             console.log("Returning to menu...");
             if (this.track) {
                 this.track.clear();
@@ -104,10 +152,9 @@ class MyReader {
             }
             this.app.setActiveCamera("orthogonal1");
             this.gameState = 'menu';
-            this.menu.show();
-            this.menu.humanBalloonSelected = false;
-            this.menu.aiBalloonSelected = false;
-
+            this.initialMenu.show();
+            this.initialMenu.humanBalloonSelected = false;
+            this.initialMenu.aiBalloonSelected = false;
         }
     }
 
@@ -115,20 +162,19 @@ class MyReader {
         // Request the next animation frame
         requestAnimationFrame(() => this.animate());
 
-        // Update menu if the game is in the 'menu' state
         if (this.gameState === 'menu') {
-            this.menu.update(this.mouseX, this.mouseY); // Pass mouse position to menu update
+            this.initialMenu.update(this.mouseX, this.mouseY);
         }
-
-        // Update balloon if the game is in the 'running' state
         if (this.gameState === 'running') {
-            this.aiBalloon.update(); // Update balloon position
-            this.humanBalloon.update(); // Update balloon position
+            this.aiBalloon.update();
+            this.humanBalloon.update();
+        }
+        if (this.gameState === 'end') {
+            this.finalMenu.update(this.mouseX, this.mouseY);
         }
 
-        // Render the scene
         this.app.renderer.render(this.app.scene, this.app.cameras[this.app.activeCameraName]);
     }
 }
 
-export { MyReader };
+export {MyReader};
