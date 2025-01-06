@@ -29,6 +29,41 @@ class MyObstacle {
         });
     }
 
+    // Calculate bounding sphere radius for the cone
+    calculateBoundingSphereRadius() {
+        const coneHeight = 21; 
+        const coneBaseRadius = 5; 
+        return Math.sqrt(Math.pow(coneBaseRadius, 2) + Math.pow(coneHeight / 2, 2));
+    }
+    
+    getObstacleBoundingSpheres() {
+        const radius = this.calculateBoundingSphereRadius();
+        return this.obstacles.map(obstacle => ({
+            center: obstacle.position.clone(),
+            radius: radius,
+        }));
+    }
+
+        showBoundingSpheres() {
+        const radius = this.calculateBoundingSphereRadius();
+        const material = new THREE.MeshBasicMaterial({
+            color: 0x00ff00,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.5,
+        });
+
+        this.obstacles.forEach(obstacle => {
+            const sphereGeometry = new THREE.SphereGeometry(radius, 16, 16);
+            const boundingSphere = new THREE.Mesh(sphereGeometry, material);
+            boundingSphere.position.copy(obstacle.position);
+            this.scene.add(boundingSphere);
+
+            // Optionally, store the sphere for later removal
+            obstacle.boundingSphereMesh = boundingSphere;
+        });
+    }
+
     removeObstacleMarkers() {
         this.obstacles.forEach((obstacle) => {
             this.scene.remove(obstacle); // Remove obstacle from scene

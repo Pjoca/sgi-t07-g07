@@ -1,12 +1,13 @@
 import * as THREE from 'three';
 
 class MyBalloon {
-    constructor(app, routePoints, isHuman, gameStateManager) {
+    constructor(app, routePoints, isHuman, gameStateManager, obstacleManager) {
         this.app = app;
         this.scene = this.app.scene;
         this.routePoints = routePoints;
         this.isHuman = isHuman;
         this.gameStateManager = gameStateManager;
+        this.obstacleManager = obstacleManager;
         this.balloon = null;
         this.currentPointIndex = 1;
         this.botSpeed = 0.0375;
@@ -32,11 +33,6 @@ class MyBalloon {
         this.scene.add(this.balloon);
 
         this.addKeyboardListeners();
-    }
-
-    removeBalloon() {
-        this.scene.remove(this.balloon);
-        this.scene.remove(this.windIndicator);
     }
 
     addKeyboardListeners() {
@@ -122,6 +118,11 @@ class MyBalloon {
             }
 
             this.updateWindIndicator();
+
+            const obstacleBoundingSpheres = this.obstacleManager.getObstacleBoundingSpheres();
+            if (this.checkCollisionsWithObstacles(obstacleBoundingSpheres)) {
+                console.log("Collision detected!");
+            }
         }
 
         if (!this.isHuman) {
@@ -229,6 +230,47 @@ class MyBalloon {
             this.windIndicator.position.copy(arrowPosition);
             this.windIndicator.setDirection(windDirection);
         }
+    }
+
+    getBoundingSphere() {
+        const radius = 1; 
+        return {
+            center: this.balloon.position.clone(),
+            radius: radius,
+        };
+    }
+
+    checkCollisionsWithObstacles(obstacleBoundingSpheres) {
+        const balloonSphere = this.getBoundingSphere();
+
+        for (const obstacleSphere of obstacleBoundingSpheres) {
+            const distance = balloonSphere.center.distanceTo(obstacleSphere.center);
+            if (distance <= balloonSphere.radius + obstacleSphere.radius) {
+                console.log("Collision detected with an obstacle!");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    showBoundingSphere() {
+        const radius = 1; // Balloon bounding sphere radius
+        const material = new THREE.MeshBasicMaterial({
+            color: 0xff0000,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.5,
+        });
+
+        const sphereGeometry = new THREE.SphereGeometry(radius, 16, 16);
+        this.boundingSphereMesh = new THREE.Mesh(sphereGeometry, material);
+        this.boundingSphereMesh.position.copy(this.balloon.position);
+        this.scene.add(this.boundingSphereMesh);
+    }
+
+    removeBalloon() {
+        this.scene.remove(this.balloon);
+        this.scene.remove(this.windIndicator);
     }
 }
 
