@@ -33,8 +33,8 @@ class MyPowerUp {
     }    
 
     calculateBoundingSphereRadius() {
-        const radius = 1;
-        const height = 2;
+        const radius = 1.25;
+        const height = 2.5;
     
         return Math.sqrt(Math.pow(radius, 2) + Math.pow(height / 2, 2));
     }

@@ -108,7 +108,7 @@ class MyReader {
         // this.obstacles.showBoundingSpheres(); // debbuging only
         this.powerUps = new MyPowerUp(this.app.scene);
         this.powerUps.createPowerUps();
-        // this.powerUps.showBoundingSpheres(); // debbuging only
+        // ]this.powerUps.showBoundingSpheres(); // debbuging only
         const routePoints = this.track.route.getRoutePoints();
         this.aiBalloon = new MyBalloon(this.app, routePoints, false, this, this.track, this.obstacles, this.powerUps, this.aiColor);
         this.aiBalloon.initBalloon();
