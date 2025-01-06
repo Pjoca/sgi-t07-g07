@@ -11,7 +11,10 @@
 ## Project Description
 
 Our scene is a simple race of ballons. It includes a menu, a track, a goal line, four obstacles, three powerups and one sun. 
-Controls:
+
+![Image 1](screenshots/overview.png)
+
+ # Controls:
 - W - raise the balloon
 - S - lower the balloon
 - Space - pause / unpause
@@ -19,8 +22,6 @@ Controls:
 - 2 - third person camera (default)
 - 3 - free-roam camera
 - ESC - return to menu
-
-![Image 1](screenshots/overview.png)
 
 # Initial Menu
 
