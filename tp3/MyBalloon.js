@@ -287,9 +287,20 @@ class MyBalloon {
 
         for (const obstacleSphere of obstacleBoundingSpheres) {
             const distance = balloonSphere.center.distanceTo(obstacleSphere.center);
+
             if (distance <= balloonSphere.radius + obstacleSphere.radius) {
                 console.log("Collision detected with an obstacle!");
-                this.applyPenalty(this.routePoints[0]);
+                
+                const collisionMessage = document.getElementById("collisionMessage");
+                collisionMessage.style.display = "block"; // Show the message
+        
+                setTimeout(() => {
+
+                    this.moveBalloonToClosestPoint(this.routePoints[0]);
+                    // Hide the "COLLISION!" message after penalty ends
+                    collisionMessage.style.display = "none"; // Hide the message
+                }, 2000); // The penalty lasts for 2 seconds
+                
                 return true;
             }
         }
