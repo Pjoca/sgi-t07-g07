@@ -55,19 +55,19 @@ class MyTrack {
     }
 
     createGoalLine() {
-        const goalPostHeight = 25;
+        const goalPostHeight = 30;
         const goalPostRadius = 0.5;
 
         const goalPostGeometry = new THREE.CylinderGeometry(goalPostRadius, goalPostRadius, goalPostHeight);
         const goalPostMaterial = new THREE.MeshBasicMaterial({ color: 0x222222 });
 
         this.goalPost1 = new THREE.Mesh(goalPostGeometry, goalPostMaterial);
-        this.goalPost1.position.set(7.5, 12.5, 23);
+        this.goalPost1.position.set(7.5, 14.5, 23);
         this.goalPost1.rotation.y = Math.PI / 2;
         this.scene.add(this.goalPost1);
 
         this.goalPost2 = new THREE.Mesh(goalPostGeometry, goalPostMaterial);
-        this.goalPost2.position.set(7.5, 12.5, 57);
+        this.goalPost2.position.set(7.5, 14.5, 57);
         this.goalPost2.rotation.y = Math.PI / 2;
         this.scene.add(this.goalPost2);
 
@@ -79,7 +79,7 @@ class MyTrack {
         const boxMaterial = new THREE.MeshBasicMaterial({ map: texture });
 
         this.goalBox = new THREE.Mesh(boxGeometry, boxMaterial);
-        this.goalBox.position.set(7.5, Math.max(this.goalPost1.position.y, this.goalPost2.position.y) + goalPostHeight / 2 + 1.5, 40);
+        this.goalBox.position.set(7.5, Math.max(this.goalPost1.position.y, this.goalPost2.position.y) + goalPostHeight / 2 + 1, 40);
         this.goalBox.rotation.y = Math.PI / 2;
         this.scene.add(this.goalBox);
 

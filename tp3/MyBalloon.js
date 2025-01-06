@@ -1,13 +1,15 @@
 import * as THREE from 'three';
+import { OBJLoader } from './node_modules/three/examples/jsm/loaders/OBJLoader.js';
 
 class MyBalloon {
-    constructor(app, routePoints, isHuman, gameStateManager, track, obstacleManager) {
+    constructor(app, routePoints, isHuman, gameStateManager, track, obstacleManager, color = 0xeeeeee) {
         this.app = app;
         this.scene = this.app.scene;
         this.routePoints = routePoints;
         this.isHuman = isHuman;
         this.gameStateManager = gameStateManager;
         this.obstacleManager = obstacleManager;
+        this.color = color;
         this.centerLine = track.centerLine;
         this.trackWidth = track.trackWidth;
         this.balloon = null;
@@ -24,23 +26,41 @@ class MyBalloon {
     }
 
     initBalloon() {
-        const balloonGeometry = new THREE.SphereGeometry(1, 32, 32);
-        const balloonMaterial = new THREE.MeshBasicMaterial({color: 0xff0000});
-        this.balloon = new THREE.Mesh(balloonGeometry, balloonMaterial);
+        const loader = new OBJLoader();
+        loader.load('scenes/objects/airballoon4.obj',
+            (obj) => {
+                const material = new THREE.MeshStandardMaterial({ color: this.color });
+                obj.traverse((child) => {
+                    if (child.isMesh) {
+                        child.material = material;
+                    }
+                });
+                this.balloon = obj;
 
-        const startPosition = this.routePoints[0];
+                this.balloon.scale.set(5, 5, 5);
 
-        if (this.isHuman) {
-            this.balloon.position.set(startPosition.x, startPosition.y, startPosition.z - 7.5);
-        } else {
-            this.balloon.position.set(startPosition.x, startPosition.y, startPosition.z + 7.5);
-        }
-        this.scene.add(this.balloon);
+                // Set initial position
+                const startPosition = this.routePoints[0];
+                if (this.isHuman) {
+                    this.balloon.position.set(startPosition.x, startPosition.y, startPosition.z - 7.5);
+                } else {
+                    this.balloon.position.set(startPosition.x, startPosition.y, startPosition.z + 7.5);
+                }
 
-        if (this.isHuman) {
-            this.addGroundCone();
-            this.addKeyboardListeners();
-        }
+                this.scene.add(this.balloon);
+
+                if (this.isHuman) {
+                    this.addGroundCone();
+                    this.addKeyboardListeners();
+                }
+            },
+            (xhr) => {
+                console.log(`Balloon loading progress: ${(xhr.loaded / xhr.total) * 100}%`);
+            },
+            (error) => {
+                console.error('Error loading the .obj file:', error);
+            }
+        );
     }
 
     addGroundCone() {
@@ -86,24 +106,24 @@ class MyBalloon {
 
         if (this.cameraMode === "thirdPerson") {
             if (x === 0 && z === 0) {
-                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(10, 7.5, 0));
-                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-100, this.balloon.position.y - 25, this.balloon.position.z));
+                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(15, 15, 0));
+                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-100, this.balloon.position.y - 50, this.balloon.position.z));
             } else if (x === 0) {
-                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(0, 7.5, z * 10));
-                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(this.balloon.position.x, this.balloon.position.y - 25, -z * 100));
+                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(0, 15, z * 15));
+                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(this.balloon.position.x, this.balloon.position.y - 50, -z * 100));
             } else if (z === 0) {
-                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(x * 10, 7.5, 0));
-                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-x * 100, this.balloon.position.y - 25, this.balloon.position.z));
+                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(x * 15, 15, 0));
+                this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-x * 100, this.balloon.position.y - 50, this.balloon.position.z));
             }
         } else {
             if (x === 0 && z === 0) {
-                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position);
+                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(0, 1.5, 0));
                 this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-100, this.balloon.position.y - 25, this.balloon.position.z));
             } else if (x === 0) {
-                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position);
+                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(0, 1.5, 0));
                 this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(this.balloon.position.x, this.balloon.position.y - 25, -z * 100));
             } else if (z === 0) {
-                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position);
+                this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(0, 1.5, 0));
                 this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-x * 100, this.balloon.position.y - 25, this.balloon.position.z));
             }
         }
@@ -270,12 +290,13 @@ class MyBalloon {
             const arrowPosition = balloonPosition.add(arrowOffset);
 
             this.windIndicator.position.copy(arrowPosition);
+            this.windIndicator.position.y += 6;
             this.windIndicator.setDirection(windDirection);
         }
     }
 
     getBoundingSphere() {
-        const radius = 1; 
+        const radius = 1;
         return {
             center: this.balloon.position.clone(),
             radius: radius,
@@ -285,22 +306,37 @@ class MyBalloon {
     checkCollisionsWithObstacles(obstacleBoundingSpheres) {
         const balloonSphere = this.getBoundingSphere();
 
+        const divisions = 100;  // The more divisions, the more accurate the result
+        const centerPoints = this.centerLine.getPoints(divisions);
+
+        // Find the closest point on the track center line to the ground cone's position
+        let closestPoint = null;
+        let minDistance = Infinity;
+
+        centerPoints.forEach((point) => {
+            const distance = this.groundCone.position.distanceTo(point);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestPoint = point;
+            }
+        });
+
         for (const obstacleSphere of obstacleBoundingSpheres) {
             const distance = balloonSphere.center.distanceTo(obstacleSphere.center);
 
             if (distance <= balloonSphere.radius + obstacleSphere.radius) {
                 console.log("Collision detected with an obstacle!");
-                
+                this.isPenaltyActive = true;
+
                 const collisionMessage = document.getElementById("collisionMessage");
                 collisionMessage.style.display = "block"; // Show the message
-        
-                setTimeout(() => {
 
-                    this.moveBalloonToClosestPoint(this.routePoints[0]);
-                    // Hide the "COLLISION!" message after penalty ends
+                setTimeout(() => {
+                    this.moveBalloonToClosestPoint(closestPoint);
                     collisionMessage.style.display = "none"; // Hide the message
+                    this.isPenaltyActive = false;
                 }, 2000); // The penalty lasts for 2 seconds
-                
+
                 return true;
             }
         }
@@ -369,7 +405,7 @@ class MyBalloon {
     moveBalloonToClosestPoint(closestPoint) {
         if (closestPoint) {
             console.log("Teleporting balloon to the closest point on the track.");
-            this.balloon.position.set(closestPoint.x, this.balloon.position.y, closestPoint.z);
+            this.balloon.position.set(closestPoint.x, 20, closestPoint.z);
         }
     }
 }
