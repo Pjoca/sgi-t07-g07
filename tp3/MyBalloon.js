@@ -17,7 +17,7 @@ class MyBalloon {
         this.groundCone = null; // Green cone for the human balloon
         this.currentPointIndex = 1;
         this.botSpeed = 0.0375;
-        this.verticalSpeed = 0.1;
+        this.verticalSpeed = 0.15;
         this.activeKeys = {};
         this.cameraMode = "thirdPerson";
         this.windSpeed = 0.05;
