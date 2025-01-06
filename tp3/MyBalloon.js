@@ -253,7 +253,7 @@ class MyBalloon {
         return false;
     }
 
-    showBoundingSphere() {
+    /*showBoundingSphere() {
         const radius = 1; // Balloon bounding sphere radius
         const material = new THREE.MeshBasicMaterial({
             color: 0xff0000,
@@ -266,7 +266,7 @@ class MyBalloon {
         this.boundingSphereMesh = new THREE.Mesh(sphereGeometry, material);
         this.boundingSphereMesh.position.copy(this.balloon.position);
         this.scene.add(this.boundingSphereMesh);
-    }
+    }*/
 
     removeBalloon() {
         this.scene.remove(this.balloon);

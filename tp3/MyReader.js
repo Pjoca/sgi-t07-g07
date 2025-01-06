@@ -103,7 +103,7 @@ class MyReader {
         this.humanBalloon = new MyBalloon(this.app, routePoints, true, this, this.obstacles);
         this.humanBalloon.initBalloon();
         this.humanBalloon.addDynamicWindIndicator();
-        this.humanBalloon.showBoundingSphere(); // debbuging only
+        // this.humanBalloon.showBoundingSphere(); // debbuging only
     }
 
     setWinner(winner) {

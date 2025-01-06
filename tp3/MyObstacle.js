@@ -15,7 +15,7 @@ class MyObstacle {
     }
 
     createObstacleMarkers() {
-        const obstacleGeometry = new THREE.ConeGeometry(5, 21, 22);
+        const obstacleGeometry = new THREE.CylinderGeometry(6, 6, 16, 32);
         const texture = new THREE.TextureLoader().load('scenes/textures/warning.jpg');
         const obstacleMaterial = new THREE.MeshBasicMaterial({map: texture});
 
@@ -29,11 +29,11 @@ class MyObstacle {
         });
     }
 
-    // Calculate bounding sphere radius for the cone
     calculateBoundingSphereRadius() {
-        const coneHeight = 21; 
-        const coneBaseRadius = 5; 
-        return Math.sqrt(Math.pow(coneBaseRadius, 2) + Math.pow(coneHeight / 2, 2));
+        const cylinderRadius = 5.25; 
+        const cylinderHeight = 15; 
+    
+        return Math.sqrt(Math.pow(cylinderRadius, 2) + Math.pow(cylinderHeight / 2, 2));
     }
     
     getObstacleBoundingSpheres() {
