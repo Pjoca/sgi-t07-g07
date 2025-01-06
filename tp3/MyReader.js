@@ -101,13 +101,10 @@ class MyReader {
         const routePoints = this.track.route.getRoutePoints();
         this.aiBalloon = new MyBalloon(this.app, routePoints, false, this, this.track);
         this.aiBalloon.initBalloon();
-        this.humanBalloon = new MyBalloon(this.app, routePoints, true, this, this.obstacles);
+        this.humanBalloon = new MyBalloon(this.app, routePoints, true, this, this.track, this.obstacles);
         this.humanBalloon.initBalloon();
         this.humanBalloon.addDynamicWindIndicator();
         // this.humanBalloon.showBoundingSphere(); // debbuging only
-        this.humanBalloon = new MyBalloon(this.app, routePoints, true, this, this.track);
-        this.humanBalloon.initBalloon();
-        this.humanBalloon.addDynamicWindIndicator();
 
         // Disable movement during countdown
         this.aiBalloon.setCanMove(false);
