@@ -289,13 +289,15 @@ class MyBalloon {
             const distance = balloonSphere.center.distanceTo(obstacleSphere.center);
             if (distance <= balloonSphere.radius + obstacleSphere.radius) {
                 console.log("Collision detected with an obstacle!");
+                this.applyPenalty(this.routePoints[0]);
                 return true;
             }
         }
         return false;
     }
 
-    /*showBoundingSphere() {
+    // debbuging only
+    showBoundingSphere() {
         const radius = 1; // Balloon bounding sphere radius
         const material = new THREE.MeshBasicMaterial({
             color: 0xff0000,
@@ -308,7 +310,7 @@ class MyBalloon {
         this.boundingSphereMesh = new THREE.Mesh(sphereGeometry, material);
         this.boundingSphereMesh.position.copy(this.balloon.position);
         this.scene.add(this.boundingSphereMesh);
-    }*/
+    }
 
     checkIfOffTrack() {
         const trackBoundaryDistance = this.trackWidth / 2 + 0.5; // Threshold to determine if the cone is off the track

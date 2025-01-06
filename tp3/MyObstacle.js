@@ -44,7 +44,8 @@ class MyObstacle {
         }));
     }
 
-        showBoundingSpheres() {
+    // Debugging only
+    showBoundingSpheres() {
         const radius = this.calculateBoundingSphereRadius();
         const material = new THREE.MeshBasicMaterial({
             color: 0x00ff00,
@@ -59,7 +60,6 @@ class MyObstacle {
             boundingSphere.position.copy(obstacle.position);
             this.scene.add(boundingSphere);
 
-            // Optionally, store the sphere for later removal
             obstacle.boundingSphereMesh = boundingSphere;
         });
     }
