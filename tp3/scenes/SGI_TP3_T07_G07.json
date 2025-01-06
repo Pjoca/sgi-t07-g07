@@ -14,9 +14,9 @@
       },
       "skybox": {
         "size": {
-          "x": 160,
+          "x": 224,
           "y": 100,
-          "z": 130
+          "z": 182
         },
         "center": {
           "x": 0,
@@ -106,8 +106,8 @@
               "g": 1,
               "b": 1
             },
-            "intensity": 30,
-            "distance": 200,
+            "intensity": 40,
+            "distance": 500,
             "decay": 0.8,
             "castshadow": true,
             "position": {
@@ -116,8 +116,7 @@
               "z": 0
             }
           },
-          "nodesList": [
-          ]
+          "nodesList": []
         }
       }
     }
