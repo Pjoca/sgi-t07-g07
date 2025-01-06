@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import {MyMenu} from './MyMenu.js';
 import {MyTrack} from './MyTrack.js';
+import { MyObstacle } from './MyObstacle.js';
 import {MyBalloon} from './MyBalloon.js';
 import {MyResults} from "./MyResults.js";
 
@@ -8,6 +9,7 @@ class MyReader {
     constructor(app) {
         this.app = app;
         this.track = null;
+        this.obstacle = null;
         this.aiBalloon = null;
         this.humanBalloon = null;
         this.initialMenu = null;
@@ -93,9 +95,16 @@ class MyReader {
         // Initialize the track and balloons
         this.track = new MyTrack(this.app.scene, 30);
         this.track.init();
+        this.obstacles = new MyObstacle(this.app.scene);
+        this.obstacles.createObstacleMarkers();
+        this.obstacles.showBoundingSpheres(); // debbuging only
         const routePoints = this.track.route.getRoutePoints();
         this.aiBalloon = new MyBalloon(this.app, routePoints, false, this, this.track);
         this.aiBalloon.initBalloon();
+        this.humanBalloon = new MyBalloon(this.app, routePoints, true, this, this.obstacles);
+        this.humanBalloon.initBalloon();
+        this.humanBalloon.addDynamicWindIndicator();
+        // this.humanBalloon.showBoundingSphere(); // debbuging only
         this.humanBalloon = new MyBalloon(this.app, routePoints, true, this, this.track);
         this.humanBalloon.initBalloon();
         this.humanBalloon.addDynamicWindIndicator();
@@ -146,6 +155,9 @@ class MyReader {
 
         if (this.track) {
             this.track.clear();
+        }
+        if (this.obstacles) {
+            this.obstacles.removeObstacleMarkers();
         }
         if (this.aiBalloon) {
             this.aiBalloon.removeBalloon();

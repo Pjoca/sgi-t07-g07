@@ -1,12 +1,13 @@
 import * as THREE from 'three';
 
 class MyBalloon {
-    constructor(app, routePoints, isHuman, gameStateManager, track) {
+    constructor(app, routePoints, isHuman, gameStateManager, track, obstacleManager) {
         this.app = app;
         this.scene = this.app.scene;
         this.routePoints = routePoints;
         this.isHuman = isHuman;
         this.gameStateManager = gameStateManager;
+        this.obstacleManager = obstacleManager;
         this.centerLine = track.centerLine;
         this.trackWidth = track.trackWidth;
         this.balloon = null;
@@ -52,6 +53,7 @@ class MyBalloon {
         this.groundCone.rotation.y = -Math.PI / 2; // Point the cone upwards
         this.scene.add(this.groundCone);
     }
+
 
     removeBalloon() {
         this.scene.remove(this.balloon);
@@ -148,6 +150,11 @@ class MyBalloon {
 
             this.updateGroundCone();
             this.updateWindIndicator();
+
+            const obstacleBoundingSpheres = this.obstacleManager.getObstacleBoundingSpheres();
+            if (this.checkCollisionsWithObstacles(obstacleBoundingSpheres)) {
+                console.log("Collision detected!");
+            }
         }
 
         if (!this.isHuman) {
@@ -266,6 +273,42 @@ class MyBalloon {
             this.windIndicator.setDirection(windDirection);
         }
     }
+
+    getBoundingSphere() {
+        const radius = 1; 
+        return {
+            center: this.balloon.position.clone(),
+            radius: radius,
+        };
+    }
+
+    checkCollisionsWithObstacles(obstacleBoundingSpheres) {
+        const balloonSphere = this.getBoundingSphere();
+
+        for (const obstacleSphere of obstacleBoundingSpheres) {
+            const distance = balloonSphere.center.distanceTo(obstacleSphere.center);
+            if (distance <= balloonSphere.radius + obstacleSphere.radius) {
+                console.log("Collision detected with an obstacle!");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /*showBoundingSphere() {
+        const radius = 1; // Balloon bounding sphere radius
+        const material = new THREE.MeshBasicMaterial({
+            color: 0xff0000,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.5,
+        });
+
+        const sphereGeometry = new THREE.SphereGeometry(radius, 16, 16);
+        this.boundingSphereMesh = new THREE.Mesh(sphereGeometry, material);
+        this.boundingSphereMesh.position.copy(this.balloon.position);
+        this.scene.add(this.boundingSphereMesh);
+    }*/
 
     checkIfOffTrack() {
         const trackBoundaryDistance = this.trackWidth / 2 + 0.5; // Threshold to determine if the cone is off the track

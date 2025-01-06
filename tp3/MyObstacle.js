@@ -15,7 +15,7 @@ class MyObstacle {
     }
 
     createObstacleMarkers() {
-        const obstacleGeometry = new THREE.ConeGeometry(5, 21, 22);
+        const obstacleGeometry = new THREE.CylinderGeometry(6, 6, 16, 32);
         const texture = new THREE.TextureLoader().load('scenes/textures/warning.jpg');
         const obstacleMaterial = new THREE.MeshBasicMaterial({map: texture});
 
@@ -26,6 +26,41 @@ class MyObstacle {
 
             // Store the obstacle in the obstacles array
             this.obstacles.push(obstacle);
+        });
+    }
+
+    calculateBoundingSphereRadius() {
+        const cylinderRadius = 5.25; 
+        const cylinderHeight = 15; 
+    
+        return Math.sqrt(Math.pow(cylinderRadius, 2) + Math.pow(cylinderHeight / 2, 2));
+    }
+    
+    getObstacleBoundingSpheres() {
+        const radius = this.calculateBoundingSphereRadius();
+        return this.obstacles.map(obstacle => ({
+            center: obstacle.position.clone(),
+            radius: radius,
+        }));
+    }
+
+        showBoundingSpheres() {
+        const radius = this.calculateBoundingSphereRadius();
+        const material = new THREE.MeshBasicMaterial({
+            color: 0x00ff00,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.5,
+        });
+
+        this.obstacles.forEach(obstacle => {
+            const sphereGeometry = new THREE.SphereGeometry(radius, 16, 16);
+            const boundingSphere = new THREE.Mesh(sphereGeometry, material);
+            boundingSphere.position.copy(obstacle.position);
+            this.scene.add(boundingSphere);
+
+            // Optionally, store the sphere for later removal
+            obstacle.boundingSphereMesh = boundingSphere;
         });
     }
 

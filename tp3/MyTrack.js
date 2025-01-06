@@ -1,13 +1,11 @@
 import * as THREE from 'three';
 import { MyRoute } from './MyRoute.js';
-import { MyObstacle } from './MyObstacle.js';
 import {MyTextRenderer} from "./MyTextRenderer.js";
 
 class MyTrack {
     constructor(scene, trackWidth) {
         this.scene = scene;
         this.route = new MyRoute(scene);
-        this.obstacles = null;
         this.centerLine = null;
         this.trackWidth = trackWidth;
         this.centerLineMesh = null;
@@ -52,9 +50,6 @@ class MyTrack {
         this.centerLineMesh.computeLineDistances();
         this.centerLineMesh.position.y += 0.1;
         this.scene.add(this.centerLineMesh);
-
-        this.obstacles = new MyObstacle(this.scene);
-        this.obstacles.createObstacleMarkers();
 
         this.createGoalLine()
     }
@@ -112,7 +107,6 @@ class MyTrack {
     clear() {
         this.scene.remove(this.trackMesh);
         this.scene.remove(this.centerLineMesh);
-        this.obstacles.removeObstacleMarkers();
         this.scene.remove(this.goalPost1);
         this.scene.remove(this.goalPost2);
         this.scene.remove(this.goalBox);
