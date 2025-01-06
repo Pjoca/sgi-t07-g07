@@ -32,7 +32,6 @@ Thumbs.db
 *.glb
 *.gltf
 *.bin
-*.obj
 *.fbx
 __MACOSX/
 coverage/
