@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import {MyMenu} from './MyMenu.js';
 import {MyTrack} from './MyTrack.js';
 import { MyObstacle } from './MyObstacle.js';
+import { MyPowerUp } from './MyPowerUp.js';
 import {MyBalloon} from './MyBalloon.js';
 import {MyResults} from "./MyResults.js";
 
@@ -10,6 +11,7 @@ class MyReader {
         this.app = app;
         this.track = null;
         this.obstacle = null;
+        this.powerUps = null;
         this.aiBalloon = null;
         this.humanBalloon = null;
         this.humanColor = null;
@@ -100,10 +102,13 @@ class MyReader {
         this.obstacles = new MyObstacle(this.app.scene);
         this.obstacles.createObstacleMarkers();
         // this.obstacles.showBoundingSpheres(); // debbuging only
+        this.powerUps = new MyPowerUp(this.app.scene);
+        this.powerUps.createPowerUps();
+        // this.powerUps.showBoundingSpheres(); // debbuging only
         const routePoints = this.track.route.getRoutePoints();
-        this.aiBalloon = new MyBalloon(this.app, routePoints, false, this, this.track, this.obstacles, this.aiColor);
+        this.aiBalloon = new MyBalloon(this.app, routePoints, false, this, this.track, this.obstacles, this.powerUps, this.aiColor);
         this.aiBalloon.initBalloon();
-        this.humanBalloon = new MyBalloon(this.app, routePoints, true, this, this.track, this.obstacles, this.humanColor);
+        this.humanBalloon = new MyBalloon(this.app, routePoints, true, this, this.track, this.obstacles,this.powerUps, this.humanColor);
         this.humanBalloon.initBalloon();
         this.humanBalloon.addDynamicWindIndicator();
         // this.humanBalloon.showBoundingSphere(); // debbuging only
@@ -172,6 +177,9 @@ class MyReader {
         if (this.humanBalloon) {
             this.humanBalloon.removeBalloon();
         }
+        if (this.powerUps) {
+            this.powerUps.removePowerUps();
+        }
 
         // Calculate and pass the elapsed time to the results menu
         const elapsedTime = ((this.endTime - this.startTime) / 1000).toFixed(2);
@@ -206,6 +214,11 @@ class MyReader {
             if (this.obstacles) {
                 this.obstacles.removeObstacleMarkers();
             }
+
+            if (this.powerUps) {
+                this.powerUps.removePowerUps();
+            }
+
             this.app.setActiveCamera("orthogonal1");
             this.gameState = 'menu';
             this.initialMenu.init();

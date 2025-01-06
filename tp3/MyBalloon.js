@@ -2,13 +2,14 @@ import * as THREE from 'three';
 import { OBJLoader } from './node_modules/three/examples/jsm/loaders/OBJLoader.js';
 
 class MyBalloon {
-    constructor(app, routePoints, isHuman, gameStateManager, track, obstacleManager, color = 0xeeeeee) {
+    constructor(app, routePoints, isHuman, gameStateManager, track, obstacleManager, powerManager, color = 0xeeeeee) {
         this.app = app;
         this.scene = this.app.scene;
         this.routePoints = routePoints;
         this.isHuman = isHuman;
         this.gameStateManager = gameStateManager;
         this.obstacleManager = obstacleManager;
+        this.powerManager = powerManager;
         this.color = color;
         this.centerLine = track.centerLine;
         this.trackWidth = track.trackWidth;
@@ -23,6 +24,8 @@ class MyBalloon {
         this.layerHeights = [0, 5, 10, 15, 20];
         this.isPenaltyActive = false; // Track if penalty is active
         this.canMove = true;
+        this.vouchers = 0;
+        this.collectedPowerUps = new Set();
     }
 
     initBalloon() {
@@ -175,6 +178,12 @@ class MyBalloon {
             if (this.checkCollisionsWithObstacles(obstacleBoundingSpheres)) {
                 console.log("Collision detected!");
             }
+
+            const powerUpBoundingSpheres = this.powerManager.getPowerUpBoundingSpheres();
+            if (this.checkCollisionsWithPowerups(powerUpBoundingSpheres)) {
+                console.log("Power-up collected!");
+            }
+            
         }
 
         if (!this.isHuman) {
@@ -343,6 +352,35 @@ class MyBalloon {
         return false;
     }
 
+    checkCollisionsWithPowerups(powerUpBoundingSpheres) {
+        const balloonSphere = this.getBoundingSphere();
+
+        for (let i = 0; i < powerUpBoundingSpheres.length; i++) {
+            const powerUpSphere = powerUpBoundingSpheres[i];
+
+            // Skip already collected power-ups
+            if (this.collectedPowerUps.has(i)) {
+                continue;
+            }
+
+            const distance = balloonSphere.center.distanceTo(powerUpSphere.center);
+
+            if (distance <= balloonSphere.radius + powerUpSphere.radius) {
+                console.log("Collision detected with a power-up!");
+
+                // Mark the power-up as collected
+                this.collectedPowerUps.add(i);
+
+                // Increment vouchers
+                this.vouchers++;
+                console.log("Vouchers:", this.vouchers);
+
+                return true;
+            }
+        }
+        return false;
+    }
+
     // debbuging only
     showBoundingSphere() {
         const radius = 1; // Balloon bounding sphere radius
@@ -407,6 +445,16 @@ class MyBalloon {
             console.log("Teleporting balloon to the closest point on the track.");
             this.balloon.position.set(closestPoint.x, 20, closestPoint.z);
         }
+    }
+
+    useVoucher() {
+        if (this.vouchers > 0) {
+            this.vouchers--;
+            console.log('Voucher used! Remaining vouchers:', this.vouchers);
+            return true; // Successfully used
+        }
+        console.log('No vouchers available!');
+        return false;
     }
 }
 
