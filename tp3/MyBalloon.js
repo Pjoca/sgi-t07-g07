@@ -314,14 +314,14 @@ class MyBalloon {
 
     checkCollisionsWithObstacles(obstacleBoundingSpheres) {
         const balloonSphere = this.getBoundingSphere();
-
-        const divisions = 100;  // The more divisions, the more accurate the result
+    
+        const divisions = 100; // The more divisions, the more accurate the result
         const centerPoints = this.centerLine.getPoints(divisions);
-
+    
         // Find the closest point on the track center line to the ground cone's position
         let closestPoint = null;
         let minDistance = Infinity;
-
+    
         centerPoints.forEach((point) => {
             const distance = this.groundCone.position.distanceTo(point);
             if (distance < minDistance) {
@@ -329,28 +329,38 @@ class MyBalloon {
                 closestPoint = point;
             }
         });
-
+    
         for (const obstacleSphere of obstacleBoundingSpheres) {
             const distance = balloonSphere.center.distanceTo(obstacleSphere.center);
-
+    
             if (distance <= balloonSphere.radius + obstacleSphere.radius) {
                 console.log("Collision detected with an obstacle!");
-                this.isPenaltyActive = true;
-
-                const collisionMessage = document.getElementById("collisionMessage");
-                collisionMessage.style.display = "block"; // Show the message
-
-                setTimeout(() => {
+    
+                if (this.vouchers > 0) {
+                    // Reduce the number of vouchers and teleport
+                    this.vouchers--;
+                    console.log("Voucher used to avoid penalty! Remaining vouchers:", this.vouchers);
                     this.moveBalloonToClosestPoint(closestPoint);
-                    collisionMessage.style.display = "none"; // Hide the message
-                    this.isPenaltyActive = false;
-                }, 2000); // The penalty lasts for 2 seconds
+
+                } else {
+                    // Apply penalty if no vouchers are available
+                    this.isPenaltyActive = true;
+    
+                    const collisionMessage = document.getElementById("collisionMessage");
+                    collisionMessage.style.display = "block"; // Show the message
+    
+                    setTimeout(() => {
+                        this.moveBalloonToClosestPoint(closestPoint);
+                        collisionMessage.style.display = "none"; // Hide the message
+                        this.isPenaltyActive = false;
+                    }, 2000); // The penalty lasts for 2 seconds
+                }
 
                 return true;
             }
         }
         return false;
-    }
+    }    
 
     checkCollisionsWithPowerups(powerUpBoundingSpheres) {
         const balloonSphere = this.getBoundingSphere();
@@ -445,16 +455,6 @@ class MyBalloon {
             console.log("Teleporting balloon to the closest point on the track.");
             this.balloon.position.set(closestPoint.x, 20, closestPoint.z);
         }
-    }
-
-    useVoucher() {
-        if (this.vouchers > 0) {
-            this.vouchers--;
-            console.log('Voucher used! Remaining vouchers:', this.vouchers);
-            return true; // Successfully used
-        }
-        console.log('No vouchers available!');
-        return false;
     }
 }
 
