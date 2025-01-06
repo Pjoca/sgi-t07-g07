@@ -12,6 +12,8 @@ class MyReader {
         this.obstacle = null;
         this.aiBalloon = null;
         this.humanBalloon = null;
+        this.humanColor = null;
+        this.aiColor = null;
         this.initialMenu = null;
         this.finalMenu = null;
         this.gameState = 'menu'; // Start with the menu state
@@ -97,11 +99,11 @@ class MyReader {
         this.track.init();
         this.obstacles = new MyObstacle(this.app.scene);
         this.obstacles.createObstacleMarkers();
-        this.obstacles.showBoundingSpheres(); // debbuging only
+        // this.obstacles.showBoundingSpheres(); // debbuging only
         const routePoints = this.track.route.getRoutePoints();
-        this.aiBalloon = new MyBalloon(this.app, routePoints, false, this, this.track);
+        this.aiBalloon = new MyBalloon(this.app, routePoints, false, this, this.track, this.obstacles, this.aiColor);
         this.aiBalloon.initBalloon();
-        this.humanBalloon = new MyBalloon(this.app, routePoints, true, this, this.track, this.obstacles);
+        this.humanBalloon = new MyBalloon(this.app, routePoints, true, this, this.track, this.obstacles, this.humanColor);
         this.humanBalloon.initBalloon();
         this.humanBalloon.addDynamicWindIndicator();
         // this.humanBalloon.showBoundingSphere(); // debbuging only
@@ -142,6 +144,14 @@ class MyReader {
 
     setWinner(winner) {
         this.winner = winner;
+    }
+
+    setHumanColor(color) {
+        this.humanColor = color;
+    }
+
+    setBotColor(color) {
+        this.aiColor = color;
     }
 
     endGame() {
@@ -193,8 +203,12 @@ class MyReader {
             if (this.humanBalloon) {
                 this.humanBalloon.removeBalloon();
             }
+            if (this.obstacles) {
+                this.obstacles.removeObstacleMarkers();
+            }
             this.app.setActiveCamera("orthogonal1");
             this.gameState = 'menu';
+            this.initialMenu.init();
             this.initialMenu.show();
             this.initialMenu.humanBalloonSelected = false;
             this.initialMenu.aiBalloonSelected = false;
