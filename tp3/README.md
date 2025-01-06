@@ -14,8 +14,8 @@ Our scene is a simple race of ballons. It includes a menu, a track, a goal line,
 
 ![Image 1](screenshots/overview.png)
 
- # Controls:
- 
+ # Controls
+
 - W - raise the balloon
 - S - lower the balloon
 - Space - pause / unpause
