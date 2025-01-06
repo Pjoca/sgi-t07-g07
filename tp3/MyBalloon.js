@@ -3,31 +3,31 @@ import {OBJLoader} from './node_modules/three/examples/jsm/loaders/OBJLoader.js'
 
 class MyBalloon {
     constructor(app, routePoints, isHuman, gameStateManager, track, obstacleManager, powerManager, color = 0xeeeeee) {
-        this.app = app;
-        this.scene = this.app.scene;
-        this.routePoints = routePoints;
-        this.isHuman = isHuman;
-        this.gameStateManager = gameStateManager;
-        this.obstacleManager = obstacleManager;
-        this.powerManager = powerManager;
-        this.color = color;
-        this.centerLine = track.centerLine;
-        this.trackWidth = track.trackWidth;
-        this.balloon = null;
-        this.groundCone = null; // Green cone for the human balloon
-        this.currentPointIndex = 1;
-        this.botSpeed = 0.0375;
-        this.verticalSpeed = 0.15;
-        this.activeKeys = {};
-        this.cameraMode = "thirdPerson";
-        this.windSpeed = 0.05;
-        this.layerHeights = [0, 5, 10, 15, 20];
-        this.isPenaltyActive = false; // Track if penalty is active
-        this.canMove = true;
-        this.vouchers = 0;
-        this.collectedPowerUps = new Set();
+        this.app = app; // Reference to the main application
+        this.scene = this.app.scene; // Scene in which the balloon will be added
+        this.routePoints = routePoints; // Points that define the balloon's route
+        this.isHuman = isHuman; // Boolean indicating if the balloon is controlled by a human
+        this.gameStateManager = gameStateManager; // Manager for game state
+        this.obstacleManager = obstacleManager; // Manager for obstacles
+        this.powerManager = powerManager; // Manager for power-ups
+        this.color = color; // Balloon's color
+        this.centerLine = track.centerLine; // Center line of the track
+        this.trackWidth = track.trackWidth; // Width of the track
+        this.balloon = null; // The balloon object
+        this.groundCone = null; // Ground cone to mark human-controlled balloons
+        this.currentPointIndex = 1; // Current point index for bot-controlled balloons
+        this.botSpeed = 0.0375; // Speed of bot-controlled balloons
+        this.verticalSpeed = 0.15; // Vertical movement speed
+        this.activeKeys = {}; // Stores active keys for human control
+        this.cameraMode = "thirdPerson"; // Current camera mode
+        this.windSpeed = 0.05; // Speed of wind affecting the balloon
+        this.layerHeights = [0, 5, 10, 15, 20]; // Height layers for wind effects
+        this.isPenaltyActive = false; // Indicates if a penalty is active
+        this.canMove = true; // Determines if the balloon can move
+        this.vouchers = 0; // Number of vouchers available to the player
+        this.collectedPowerUps = new Set(); // Tracks collected power-ups
     }
-
+    // Initializes the balloon object
     initBalloon() {
         const loader = new OBJLoader();
         loader.load('scenes/objects/airballoon4.obj',
@@ -35,16 +35,16 @@ class MyBalloon {
                 const material = new THREE.MeshStandardMaterial({color: this.color});
                 obj.traverse((child) => {
                     if (child.isMesh) {
-                        child.material = material;
+                        child.material = material; // Apply ballon material to all meshes
 
                         child.castShadow = true;
                     }
                 });
                 this.balloon = obj;
 
-                this.balloon.scale.set(5, 5, 5);
+                this.balloon.scale.set(5, 5, 5); // Set the balloon's size
 
-                // Set initial position
+                // Set initial position based on human/bot control
                 const startPosition = this.routePoints[0];
                 if (this.isHuman) {
                     this.balloon.position.set(startPosition.x, startPosition.y, startPosition.z - 7.5);
@@ -52,11 +52,11 @@ class MyBalloon {
                     this.balloon.position.set(startPosition.x, startPosition.y, startPosition.z + 7.5);
                 }
 
-                this.scene.add(this.balloon);
+                this.scene.add(this.balloon); // Add the balloon to the scene
 
                 if (this.isHuman) {
-                    this.addGroundCone();
-                    this.addKeyboardListeners();
+                    this.addGroundCone(); // Add ground cone for human-controlled balloon
+                    this.addKeyboardListeners(); // Add keyboard controls
                 }
             },
             (xhr) => {
@@ -68,38 +68,41 @@ class MyBalloon {
         );
     }
 
+    // Adds a green ground cone for human-controlled balloon for better control
     addGroundCone() {
         const coneGeometry = new THREE.ConeGeometry(0.75, 2, 32);
         const coneMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
         this.groundCone = new THREE.Mesh(coneGeometry, coneMaterial);
 
         // Initial position of the cone below the balloon
-        this.groundCone.position.set(this.balloon.position.x, 1, this.balloon.position.z);
+        this.groundCone.position.set(this.balloon.position.x, 1, this.balloon.position.z); // Set initial position
         this.groundCone.rotation.y = -Math.PI / 2; // Point the cone upwards
         this.scene.add(this.groundCone);
     }
 
-
+    // Removes the balloon and associated elements from the scene
     removeBalloon() {
-        this.scene.remove(this.balloon);
+        this.scene.remove(this.balloon); // Remove the balloon
         if (this.groundCone) {
-            this.scene.remove(this.groundCone);
+            this.scene.remove(this.groundCone); // Remove the ground cone if it exists
         }
-        this.scene.remove(this.windIndicator);
+        this.scene.remove(this.windIndicator); // Remove the wind indicator
     }
 
+    // Adds event listeners for human-controlled balloon
     addKeyboardListeners() {
         if (this.isHuman) {
             window.addEventListener('keydown', (event) => {
-                this.activeKeys[event.key.toLowerCase()] = true;
+                this.activeKeys[event.key.toLowerCase()] = true; // Set the key as active
             });
 
             window.addEventListener('keyup', (event) => {
-                this.activeKeys[event.key.toLowerCase()] = false;
+                this.activeKeys[event.key.toLowerCase()] = false; // Set the key as inactive
             });
         }
     }
 
+    // Updates the camera position based on wind direction
     updateCamera(wind) {
         let x = wind.x;
         let z = wind.z;
@@ -109,7 +112,8 @@ class MyBalloon {
         if (z === -this.windSpeed) z = 1;
         if (z === this.windSpeed) z = -1;
 
-        if (this.cameraMode === "thirdPerson") {
+        // Third person camera mode
+        if (this.cameraMode === "thirdPerson") { 
             if (x === 0 && z === 0) {
                 this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(15, 15, 0));
                 this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-100, this.balloon.position.y - 50, this.balloon.position.z));
@@ -120,7 +124,9 @@ class MyBalloon {
                 this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(x * 15, 15, 0));
                 this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-x * 100, this.balloon.position.y - 50, this.balloon.position.z));
             }
-        } else {
+        } 
+        // First person camera mode
+        else { 
             if (x === 0 && z === 0) {
                 this.app.cameras[this.app.activeCameraName].position.copy(this.balloon.position).add(new THREE.Vector3(0, 1.5, 0));
                 this.app.cameras[this.app.activeCameraName].lookAt(new THREE.Vector3(-100, this.balloon.position.y - 25, this.balloon.position.z));
@@ -134,6 +140,7 @@ class MyBalloon {
         }
     }
 
+    // Updates the balloon's position and checks for collisions
     update() {
         if (!this.balloon || this.routePoints.length === 0) return;
         if (!this.canMove) return;
@@ -174,6 +181,7 @@ class MyBalloon {
             }
 
             this.updateGroundCone();
+            // wind indicator
             this.updateWindIndicator();
 
             const obstacleBoundingSpheres = this.obstacleManager.getObstacleBoundingSpheres();
@@ -188,6 +196,7 @@ class MyBalloon {
             
         }
 
+        // Bot-controlled balloon movement
         if (!this.isHuman) {
             const targetPoint = this.routePoints[this.currentPointIndex];
             const direction = new THREE.Vector3().subVectors(targetPoint, this.balloon.position);
@@ -208,10 +217,12 @@ class MyBalloon {
         this.checkGoalLineCrossing(prevPosition);
     }
 
+    // Sets the canMove property to determine if the balloon can move
     setCanMove(canMove) {
         this.canMove = canMove;
     }
 
+    // Updates the ground cone position and checks if the balloon is off track
     updateGroundCone() {
         if (this.groundCone) {
             this.groundCone.position.set(this.balloon.position.x, 1, this.balloon.position.z);
@@ -219,6 +230,7 @@ class MyBalloon {
         }
     }
 
+    // Checks if the balloon crossed the goal line
     checkGoalLineCrossing(prevPosition) {
         const goalLineX = 7.5; // X position of the goal line
         const minZ = 23; // Minimum Z position for the goal posts
@@ -241,12 +253,14 @@ class MyBalloon {
         }
     }
 
+    // Handles the race end when the balloon crosses the goal line
     onGoalLineCrossed() {
         console.log(`${this.isHuman ? 'Human' : 'Bot'} balloon crossed the goal line!`);
         this.gameStateManager.setWinner(this.isHuman ? 'Human' : 'Bot');
         this.gameStateManager.setState('end');
     }
 
+    // Returns the active layer based on the balloon's height
     getActiveLayer() {
         const height = this.balloon.position.y;
         for (let i = this.layerHeights.length - 1; i >= 0; i--) {
@@ -257,22 +271,25 @@ class MyBalloon {
         return 0; // Default to the lowest layer
     }
 
+    // Returns the wind vector based on the active layer
     getWindForLayer(layer) {
         switch (layer) {
             case 4:
-                return new THREE.Vector3(-this.windSpeed, 0, 0);
+                return new THREE.Vector3(-this.windSpeed, 0, 0); // Wind from the left
             case 3:
-                return new THREE.Vector3(this.windSpeed, 0, 0);
+                return new THREE.Vector3(this.windSpeed, 0, 0); // Wind from the right
             case 2:
-                return new THREE.Vector3(0, 0, -this.windSpeed);
+                return new THREE.Vector3(0, 0, -this.windSpeed); // Wind from the front
             case 1:
-                return new THREE.Vector3(0, 0, this.windSpeed);
+                return new THREE.Vector3(0, 0, this.windSpeed); // Wind from the back
             case 0:
             default:
-                return new THREE.Vector3(0, 0, 0);
+                return new THREE.Vector3(0, 0, 0); // No wind
         }
     }
 
+
+    // Adds a wind indicator to show the wind direction
     addDynamicWindIndicator() {
         const arrowLength = 6;
         const arrowColor = 0x00ff00;
@@ -287,14 +304,18 @@ class MyBalloon {
         this.scene.add(this.windIndicator);
     }
 
+    // Updates the wind indicator based on the active layer
     updateWindIndicator() {
         const activeLayer = this.getActiveLayer();
         const windDirection = this.getWindForLayer(activeLayer).normalize();
         const balloonPosition = this.balloon.position.clone();
 
+        // Hide the wind indicator if there's no wind
         if (windDirection.length() === 0) {
             this.windIndicator.visible = false;
-        } else {
+        } 
+        // Show the wind indicator and update its position and direction
+        else {
             this.windIndicator.visible = true;
 
             const arrowOffset = windDirection.clone().multiplyScalar(5);
@@ -306,6 +327,7 @@ class MyBalloon {
         }
     }
 
+    // Returns the bounding sphere of the balloon
     getBoundingSphere() {
         const radius = 1;
         return {
@@ -314,6 +336,7 @@ class MyBalloon {
         };
     }
 
+    // Checks for collisions with obstacles
     checkCollisionsWithObstacles(obstacleBoundingSpheres) {
         const balloonSphere = this.getBoundingSphere();
         
@@ -332,6 +355,7 @@ class MyBalloon {
             }
         });
     
+        // Check for collisions with each obstacle
         for (const obstacleSphere of obstacleBoundingSpheres) {
             const distance = balloonSphere.center.distanceTo(obstacleSphere.center);
     
@@ -373,9 +397,11 @@ class MyBalloon {
         return false;
     }    
 
+    // Checks for collisions with power-ups
     checkCollisionsWithPowerups(powerUpBoundingSpheres) {
         const balloonSphere = this.getBoundingSphere();
 
+        // Check for collisions with each power-up
         for (let i = 0; i < powerUpBoundingSpheres.length; i++) {
             const powerUpSphere = powerUpBoundingSpheres[i];
 
@@ -386,6 +412,7 @@ class MyBalloon {
 
             const distance = balloonSphere.center.distanceTo(powerUpSphere.center);
 
+            // Check for collision with the power-up
             if (distance <= balloonSphere.radius + powerUpSphere.radius) {
                 console.log("Collision detected with a power-up!");
 
@@ -413,12 +440,14 @@ class MyBalloon {
             opacity: 0.5,
         });
 
+        // Create a sphere geometry for the bounding sphere
         const sphereGeometry = new THREE.SphereGeometry(radius, 16, 16);
         this.boundingSphereMesh = new THREE.Mesh(sphereGeometry, material);
         this.boundingSphereMesh.position.copy(this.balloon.position);
         this.scene.add(this.boundingSphereMesh);
     }
 
+    // Checks if the balloon has gone off track
     checkIfOffTrack() {
         const trackBoundaryDistance = this.trackWidth / 2 - 2.5; // Threshold to determine if the cone is off the track
 
@@ -429,6 +458,7 @@ class MyBalloon {
         let closestPoint = null;
         let minDistance = Infinity;
 
+        // Iterate over the center line points to find the closest point
         centerPoints.forEach((point) => {
             const distance = this.groundCone.position.distanceTo(point);
             if (distance < minDistance) {
@@ -444,6 +474,7 @@ class MyBalloon {
         }
     }
 
+    // Applies a penalty to the balloon for going off track
     applyPenalty(closestPoint) {
         this.isPenaltyActive = true; // Activate the penalty state
 
@@ -461,6 +492,7 @@ class MyBalloon {
     }
 
 
+    // Teleports the balloon to the closest point on the track
     moveBalloonToClosestPoint(closestPoint) {
         if (closestPoint) {
             console.log("Teleporting balloon to the closest point on the track.");
@@ -468,6 +500,7 @@ class MyBalloon {
         }
     }
 
+    // Updates the voucher counter
     updateVoucherCounter() {
         const voucherCounter = document.getElementById("voucherCounter");
     

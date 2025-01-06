@@ -23,22 +23,28 @@
 <div id="canvas"></div>
 <div id="camera"></div>
 <script type="module" src="main.js"></script>
+
+<!-- A message displayed when the user or object goes off track, styled prominently in red -->
 <div id="stunnedMessage"
      style="position: absolute; top: 4em; left: 50%; transform: translateX(-50%); font-size: 4em; color: red; font-weight: bold; display: none;">
     OFF TRACK! STUNNED!
 </div>
+<!-- A message displayed when a collision occurs, styled prominently in red -->
 <div id="collisionMessage"
      style="position: absolute; top: 4em; left: 50%; transform: translateX(-50%); font-size: 4em; color: red; font-weight: bold; display: none;">
     COLLISION! STUNNED!
 </div>
+<!-- A message displayed when a voucher is used, styled in bold blue text -->
 <div id="voucherMessage"
      style="position: absolute; top: 4em; left: 50%; transform: translateX(-50%); font-size: 4em; color: rgb(4, 29, 255); font-weight: bold; display: none;">
      VOUCHER USED! NO PENALTY!
 </div>
+<!-- A counter to display the remaining vouchers, hidden by default -->
 <div id="voucherCounter"
      style="position: absolute; bottom: 10px; left: 10px; font-size: 2em; color: white; font-weight: bold; display: none;">
     Vouchers: 0
 </div>
+<!-- A countdown message displayed at the center top of the screen, hidden by default -->
 <div id="countdownMessage"
      style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); font-size: 4em; color: white; font-weight: bold; display: none;">
     3

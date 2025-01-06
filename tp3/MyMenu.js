@@ -3,21 +3,21 @@ import { MyTextRenderer } from './MyTextRenderer.js';
 
 class MyMenu {
     constructor(app, gameStateManager) {
-        this.app = app;
-        this.scene = this.app.scene;
-        this.gameStateManager = gameStateManager;
-        this.buttons = [];
-        this.texts = [];
-        this.raycaster = new THREE.Raycaster();
-        this.mouse = new THREE.Vector2();
-        this.intersectedObject = null;
+        this.app = app; // MyScene
+        this.scene = this.app.scene; // THREE.Scene
+        this.gameStateManager = gameStateManager; // MyGameStateManager
+        this.buttons = []; //buttons to be clicked
+        this.texts = []; //texts to be displayed
+        this.raycaster = new THREE.Raycaster(); //raycaster to detect mouse clicks
+        this.mouse = new THREE.Vector2(); //mouse position
+        this.intersectedObject = null; //object that is being intersected by the mouse
         this.textRenderer = new MyTextRenderer(this.scene, 'scenes/textures/spritesheet.png', 16, 16, 1, 1);
 
-        this.humanBalloonSelected = false;
-        this.aiBalloonSelected = false;
+        this.humanBalloonSelected = false; //flag to check if human balloon color has been selected
+        this.aiBalloonSelected = false; //flag to check if ai balloon color has been selected
 
-        this.humanBalloonColor = null;
-        this.aiBalloonColor = null;
+        this.humanBalloonColor = null; //color of the human balloon
+        this.aiBalloonColor = null; //color of the ai balloon
     }
 
     init() {
@@ -44,6 +44,8 @@ class MyMenu {
         this.texts.push(authorsText);
 
         // SELECT HUMAN BALLOON
+
+        // Color 1: Blue
         const selectHumanBlueGeometry = new THREE.PlaneGeometry(8, 8);
         const selectHumanBlueMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff });
         this.selectHumanBlueButton = new THREE.Mesh(selectHumanBlueGeometry, selectHumanBlueMaterial);
@@ -52,6 +54,7 @@ class MyMenu {
         this.scene.add(this.selectHumanBlueButton);
         this.buttons.push({ button: this.selectHumanBlueButton, action: this.selectHumanBlue.bind(this) });
 
+        // Color 2: Red
         const selectHumanRedGeometry = new THREE.PlaneGeometry(8, 8);
         const selectHumanRedMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
         this.selectHumanRedButton = new THREE.Mesh(selectHumanRedGeometry, selectHumanRedMaterial);
@@ -60,6 +63,7 @@ class MyMenu {
         this.scene.add(this.selectHumanRedButton);
         this.buttons.push({ button: this.selectHumanRedButton, action: this.selectHumanRed.bind(this) });
 
+        // Color 3: Green
         const selectHumanGreenGeometry = new THREE.PlaneGeometry(8, 8);
         const selectHumanGreenMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
         this.selectHumanGreenButton = new THREE.Mesh(selectHumanGreenGeometry, selectHumanGreenMaterial);
@@ -73,6 +77,8 @@ class MyMenu {
         this.texts.push(humanSelectionText);
 
         // SELECT AI BALLOON
+
+        // Color 1: Cyan
         const selectBotCyanGeometry = new THREE.PlaneGeometry(8, 8);
         const selectBotCyanMaterial = new THREE.MeshBasicMaterial({ color: 0x00ffff });
         this.selectBotCyanButton = new THREE.Mesh(selectBotCyanGeometry, selectBotCyanMaterial);
@@ -81,6 +87,7 @@ class MyMenu {
         this.scene.add(this.selectBotCyanButton);
         this.buttons.push({ button: this.selectBotCyanButton, action: this.selectBotCyan.bind(this) });
 
+        // Color 2: Magenta
         const selectBotMagentaGeometry = new THREE.PlaneGeometry(8, 8);
         const selectBotMagentaMaterial = new THREE.MeshBasicMaterial({ color: 0xff00ff });
         this.selectBotMagentaButton = new THREE.Mesh(selectBotMagentaGeometry, selectBotMagentaMaterial);
@@ -89,6 +96,7 @@ class MyMenu {
         this.scene.add(this.selectBotMagentaButton);
         this.buttons.push({ button: this.selectBotMagentaButton, action: this.selectBotMagenta.bind(this) });
 
+        // Color 3: Yellow
         const selectBotYellowGeometry = new THREE.PlaneGeometry(8, 8);
         const selectBotYellowMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
         this.selectBotYellowButton = new THREE.Mesh(selectBotYellowGeometry, selectBotYellowMaterial);
@@ -102,6 +110,7 @@ class MyMenu {
         this.texts.push(botSelectionText);
     }
 
+    // Update the mouse position
     update(mouseX, mouseY) {
         this.mouse.x = (mouseX / window.innerWidth) * 2 - 1;
         this.mouse.y = -(mouseY / window.innerHeight) * 2 + 1;
@@ -120,6 +129,7 @@ class MyMenu {
         }
     }
 
+    // Handle the click event
     onClick() {
         if (this.intersectedObject) {
             const buttonData = this.buttons.find(b => b.button === this.intersectedObject);
@@ -129,6 +139,7 @@ class MyMenu {
         }
     }
 
+    // Start the game
     startGame() {
         if (this.humanBalloonSelected && this.aiBalloonSelected) {
             console.log('Game Started');
