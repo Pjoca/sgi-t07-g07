@@ -75,7 +75,7 @@ class MyReader {
         this.gameState = state;
         if (state === 'running') {
             this.startGame();
-            this.app.setActiveCamera("perspective1");
+            this.app.setActiveCamera("perspective2");
         }
         if (state === 'end') {
             this.endGame();
@@ -90,15 +90,49 @@ class MyReader {
 
         this.startTime = Date.now();
 
+        // Initialize the track and balloons
         this.track = new MyTrack(this.app.scene, 30);
         this.track.init();
         const routePoints = this.track.route.getRoutePoints();
-        this.aiBalloon = new MyBalloon(this.app, routePoints, false, this);
+        this.aiBalloon = new MyBalloon(this.app, routePoints, false, this, this.track);
         this.aiBalloon.initBalloon();
-        this.humanBalloon = new MyBalloon(this.app, routePoints, true, this);
+        this.humanBalloon = new MyBalloon(this.app, routePoints, true, this, this.track);
         this.humanBalloon.initBalloon();
         this.humanBalloon.addDynamicWindIndicator();
+
+        // Disable movement during countdown
+        this.aiBalloon.setCanMove(false);
+        this.humanBalloon.setCanMove(false);
+
+        // Display countdown
+        this.startCountdown();
     }
+
+    startCountdown() {
+        const countdownElement = document.getElementById('countdownMessage');
+        let countdownValue = 3;
+
+        countdownElement.style.display = "block"; // Show the countdown message
+
+        // Update countdown every second
+        this.countdownTimer = setInterval(() => {
+            countdownElement.textContent = countdownValue;
+            countdownValue -= 1;
+
+            if (countdownValue < 0) {
+                clearInterval(this.countdownTimer); // Stop countdown
+                countdownElement.textContent = "GO!"; // Display "GO!"
+                setTimeout(() => {
+                    countdownElement.style.display = "none"; // Hide countdown after a short delay
+                    // Allow movement now that countdown is over
+                    this.app.setActiveCamera("perspective1");
+                    this.aiBalloon.setCanMove(true);
+                    this.humanBalloon.setCanMove(true);
+                }, 1000); // Wait 1 second before starting the game
+            }
+        }, 1000); // Update every 1 second
+    }
+
 
     setWinner(winner) {
         this.winner = winner;

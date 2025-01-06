@@ -1,28 +1,36 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <title>SGI - TP3</title>
+    <meta charset="UTF-8"/>
+    <title>SGI - TP3</title>
 
-  <link rel="shortcut icon" href="image/favicon/3d.png" />
-  <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="image/favicon/3d.png"/>
+    <link rel="stylesheet" href="styles.css">
 
-  <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.156.1/build/three.module.js",
-        "three/addons/": "https://unpkg.com/three@0.156.1/examples/jsm/"
-      }
-    }
-  </script>
+    <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@0.156.1/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.156.1/examples/jsm/"
+          }
+        }
+    </script>
 
 </head>
 
 <body>
-  <div id="canvas"></div>
-  <div id="camera"></div>
-  <script type="module" src="main.js"></script>
+<div id="canvas"></div>
+<div id="camera"></div>
+<script type="module" src="main.js"></script>
+<div id="stunnedMessage"
+     style="position: absolute; top: 4em; left: 50%; transform: translateX(-50%); font-size: 4em; color: red; font-weight: bold; display: none;">
+    OFF TRACK! STUNNED!
+</div>
+<div id="countdownMessage"
+     style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); font-size: 4em; color: white; font-weight: bold; display: none;">
+    3
+</div>
 </body>
 
 </html>
