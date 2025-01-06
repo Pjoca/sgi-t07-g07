@@ -2,13 +2,14 @@ import * as THREE from 'three';
 import {OBJLoader} from './node_modules/three/examples/jsm/loaders/OBJLoader.js';
 
 class MyBalloon {
-    constructor(app, routePoints, isHuman, gameStateManager, track, obstacleManager, color = 0xeeeeee) {
+    constructor(app, routePoints, isHuman, gameStateManager, track, obstacleManager, powerManager, color = 0xeeeeee) {
         this.app = app;
         this.scene = this.app.scene;
         this.routePoints = routePoints;
         this.isHuman = isHuman;
         this.gameStateManager = gameStateManager;
         this.obstacleManager = obstacleManager;
+        this.powerManager = powerManager;
         this.color = color;
         this.centerLine = track.centerLine;
         this.trackWidth = track.trackWidth;
@@ -23,6 +24,8 @@ class MyBalloon {
         this.layerHeights = [0, 5, 10, 15, 20];
         this.isPenaltyActive = false; // Track if penalty is active
         this.canMove = true;
+        this.vouchers = 0;
+        this.collectedPowerUps = new Set();
     }
 
     initBalloon() {
@@ -177,6 +180,12 @@ class MyBalloon {
             if (this.checkCollisionsWithObstacles(obstacleBoundingSpheres)) {
                 console.log("Collision detected!");
             }
+
+            const powerUpBoundingSpheres = this.powerManager.getPowerUpBoundingSpheres();
+            if (this.checkCollisionsWithPowerups(powerUpBoundingSpheres)) {
+                console.log("Power-up collected!");
+            }
+            
         }
 
         if (!this.isHuman) {
@@ -307,14 +316,14 @@ class MyBalloon {
 
     checkCollisionsWithObstacles(obstacleBoundingSpheres) {
         const balloonSphere = this.getBoundingSphere();
-
-        const divisions = 100;  // The more divisions, the more accurate the result
+        
+        const divisions = 100; // The more divisions, the more accurate the result
         const centerPoints = this.centerLine.getPoints(divisions);
-
+    
         // Find the closest point on the track center line to the ground cone's position
         let closestPoint = null;
         let minDistance = Infinity;
-
+    
         centerPoints.forEach((point) => {
             const distance = this.groundCone.position.distanceTo(point);
             if (distance < minDistance) {
@@ -322,22 +331,71 @@ class MyBalloon {
                 closestPoint = point;
             }
         });
-
+    
         for (const obstacleSphere of obstacleBoundingSpheres) {
             const distance = balloonSphere.center.distanceTo(obstacleSphere.center);
-
+    
             if (distance <= balloonSphere.radius + obstacleSphere.radius) {
                 console.log("Collision detected with an obstacle!");
-                this.isPenaltyActive = true;
+    
+                if (this.vouchers > 0) {
+                    // Reduce the number of vouchers and teleport
+                    this.vouchers--;
+                    console.log("Voucher used to avoid penalty! Remaining vouchers:", this.vouchers);
 
-                const collisionMessage = document.getElementById("collisionMessage");
-                collisionMessage.style.display = "block"; // Show the message
+                    this.updateVoucherCounter();
 
-                setTimeout(() => {
+                    const voucherMessage = document.getElementById("voucherMessage");
+                    voucherMessage.style.display = "block"; // Show the message
+
                     this.moveBalloonToClosestPoint(closestPoint);
-                    collisionMessage.style.display = "none"; // Hide the message
-                    this.isPenaltyActive = false;
-                }, 2000); // The penalty lasts for 2 seconds
+                    setTimeout(() => {
+                        voucherMessage.style.display = "none"; // Hide the message
+                    }, 2000); // Hide the message after 2 seconds
+
+                } else {
+                    // Apply penalty if no vouchers are available
+                    this.isPenaltyActive = true;
+    
+                    const collisionMessage = document.getElementById("collisionMessage");
+                    collisionMessage.style.display = "block"; // Show the message
+    
+                    setTimeout(() => {
+                        this.moveBalloonToClosestPoint(closestPoint);
+                        collisionMessage.style.display = "none"; // Hide the message
+                        this.isPenaltyActive = false;
+                    }, 2000); // The penalty lasts for 2 seconds
+                }
+
+                return true;
+            }
+        }
+        return false;
+    }    
+
+    checkCollisionsWithPowerups(powerUpBoundingSpheres) {
+        const balloonSphere = this.getBoundingSphere();
+
+        for (let i = 0; i < powerUpBoundingSpheres.length; i++) {
+            const powerUpSphere = powerUpBoundingSpheres[i];
+
+            // Skip already collected power-ups
+            if (this.collectedPowerUps.has(i)) {
+                continue;
+            }
+
+            const distance = balloonSphere.center.distanceTo(powerUpSphere.center);
+
+            if (distance <= balloonSphere.radius + powerUpSphere.radius) {
+                console.log("Collision detected with a power-up!");
+
+                // Mark the power-up as collected
+                this.collectedPowerUps.add(i);
+
+                // Increment vouchers
+                this.vouchers++;
+                console.log("Vouchers:", this.vouchers);
+                this.updateVoucherCounter();
 
                 return true;
             }
@@ -409,6 +467,17 @@ class MyBalloon {
             this.balloon.position.set(closestPoint.x, 20, closestPoint.z);
         }
     }
+
+    updateVoucherCounter() {
+        const voucherCounter = document.getElementById("voucherCounter");
+    
+        // Update the text content with the current number of vouchers
+        voucherCounter.textContent = `Vouchers: ${this.vouchers}`;
+    
+        // Ensure the voucher counter is displayed when the game starts
+        voucherCounter.style.display = "block";
+    }
+
 }
 
 export {MyBalloon};
