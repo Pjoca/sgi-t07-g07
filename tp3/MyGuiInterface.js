@@ -31,7 +31,35 @@ class MyGuiInterface {
     init() {
         this.datgui = new GUI(); // Create a new GUI instance using the imported library
 
+        const lightsFolder = this.datgui.addFolder('Lights');
+
+        // Iterate through each light in the scene and create GUI controls for PointLights only
+        for (const [lightId, light] of Object.entries(this.app.contents.objectCreator.lights)) {
+            if (light.type === "PointLight") {
+                const folder = lightsFolder.addFolder(`PointLight ${lightId}`);
+
+                // Add controls for intensity, color, distance, decay, and castShadow
+                folder.add(light, 'intensity', 0, 10, 0.1).name('Intensity');
+                folder.addColor(light, 'color').name('Color');
+                folder.add(light, 'distance', 0, 1000, 1).name('Distance');
+                folder.add(light, 'decay', 0, 5, 0.1).name('Decay');
+                folder.add(light, 'castShadow').name('Cast Shadow');
+            }
+        }
+
+        // Close the lights folder
+        lightsFolder.close();
+
+        const trackFolder = this.datgui.addFolder('Track');
+        trackFolder.add(this.app.contents.raceReader.track, 'trackWidth', 25, 40, 1)
+            .name('Track Width')
+            .onChange((newWidth) => {
+                this.app.contents.raceReader.humanBalloon.trackWidth = newWidth;
+                this.app.contents.raceReader.track.regenerateTrack();
+            });
+        trackFolder.close();
+
     }
 }
 
-export { MyGuiInterface }; // Export the class for use in other modules
+export {MyGuiInterface}; // Export the class for use in other modules

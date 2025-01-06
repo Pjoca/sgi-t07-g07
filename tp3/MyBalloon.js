@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { OBJLoader } from './node_modules/three/examples/jsm/loaders/OBJLoader.js';
+import {OBJLoader} from './node_modules/three/examples/jsm/loaders/OBJLoader.js';
 
 class MyBalloon {
     constructor(app, routePoints, isHuman, gameStateManager, track, obstacleManager, color = 0xeeeeee) {
@@ -16,7 +16,7 @@ class MyBalloon {
         this.groundCone = null; // Green cone for the human balloon
         this.currentPointIndex = 1;
         this.botSpeed = 0.0375;
-        this.verticalSpeed = 0.08;
+        this.verticalSpeed = 0.1;
         this.activeKeys = {};
         this.cameraMode = "thirdPerson";
         this.windSpeed = 0.05;
@@ -29,10 +29,12 @@ class MyBalloon {
         const loader = new OBJLoader();
         loader.load('scenes/objects/airballoon4.obj',
             (obj) => {
-                const material = new THREE.MeshStandardMaterial({ color: this.color });
+                const material = new THREE.MeshStandardMaterial({color: this.color});
                 obj.traverse((child) => {
                     if (child.isMesh) {
                         child.material = material;
+
+                        child.castShadow = true;
                     }
                 });
                 this.balloon = obj;
@@ -360,10 +362,9 @@ class MyBalloon {
     }
 
     checkIfOffTrack() {
-        const trackBoundaryDistance = this.trackWidth / 2 + 0.5; // Threshold to determine if the cone is off the track
+        const trackBoundaryDistance = this.trackWidth / 2 - 2.5; // Threshold to determine if the cone is off the track
 
-        // Sample points along the track (center line)
-        const divisions = 100;  // The more divisions, the more accurate the result
+        const divisions = 100;
         const centerPoints = this.centerLine.getPoints(divisions);
 
         // Find the closest point on the track center line to the ground cone's position

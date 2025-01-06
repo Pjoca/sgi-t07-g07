@@ -23,6 +23,8 @@ class MyObstacle {
         this.obstaclePoints.forEach((pos) => {
             const obstacle = new THREE.Mesh(obstacleGeometry, obstacleMaterial);
             obstacle.position.set(pos.x, pos.y + 4, pos.z);
+            obstacle.castShadow = true;
+            obstacle.receiveShadow = true;
             this.scene.add(obstacle);
 
             // Store the obstacle in the obstacles array

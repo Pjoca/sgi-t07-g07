@@ -37,7 +37,7 @@ class MyContents {
         // Object creator to generate objects from the graph and materials
         this.objectCreator = new ObjectCreator(this.app, this.graphLoader, this.materialsLoader);
 
-        this.reader = new MyReader(this.app);
+        this.raceReader = new MyReader(this.app);
     }
 
     /**
@@ -106,9 +106,7 @@ class MyContents {
         }
 
         // Create and initialize the GUI for the application
-        this.createGui();
-
-        this.reader.init();
+        this.raceReader.init();
     }
 
     /**

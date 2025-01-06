@@ -108,6 +108,8 @@ class MyReader {
         this.humanBalloon.addDynamicWindIndicator();
         // this.humanBalloon.showBoundingSphere(); // debbuging only
 
+        this.app.contents.createGui();
+
         // Disable movement during countdown
         this.aiBalloon.setCanMove(false);
         this.humanBalloon.setCanMove(false);

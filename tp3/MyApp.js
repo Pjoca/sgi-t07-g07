@@ -50,8 +50,8 @@ class MyApp  {
         this.renderer.setClearColor("#000000"); // Set the clear color of the canvas (black)
 
         // Configure shadow maps for rendering realistic shadows
-        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         this.renderer.shadowMap.enabled = true;
+        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
         // Configure renderer size based on window dimensions
         this.renderer.setSize( window.innerWidth, window.innerHeight );
