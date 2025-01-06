@@ -97,7 +97,7 @@ class MyReader {
         this.track.init();
         this.obstacles = new MyObstacle(this.app.scene);
         this.obstacles.createObstacleMarkers();
-        this.obstacles.showBoundingSpheres(); // debbuging only
+        //this.obstacles.showBoundingSpheres(); // debbuging only
         const routePoints = this.track.route.getRoutePoints();
         this.aiBalloon = new MyBalloon(this.app, routePoints, false, this, this.track);
         this.aiBalloon.initBalloon();
