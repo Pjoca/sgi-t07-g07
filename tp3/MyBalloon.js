@@ -314,7 +314,7 @@ class MyBalloon {
 
     checkCollisionsWithObstacles(obstacleBoundingSpheres) {
         const balloonSphere = this.getBoundingSphere();
-    
+        
         const divisions = 100; // The more divisions, the more accurate the result
         const centerPoints = this.centerLine.getPoints(divisions);
     
@@ -340,7 +340,16 @@ class MyBalloon {
                     // Reduce the number of vouchers and teleport
                     this.vouchers--;
                     console.log("Voucher used to avoid penalty! Remaining vouchers:", this.vouchers);
+
+                    this.updateVoucherCounter();
+
+                    const voucherMessage = document.getElementById("voucherMessage");
+                    voucherMessage.style.display = "block"; // Show the message
+
                     this.moveBalloonToClosestPoint(closestPoint);
+                    setTimeout(() => {
+                        voucherMessage.style.display = "none"; // Hide the message
+                    }, 2000); // Hide the message after 2 seconds
 
                 } else {
                     // Apply penalty if no vouchers are available
@@ -384,6 +393,7 @@ class MyBalloon {
                 // Increment vouchers
                 this.vouchers++;
                 console.log("Vouchers:", this.vouchers);
+                this.updateVoucherCounter();
 
                 return true;
             }
@@ -456,6 +466,17 @@ class MyBalloon {
             this.balloon.position.set(closestPoint.x, 20, closestPoint.z);
         }
     }
+
+    updateVoucherCounter() {
+        const voucherCounter = document.getElementById("voucherCounter");
+    
+        // Update the text content with the current number of vouchers
+        voucherCounter.textContent = `Vouchers: ${this.vouchers}`;
+    
+        // Ensure the voucher counter is displayed when the game starts
+        voucherCounter.style.display = "block";
+    }
+
 }
 
 export {MyBalloon};

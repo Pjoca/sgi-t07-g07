@@ -30,6 +30,8 @@ class MyReader {
     }
 
     init() {
+        const voucherCounter = document.getElementById("voucherCounter");
+        voucherCounter.style.display = "none"; 
         // Initialize menus
         this.initialMenu = new MyMenu(this.app, this);
         this.initialMenu.init();
@@ -95,6 +97,8 @@ class MyReader {
         this.finalMenu.hide();
 
         this.startTime = Date.now();
+        
+        voucherCounter.style.display = "block";
 
         // Initialize the track and balloons
         this.track = new MyTrack(this.app.scene, 30);
@@ -180,7 +184,7 @@ class MyReader {
         if (this.powerUps) {
             this.powerUps.removePowerUps();
         }
-
+        voucherCounter.style.display = "none";
         // Calculate and pass the elapsed time to the results menu
         const elapsedTime = ((this.endTime - this.startTime) / 1000).toFixed(2);
         this.finalMenu.setFinalTime(elapsedTime);
@@ -218,6 +222,8 @@ class MyReader {
             if (this.powerUps) {
                 this.powerUps.removePowerUps();
             }
+            voucherCounter.style.display = "none";
+            voucherCounter.textContent = `Vouchers: ${0}`;
 
             this.app.setActiveCamera("orthogonal1");
             this.gameState = 'menu';
