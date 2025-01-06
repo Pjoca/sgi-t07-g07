@@ -1,14 +1,17 @@
 import * as THREE from 'three';
 
 class MyBalloon {
-    constructor(app, routePoints, isHuman, gameStateManager, obstacleManager) {
+    constructor(app, routePoints, isHuman, gameStateManager, track, obstacleManager) {
         this.app = app;
         this.scene = this.app.scene;
         this.routePoints = routePoints;
         this.isHuman = isHuman;
         this.gameStateManager = gameStateManager;
         this.obstacleManager = obstacleManager;
+        this.centerLine = track.centerLine;
+        this.trackWidth = track.trackWidth;
         this.balloon = null;
+        this.groundCone = null; // Green cone for the human balloon
         this.currentPointIndex = 1;
         this.botSpeed = 0.0375;
         this.verticalSpeed = 0.08;
@@ -16,6 +19,8 @@ class MyBalloon {
         this.cameraMode = "thirdPerson";
         this.windSpeed = 0.05;
         this.layerHeights = [0, 5, 10, 15, 20];
+        this.isPenaltyActive = false; // Track if penalty is active
+        this.canMove = true;
     }
 
     initBalloon() {
@@ -32,7 +37,30 @@ class MyBalloon {
         }
         this.scene.add(this.balloon);
 
-        this.addKeyboardListeners();
+        if (this.isHuman) {
+            this.addGroundCone();
+            this.addKeyboardListeners();
+        }
+    }
+
+    addGroundCone() {
+        const coneGeometry = new THREE.ConeGeometry(0.75, 2, 32);
+        const coneMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
+        this.groundCone = new THREE.Mesh(coneGeometry, coneMaterial);
+
+        // Initial position of the cone below the balloon
+        this.groundCone.position.set(this.balloon.position.x, 1, this.balloon.position.z);
+        this.groundCone.rotation.y = -Math.PI / 2; // Point the cone upwards
+        this.scene.add(this.groundCone);
+    }
+
+
+    removeBalloon() {
+        this.scene.remove(this.balloon);
+        if (this.groundCone) {
+            this.scene.remove(this.groundCone);
+        }
+        this.scene.remove(this.windIndicator);
     }
 
     addKeyboardListeners() {
@@ -83,14 +111,17 @@ class MyBalloon {
 
     update() {
         if (!this.balloon || this.routePoints.length === 0) return;
+        if (!this.canMove) return;
 
         // Save the previous position
         const prevPosition = this.balloon.position.clone();
-
-        // Update position based on wind or human input
         const activeLayer = this.getActiveLayer();
         const wind = this.getWindForLayer(activeLayer);
-        this.balloon.position.add(wind);
+
+        // Only update the balloon's position if it's not stunned (penalty period)
+        if (!this.isPenaltyActive) {
+            this.balloon.position.add(wind);
+        }
 
         if (this.app.activeCameraName === "perspective1") this.updateCamera(wind);
 
@@ -117,6 +148,7 @@ class MyBalloon {
                 this.balloon.position.y = 20;
             }
 
+            this.updateGroundCone();
             this.updateWindIndicator();
 
             const obstacleBoundingSpheres = this.obstacleManager.getObstacleBoundingSpheres();
@@ -145,6 +177,17 @@ class MyBalloon {
         this.checkGoalLineCrossing(prevPosition);
     }
 
+    setCanMove(canMove) {
+        this.canMove = canMove;
+    }
+
+    updateGroundCone() {
+        if (this.groundCone) {
+            this.groundCone.position.set(this.balloon.position.x, 1, this.balloon.position.z);
+            this.checkIfOffTrack();
+        }
+    }
+
     checkGoalLineCrossing(prevPosition) {
         const goalLineX = 7.5; // X position of the goal line
         const minZ = 23; // Minimum Z position for the goal posts
@@ -159,7 +202,7 @@ class MyBalloon {
 
         if (isCrossingGoalLine && isWithinVerticalBounds && isWithinHorizontalBounds) {
             if (isMovingForward) {
-                this.onGoalLineCrossed(); // Proceed with endgame mechanic
+                this.onGoalLineCrossed();
             } else {
                 this.balloon.position.x = prevPosition.x; // Block the balloon from crossing in the wrong direction
                 console.log("Cannot cross the goal line in the wrong direction!");
@@ -172,7 +215,6 @@ class MyBalloon {
         this.gameStateManager.setWinner(this.isHuman ? 'Human' : 'Bot');
         this.gameStateManager.setState('end');
     }
-
 
     getActiveLayer() {
         const height = this.balloon.position.y;
@@ -268,9 +310,54 @@ class MyBalloon {
         this.scene.add(this.boundingSphereMesh);
     }*/
 
-    removeBalloon() {
-        this.scene.remove(this.balloon);
-        this.scene.remove(this.windIndicator);
+    checkIfOffTrack() {
+        const trackBoundaryDistance = this.trackWidth / 2 + 0.5; // Threshold to determine if the cone is off the track
+
+        // Sample points along the track (center line)
+        const divisions = 100;  // The more divisions, the more accurate the result
+        const centerPoints = this.centerLine.getPoints(divisions);
+
+        // Find the closest point on the track center line to the ground cone's position
+        let closestPoint = null;
+        let minDistance = Infinity;
+
+        centerPoints.forEach((point) => {
+            const distance = this.groundCone.position.distanceTo(point);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestPoint = point;
+            }
+        });
+
+        // If the distance exceeds the track width, the balloon is off the track
+        if (minDistance > trackBoundaryDistance) {
+            console.log('Balloon has gone off track!');
+            this.applyPenalty(closestPoint); // Apply penalty for going off track
+        }
+    }
+
+    applyPenalty(closestPoint) {
+        this.isPenaltyActive = true; // Activate the penalty state
+
+        // Show the "STUNNED!" message
+        const stunnedMessage = document.getElementById("stunnedMessage");
+        stunnedMessage.style.display = "block"; // Show the message
+
+        setTimeout(() => {
+            this.moveBalloonToClosestPoint(closestPoint);
+            this.isPenaltyActive = false;
+
+            // Hide the "STUNNED!" message after penalty ends
+            stunnedMessage.style.display = "none"; // Hide the message
+        }, 2000); // The penalty lasts for 2 seconds
+    }
+
+
+    moveBalloonToClosestPoint(closestPoint) {
+        if (closestPoint) {
+            console.log("Teleporting balloon to the closest point on the track.");
+            this.balloon.position.set(closestPoint.x, this.balloon.position.y, closestPoint.z);
+        }
     }
 }
 
