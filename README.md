@@ -26,8 +26,14 @@ Our scene is based on the imperial conference room, from the first Star Wars mov
 
 ----
 
-### [TP3 - ...](tp3)
-- (items briefly describing main strong points)
+### [TP3 - Ballon Race](tp3)
+
+# Scene Description
+
+Our project consists of a simple 1-lap race of hot air balloons. It includes an initial menu, a final results menu, the race track, a goal line, four obstacles, three power-ups and one sun shining light over the whole scene.
+
+![Image 1](tp3/screenshots/overview.png)
+
 
 
 
