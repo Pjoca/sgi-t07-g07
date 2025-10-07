@@ -12,11 +12,7 @@
 
 ### [TP1 - ThreeJS Basics](tp1)
 
-- (items briefly describing main strong points)
-- Scene
-  - (Brief description of the created scene)
-  - (relative link to the scene)
-
+# Scene - Living Room
 -----
 
 ### [TP2 - SW IV New Hope Recreation](tp2)
@@ -25,12 +21,13 @@
 
 Our scene is based on the imperial conference room, from the first Star Wars movie. Here is the image which our scene was inspired from: 
 
-![Image 0](screenshots/Screenshot_0.png)
+![Image 0](tp2/screenshots/Screenshot_0.png)
 
 
 ----
 
 ### [TP3 - ...](tp3)
 - (items briefly describing main strong points)
+
 
 
